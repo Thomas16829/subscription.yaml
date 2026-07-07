@@ -88,10 +88,10 @@ proxies:
   # 🏠 住宅IP（链式核心）
   - name: 住宅-洛杉磯
     type: socks5
-    server: 66.80.127.188
-    port: 39531
-    username: hgBvv4YzIEjV
-    password: 6P1LHwUi0GMZ
+    server: 207.145.156.49
+    port: 33929
+    username: XOnMOuRv2wRu
+    password: 5iD0lGzcgcKh
     udp: true
     dialer-proxy: 自动中转
 
