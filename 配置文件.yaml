@@ -120,6 +120,13 @@ proxy-groups:
       - DIRECT
 
 rules:
+# 🔥 Google 全家桶强制代理（解决Play商店更新）
+- DOMAIN-SUFFIX,google.com,链式代理
+- DOMAIN-SUFFIX,googleapis.com,链式代理
+- DOMAIN-SUFFIX,gstatic.com,链式代理
+- DOMAIN-SUFFIX,ggpht.com,链式代理
+- DOMAIN-SUFFIX,googleusercontent.com,链式代理
+- DOMAIN-KEYWORD,google,链式代理
   # 🇨🇳 国内直连（核心）
   - GEOIP,CN,DIRECT
   - GEOSITE,cn,DIRECT
