@@ -17,10 +17,7 @@ dns:
     - 8.8.8.8
     - 1.1.1.1
 
-
 proxies:
-
-  # 🇭🇰 香港中转
   - name: 香港A
     type: ss
     server: pro.relay.hka.sys-metric-report.com
@@ -49,8 +46,6 @@ proxies:
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
 
-
-  # 🇺🇸 美国中转
   - name: 美国A
     type: ss
     server: pro.relay.usa.sys-metric-report.com
@@ -72,8 +67,6 @@ proxies:
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
 
-
-  # 🌐 VLESS WS 中转备用
   - name: A-WS-中转
     type: vless
     server: yg1.ygkkk.dpdns.org
@@ -89,22 +82,16 @@ proxies:
       headers:
         Host: thomas20265.ccwu.cc
 
-
-  # 🏠 住宅IP出口
-  - name: 住宅-纽约
+  - name: 住宅-洛杉磯
     type: socks5
-    server: 65.195.110.169
-    port: 50101
-    username: fengwenping88
-    password: EGmfNcqGK5
+    server: 207.145.156.49
+    port: 33929
+    username: XOnMOuRv2wRu
+    password: 5iD0lGzcgcKh
     udp: true
     dialer-proxy: 自动中转
 
-
-
 proxy-groups:
-
-  # 自动选择中转
   - name: 自动中转
     type: url-test
     proxies:
@@ -118,22 +105,16 @@ proxy-groups:
       - A-WS-中转
     url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
 
-
-  # 链式出口
   - name: 链式代理
     type: select
     proxies:
-      - 住宅-纽约
+      - 住宅-洛杉磯
       - 自动中转
       - DIRECT
 
-
-
 rules:
-
-  # Google Play / Google服务
+  # Google
   - DOMAIN-SUFFIX,google.com,链式代理
   - DOMAIN-SUFFIX,googleapis.com,链式代理
   - DOMAIN-SUFFIX,gstatic.com,链式代理
@@ -141,14 +122,9 @@ rules:
   - DOMAIN-SUFFIX,googleusercontent.com,链式代理
   - DOMAIN-KEYWORD,google,链式代理
 
-
-  # TikTok 社媒住宅出口
-  - DOMAIN-SUFFIX,tiktok.com,住宅-纽约
-  - DOMAIN-KEYWORD,tiktok,住宅-纽约
-
-  - DOMAIN-SUFFIX,facebook.com,住宅-纽约
-  - DOMAIN-SUFFIX,instagram.com,住宅-纽约
-
+  # 国内
+  - GEOIP,CN,DIRECT
+  - GEOSITE,cn,DIRECT
 
   # 局域网
   - IP-CIDR,127.0.0.0/8,DIRECT
@@ -156,11 +132,11 @@ rules:
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
 
+  # TikTok / 社媒
+  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
+  - DOMAIN-KEYWORD,tiktok,住宅-洛杉磯
+  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
 
-  # 中国直连
-  - GEOIP,CN,DIRECT
-  - GEOSITE,cn,DIRECT
-
-
-  # 其它全部代理
+  # 其它
   - MATCH,链式代理
