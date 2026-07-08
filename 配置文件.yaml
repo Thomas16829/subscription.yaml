@@ -114,7 +114,8 @@ proxy-groups:
       - DIRECT
 
 rules:
-  # Google
+
+  # Google Play / Google服务
   - DOMAIN-SUFFIX,google.com,链式代理
   - DOMAIN-SUFFIX,googleapis.com,链式代理
   - DOMAIN-SUFFIX,gstatic.com,链式代理
@@ -122,9 +123,14 @@ rules:
   - DOMAIN-SUFFIX,googleusercontent.com,链式代理
   - DOMAIN-KEYWORD,google,链式代理
 
-  # 国内
-  - GEOIP,CN,DIRECT
-  - GEOSITE,cn,DIRECT
+
+  # TikTok 社媒住宅出口
+  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
+  - DOMAIN-KEYWORD,tiktok,住宅-洛杉磯
+
+  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
+
 
   # 局域网
   - IP-CIDR,127.0.0.0/8,DIRECT
@@ -132,11 +138,11 @@ rules:
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
 
-  # TikTok / 社媒
-  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
-  - DOMAIN-KEYWORD,tiktok,住宅-洛杉磯
-  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
 
-  # 其它
+  # 中国直连
+  - GEOIP,CN,DIRECT
+  - GEOSITE,cn,DIRECT
+
+
+  # 其它全部代理
   - MATCH,链式代理
