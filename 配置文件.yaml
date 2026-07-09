@@ -1,26 +1,42 @@
 mixed-port: 7890
 allow-lan: true
+bind-address: "*"
+
 mode: rule
 log-level: info
+
 tcp-concurrent: true
 unified-delay: true
 
+ipv6: false
+
+
 dns:
   enable: true
-  ipv6: true
+  ipv6: false
+
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
+
   nameserver:
     - 223.5.5.5
     - 119.29.29.29
+
   fallback:
-    - 8.8.8.8
-    - 1.1.1.1
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
+
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
 
 
 proxies:
 
-# 🇭🇰 香港中转
+# =====================
+# 香港中转
+# =====================
+
   - name: 香港A
     type: ss
     server: pro.relay.hka.sys-metric-report.com
@@ -50,13 +66,17 @@ proxies:
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
 
 
- # 🇺🇸 美国中转
+# =====================
+# 美国中转
+# =====================
+
   - name: 美国A
     type: ss
     server: pro.relay.usa.sys-metric-report.com
     port: 27008
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
+
 
   - name: 美国B
     type: ss
@@ -65,6 +85,7 @@ proxies:
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
 
+
   - name: 美国D
     type: ss
     server: pro.relay.usd.sys-metric-report.com
@@ -72,35 +93,62 @@ proxies:
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
 
- # 🌐 VLESS WS 中转备用
+
+
+# =====================
+# VLESS备用
+# =====================
+
   - name: A-WS-中转
     type: vless
     server: yg1.ygkkk.dpdns.org
     port: 8443
+
     uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+
     network: ws
+
     tls: true
     udp: true
+
     servername: thomas20265.ccwu.cc
+
     client-fingerprint: chrome
+
     ws-opts:
       path: "/?ed=2560"
+
       headers:
         Host: thomas20265.ccwu.cc
 
-# 🏠 住宅IP出口
+
+
+# =====================
+# 洛杉矶住宅IP
+# =====================
+
   - name: 住宅-洛杉磯
     type: socks5
+
     server: 207.145.156.49
     port: 33929
+
     username: XOnMOuRv2wRu
     password: 5iD0lGzcgcKh
+
     udp: true
-    dialer-proxy: 自动中转
+
+
 
 proxy-groups:
+
+
+# 自动测速
+
   - name: 自动中转
+
     type: url-test
+
     proxies:
       - 香港A
       - 香港B
@@ -110,47 +158,99 @@ proxy-groups:
       - 美国B
       - 美国D
       - A-WS-中转
+
     url: http://www.gstatic.com/generate_204
+
     interval: 300
+
     tolerance: 50
 
+
+
+# 总代理
+
   - name: 链式代理
+
     type: select
+
     proxies:
-      - 住宅-洛杉磯
+
       - 自动中转
+      - 住宅-洛杉磯
       - DIRECT
+
+     
+
+
 
 rules:
 
-  # Google Play / Google服务
+
+# =====================
+# 局域网
+# =====================
+
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+
+
+
+# =====================
+# 国内直连
+# =====================
+
+  - GEOSITE,cn,DIRECT
+
+  - GEOIP,CN,DIRECT
+
+
+
+# =====================
+# Google
+# =====================
+
   - DOMAIN-SUFFIX,google.com,链式代理
   - DOMAIN-SUFFIX,googleapis.com,链式代理
   - DOMAIN-SUFFIX,gstatic.com,链式代理
   - DOMAIN-SUFFIX,ggpht.com,链式代理
   - DOMAIN-SUFFIX,googleusercontent.com,链式代理
-  - DOMAIN-KEYWORD,google,链式代理
 
 
-  # TikTok 社媒住宅出口
+
+# =====================
+# AI
+# =====================
+
+  - DOMAIN-SUFFIX,openai.com,链式代理
+  - DOMAIN-SUFFIX,chatgpt.com,链式代理
+  - DOMAIN-SUFFIX,claude.ai,链式代理
+
+
+
+# =====================
+# 社交住宅IP
+# =====================
+
   - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
-  - DOMAIN-KEYWORD,tiktok,住宅-洛杉磯
+  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-洛杉磯
 
   - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
   - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
 
 
-  # 局域网
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
+
+# =====================
+# Telegram
+# =====================
+
+  - DOMAIN-SUFFIX,telegram.org,链式代理
+  - DOMAIN-SUFFIX,t.me,链式代理
 
 
-  # 中国直连
-  - GEOIP,CN,DIRECT
-  - GEOSITE,cn,DIRECT
 
+# =====================
+# 默认
+# =====================
 
-  # 其它全部代理
   - MATCH,链式代理
