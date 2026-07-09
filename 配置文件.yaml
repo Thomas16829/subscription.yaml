@@ -8,8 +8,6 @@ log-level: info
 tcp-concurrent: true
 unified-delay: true
 
-ipv6: false
-
 
 dns:
   enable: true
@@ -23,15 +21,17 @@ dns:
     - 119.29.29.29
 
   fallback:
-    - https://dns.google/dns-query
-    - https://cloudflare-dns.com/dns-query
+    - 8.8.8.8
+    - 1.1.1.1
 
   fallback-filter:
     geoip: true
     geoip-code: CN
 
 
+
 proxies:
+
 
 # =====================
 # 香港中转
@@ -44,12 +44,14 @@ proxies:
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
 
+
   - name: 香港B
     type: ss
     server: pro.relay.hkb.sys-metric-report.com
     port: 27010
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
+
 
   - name: 香港C
     type: ss
@@ -58,12 +60,14 @@ proxies:
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
 
+
   - name: 香港D
     type: ss
     server: pro.relay.hkd.sys-metric-report.com
     port: 27012
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
+
 
 
 # =====================
@@ -117,14 +121,13 @@ proxies:
 
     ws-opts:
       path: "/?ed=2560"
-
       headers:
         Host: thomas20265.ccwu.cc
 
 
 
 # =====================
-# 洛杉矶住宅IP
+# 美国住宅IP
 # =====================
 
   - name: 住宅-洛杉磯
@@ -138,12 +141,15 @@ proxies:
 
     udp: true
 
+    dialer-proxy: 自动中转
+
+
 
 
 proxy-groups:
 
 
-# 自动测速
+# 自动选择最快中转
 
   - name: 自动中转
 
@@ -167,18 +173,16 @@ proxy-groups:
 
 
 
-# 总代理
+# 普通国外代理
 
   - name: 链式代理
 
     type: select
 
     proxies:
-
-      - 自动中转
       - 住宅-洛杉磯
+      - 自动中转
       - DIRECT
-
      
 
 
@@ -193,6 +197,7 @@ rules:
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
 
 
 
@@ -201,7 +206,6 @@ rules:
 # =====================
 
   - GEOSITE,cn,DIRECT
-
   - GEOIP,CN,DIRECT
 
 
@@ -215,6 +219,7 @@ rules:
   - DOMAIN-SUFFIX,gstatic.com,链式代理
   - DOMAIN-SUFFIX,ggpht.com,链式代理
   - DOMAIN-SUFFIX,googleusercontent.com,链式代理
+  - DOMAIN-KEYWORD,google,链式代理
 
 
 
@@ -229,23 +234,35 @@ rules:
 
 
 # =====================
-# 社交住宅IP
+# YouTube
+# =====================
+
+  - DOMAIN-SUFFIX,youtube.com,链式代理
+  - DOMAIN-SUFFIX,googlevideo.com,链式代理
+  - DOMAIN-SUFFIX,ytimg.com,链式代理
+
+
+
+# =====================
+# 社媒住宅IP
 # =====================
 
   - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
   - DOMAIN-SUFFIX,tiktokcdn.com,住宅-洛杉磯
 
   - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
+
   - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
 
 
 
 # =====================
-# Telegram
+# 其他国外 APP
 # =====================
 
   - DOMAIN-SUFFIX,telegram.org,链式代理
-  - DOMAIN-SUFFIX,t.me,链式代理
+  - DOMAIN-SUFFIX,github.com,链式代理
+  - DOMAIN-SUFFIX,netflix.com,链式代理
 
 
 
