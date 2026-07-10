@@ -37,6 +37,21 @@ proxies:
 # 香港中转
 # =====================
 
+  - name: 香港01[HY2]
+    type: hysteria2
+    server: hk01.hy2.sys-metric-report.com
+    port: 29419
+    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+    sni: happ.cfastcdn.com
+    skip-cert-verify: false
+    obfs: salamander
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    ports: "20000-30000"
+  
+  
+  
   - name: 香港A
     type: ss
     server: pro.relay.hka.sys-metric-report.com
@@ -163,7 +178,8 @@ proxy-groups:
   - name: 自动中转
     type: url-test
     proxies:
-      
+
+      - 香港01[HY2]
       - 香港A
       - 香港B
       - 香港C
