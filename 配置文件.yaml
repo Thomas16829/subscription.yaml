@@ -161,10 +161,8 @@ proxy-groups:
 # 自动选择最快中转
 
   - name: 自动中转
-
     type: url-test
-
-   proxies:
+    proxies:
       
       - 香港A
       - 香港B
