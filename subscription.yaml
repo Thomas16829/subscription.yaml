@@ -164,14 +164,15 @@ proxy-groups:
     type: url-test
 
     proxies:
-      - 🇭🇰 香港01[HY2]
-      - 🇭🇰 香港02[HY2]
+      
       - 香港A
       - 香港B
       - 香港C
       - 香港D
       - 美国A
       - 美国B
+      - 美国C
+      - 美国D
       - A-WS-中转
 
     url: http://www.gstatic.com/generate_204
