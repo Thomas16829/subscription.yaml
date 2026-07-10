@@ -258,9 +258,15 @@ rules:
 
   - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
   - DOMAIN-SUFFIX,tiktokcdn.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,tiktokv.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,byteoversea.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,ibyteimg.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,muscdn.com,住宅-洛杉磯
 
   - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
-
+  - DOMAIN-SUFFIX,fbcdn.net,住宅-洛杉磯
+  - DOMAIN-SUFFIX,messenger.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉磯
   - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
 
 
