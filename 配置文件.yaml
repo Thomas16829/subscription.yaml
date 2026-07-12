@@ -49,17 +49,17 @@ proxies:
     obfs: salamander
     obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
-  - name: 香港02[HY2]
-    type: hysteria2
-    server: hk02.hy2.sys-metric-report.com
-    port: 28343
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    up: 1000
-    down: 1000
-    sni: happ.cfastcdn.com
-    skip-cert-verify: false
-    obfs: salamander
-    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+  - name: "香港02-HY2"
+  type: hysteria2
+  server: hk02.hy2.sys-metric-report.com
+  port: 26992
+  password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+  sni: happ.cfastcdn.com
+  skip-cert-verify: false
+  up: "1000 Mbps"
+  down: "1000 Mbps"
+  obfs: salamander
+  obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
 
 
@@ -196,7 +196,7 @@ proxy-groups:
 
     proxies:
       - "香港01-HY2"
-      - 香港02[HY2]
+      - "香港02-HY2"
       - 香港A
       - 香港B
       - 香港C
