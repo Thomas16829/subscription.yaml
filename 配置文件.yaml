@@ -109,12 +109,12 @@ proxies:
 # =====================
 
      - name: "美国A"
-    type: ss
-    server: pro.relay.usa.sys-metric-report.com
-    port: 27008
-    cipher: chacha20-ietf-poly1305
-    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    udp: true
+       type: ss
+       server: pro.relay.usa.sys-metric-report.com
+       port: 27008
+       cipher: chacha20-ietf-poly1305
+       password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+       udp: true
 
 
   - name: "美国B"
