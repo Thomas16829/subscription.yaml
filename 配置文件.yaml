@@ -37,7 +37,7 @@ proxies:
 # 香港 HY2
 # =====================
 
-  - name: "🇭🇰 香港01[HY2]"
+  - name: 🇭🇰 香港01[HY2]
     type: hysteria2
     server: hk01.hy2.sys-metric-report.com
     port: 29507
