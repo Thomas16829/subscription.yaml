@@ -12,6 +12,7 @@ unified-delay: true
 dns:
   enable: true
   ipv6: false
+
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
 
@@ -19,7 +20,7 @@ dns:
     - 223.5.5.5
     - 119.29.29.29
 
-   fallback:
+  fallback:
     - 8.8.8.8
     - 1.1.1.1
 
@@ -33,7 +34,7 @@ proxies:
 
 
 # =====================
-# 香港中转
+# 香港 HY2
 # =====================
 
   - name: 香港01[HY2]
@@ -41,28 +42,31 @@ proxies:
     server: hk01.hy2.sys-metric-report.com
     port: 29419
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    up: "1000 Mbps"
-    down: "1000 Mbps"
+    up: 1000
+    down: 1000
     sni: happ.cfastcdn.com
     skip-cert-verify: false
     obfs: salamander
     obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
-    ports: "20000-30000"
-  
-  
+
+
   - name: 香港02[HY2]
     type: hysteria2
     server: hk02.hy2.sys-metric-report.com
     port: 28343
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    up: "1000 Mbps"
-    down: "1000 Mbps"
+    up: 1000
+    down: 1000
     sni: happ.cfastcdn.com
     skip-cert-verify: false
     obfs: salamander
     obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
-    ports: "20000-30000"
 
+
+
+# =====================
+# 香港 SS
+# =====================
 
   - name: 香港A
     type: ss
@@ -98,7 +102,7 @@ proxies:
 
 
 # =====================
-# 美国中转
+# 美国 SS
 # =====================
 
   - name: 美国A
@@ -123,16 +127,14 @@ proxies:
     port: 14690
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
-  
-  
-  
+
+
   - name: 美国D
     type: ss
     server: pro.relay.usd.sys-metric-report.com
     port: 27014
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
-
 
 
 # =====================
@@ -181,16 +183,19 @@ proxies:
 
 
 
+# =====================
+# 代理组
+# =====================
 
 proxy-groups:
 
 
-# 自动选择最快中转
+# 自动测速中转
 
   - name: 自动中转
     type: url-test
-    proxies:
 
+    proxies:
       - 香港01[HY2]
       - 香港02[HY2]
       - 香港A
@@ -211,87 +216,125 @@ proxy-groups:
 
 
 
-# 普通国外代理
+# 链式代理出口
 
   - name: 链式代理
-
     type: select
 
     proxies:
       - 住宅-洛杉磯
       - 自动中转
       - DIRECT
-     
 
 
+
+# =====================
+# 分流规则
+# =====================
 
 rules:
 
-# =====================
+
 # 局域网
-# =====================
+
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
   - IP-CIDR,10.0.0.0/8,DIRECT
   - IP-CIDR,172.16.0.0/12,DIRECT
 
-# =====================
-# 国内直连
-# =====================
+
+
+# 国内
+
   - GEOSITE,cn,DIRECT
   - GEOIP,CN,DIRECT
 
-# =====================
-# Google Play 强制（关键🔥）
-# =====================
-  - PROCESS-NAME,com.android.vending,链式代理
+
 
 # =====================
-# Google 全家桶（完整）
+# Google Play / GMS
 # =====================
+
+  - PROCESS-NAME,com.android.vending,链式代理
+
   - DOMAIN-KEYWORD,google,链式代理
+
+  - DOMAIN-SUFFIX,google.com,链式代理
   - DOMAIN-SUFFIX,googleapis.com,链式代理
   - DOMAIN-SUFFIX,gstatic.com,链式代理
-  - DOMAIN-SUFFIX,gvt1.com,链式代理
-  - DOMAIN-SUFFIX,googlevideo.com,链式代理
   - DOMAIN-SUFFIX,ggpht.com,链式代理
   - DOMAIN-SUFFIX,googleusercontent.com,链式代理
 
-# Play 商店 / 更新
+  - DOMAIN-SUFFIX,android.com,链式代理
   - DOMAIN-SUFFIX,android.clients.google.com,链式代理
+
+  - DOMAIN-SUFFIX,play.google.com,链式代理
   - DOMAIN-SUFFIX,play-fe.googleapis.com,链式代理
+
   - DOMAIN-SUFFIX,dl.google.com,链式代理
+  - DOMAIN-SUFFIX,gvt1.com,链式代理
   - DOMAIN-SUFFIX,redirector.gvt1.com,链式代理
+
   - DOMAIN-SUFFIX,update.googleapis.com,链式代理
   - DOMAIN-SUFFIX,clients2.google.com,链式代理
 
-# 登录 / 同步
+
+
+# Google 登录同步
+
   - DOMAIN-SUFFIX,accounts.google.com,链式代理
   - DOMAIN-SUFFIX,oauth2.googleapis.com,链式代理
+  - DOMAIN-SUFFIX,people.googleapis.com,链式代理
 
-# Firebase / 推送
+
+
+# Firebase 推送
+
   - DOMAIN-SUFFIX,fcm.googleapis.com,链式代理
   - DOMAIN-SUFFIX,firebaseio.com,链式代理
 
-# YouTube / 地图
+
+
+# Google IP补充
+
+  - IP-CIDR,142.250.0.0/15,链式代理,no-resolve
+  - IP-CIDR,172.217.0.0/16,链式代理,no-resolve
+  - IP-CIDR,216.58.192.0/19,链式代理,no-resolve
+
+
+
+# =====================
+# YouTube
+# =====================
+
   - DOMAIN-SUFFIX,youtube.com,链式代理
+  - DOMAIN-SUFFIX,youtu.be,链式代理
   - DOMAIN-SUFFIX,ytimg.com,链式代理
-  - DOMAIN-SUFFIX,maps.googleapis.com,链式代理
+  - DOMAIN-SUFFIX,googlevideo.com,链式代理
+
+
 
 # =====================
 # AI
 # =====================
+
   - DOMAIN-SUFFIX,openai.com,链式代理
   - DOMAIN-SUFFIX,chatgpt.com,链式代理
   - DOMAIN-SUFFIX,claude.ai,链式代理
 
+
+
 # =====================
-# 社媒（走住宅IP）
+# 社媒住宅IP
 # =====================
+
   - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
   - DOMAIN-SUFFIX,tiktokcdn.com,住宅-洛杉磯
   - DOMAIN-SUFFIX,tiktokv.com,住宅-洛杉磯
   - DOMAIN-SUFFIX,byteoversea.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,ibyteimg.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,muscdn.com,住宅-洛杉磯
+
 
   - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
   - DOMAIN-SUFFIX,fbcdn.net,住宅-洛杉磯
@@ -299,14 +342,18 @@ rules:
   - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉磯
   - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
 
+
+
 # =====================
-# 其他
+# 其他国外
 # =====================
+
   - DOMAIN-SUFFIX,telegram.org,链式代理
   - DOMAIN-SUFFIX,github.com,链式代理
   - DOMAIN-SUFFIX,netflix.com,链式代理
 
-# =====================
+
+
 # 默认
-# =====================
+
   - MATCH,链式代理
