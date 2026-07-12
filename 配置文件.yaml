@@ -8,6 +8,9 @@ log-level: info
 tcp-concurrent: true
 unified-delay: true
 
+profile:
+  store-selected: true
+  store-fake-ip: true
 
 dns:
   enable: true
@@ -29,6 +32,20 @@ dns:
     geoip-code: CN
 
 
+# =====================
+# 广告拦截规则集
+# =====================
+
+rule-providers:
+
+  reject:
+    type: http
+    behavior: domain
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
+    path: ./ruleset/reject.yaml
+    interval: 86400
+
+    
 proxies:
 
 # =====================
