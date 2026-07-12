@@ -145,6 +145,7 @@ proxies:
     udp: true
 
 
+
 # =====================
 # VLESS备用
 # =====================
@@ -176,7 +177,7 @@ proxies:
 # 美国住宅IP
 # =====================
 
-  - name: "住宅-紐約"
+  - name: "住宅-纽约"
     type: socks5
 
     server: 65.195.110.169
@@ -226,7 +227,7 @@ proxy-groups:
     type: select
 
     proxies:
-      - "住宅-紐約"
+      - "住宅-纽约"
       - "自动中转"
       - DIRECT
 
@@ -332,18 +333,18 @@ rules:
 # 社媒住宅IP
 # =====================
 
-  - DOMAIN-SUFFIX,tiktok.com,住宅-紐約
-  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-紐約
-  - DOMAIN-SUFFIX,tiktokv.com,住宅-紐約
-  - DOMAIN-SUFFIX,byteoversea.com,住宅-紐約
-  - DOMAIN-SUFFIX,ibyteimg.com,住宅-紐約
-  - DOMAIN-SUFFIX,muscdn.com,住宅-紐約
+  - DOMAIN-SUFFIX,tiktok.com,住宅-纽约
+  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-纽约
+  - DOMAIN-SUFFIX,tiktokv.com,住宅-纽约
+  - DOMAIN-SUFFIX,byteoversea.com,住宅-纽约
+  - DOMAIN-SUFFIX,ibyteimg.com,住宅-纽约
+  - DOMAIN-SUFFIX,muscdn.com,住宅-纽约
 
-  - DOMAIN-SUFFIX,facebook.com,住宅-紐約
-  - DOMAIN-SUFFIX,fbcdn.net,住宅-紐約
-  - DOMAIN-SUFFIX,messenger.com,住宅-紐約
-  - DOMAIN-SUFFIX,whatsapp.com,住宅-紐約
-  - DOMAIN-SUFFIX,instagram.com,住宅-紐約
+  - DOMAIN-SUFFIX,facebook.com,住宅-纽约
+  - DOMAIN-SUFFIX,fbcdn.net,住宅-纽约
+  - DOMAIN-SUFFIX,messenger.com,住宅-纽约
+  - DOMAIN-SUFFIX,whatsapp.com,住宅-纽约
+  - DOMAIN-SUFFIX,instagram.com,住宅-纽约
 
 
 
