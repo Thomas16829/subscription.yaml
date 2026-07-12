@@ -34,7 +34,7 @@ proxies:
 
 
 # =====================
-# 香港中转
+# 香港 HY2
 # =====================
 
   - name: 香港01[HY2]
@@ -42,28 +42,31 @@ proxies:
     server: hk01.hy2.sys-metric-report.com
     port: 29419
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    up: "1000 Mbps"
-    down: "1000 Mbps"
+    up: 1000
+    down: 1000
     sni: happ.cfastcdn.com
     skip-cert-verify: false
     obfs: salamander
     obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
-    ports: "20000-30000"
-  
-  
+
+
   - name: 香港02[HY2]
     type: hysteria2
     server: hk02.hy2.sys-metric-report.com
     port: 28343
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    up: "1000 Mbps"
-    down: "1000 Mbps"
+    up: 1000
+    down: 1000
     sni: happ.cfastcdn.com
     skip-cert-verify: false
     obfs: salamander
     obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
-    ports: "20000-30000"
 
+
+
+# =====================
+# 香港 SS
+# =====================
 
   - name: 香港A
     type: ss
@@ -99,7 +102,7 @@ proxies:
 
 
 # =====================
-# 美国中转
+# 美国 SS
 # =====================
 
   - name: 美国A
@@ -125,7 +128,7 @@ proxies:
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
 
-    
+
   - name: 美国D
     type: ss
     server: pro.relay.usd.sys-metric-report.com
@@ -133,7 +136,6 @@ proxies:
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
 
-  
 
 # =====================
 # VLESS备用
@@ -166,7 +168,7 @@ proxies:
 # 美国住宅IP
 # =====================
 
-  - name: 住宅-纽约
+  - name: 住宅-紐約
     type: socks5
 
     server: 65.195.110.169
@@ -181,18 +183,19 @@ proxies:
 
 
 
+# =====================
+# 代理组
+# =====================
 
 proxy-groups:
 
 
-# 自动选择最快中转
+# 自动测速中转
 
   - name: 自动中转
-
     type: url-test
 
     proxies:
-      
       - 香港01[HY2]
       - 香港02[HY2]
       - 香港A
@@ -213,19 +216,21 @@ proxy-groups:
 
 
 
-# 普通国外代理
+# 链式代理出口
 
   - name: 链式代理
-
     type: select
 
     proxies:
-      - 住宅-纽约
+      - 住宅-紐約
       - 自动中转
       - DIRECT
-     
 
 
+
+# =====================
+# 分流规则
+# =====================
 
 rules:
 
@@ -323,19 +328,19 @@ rules:
 # 社媒住宅IP
 # =====================
 
-  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,tiktokv.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,byteoversea.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,ibyteimg.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,muscdn.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,tiktok.com,住宅-紐約
+  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-紐約
+  - DOMAIN-SUFFIX,tiktokv.com,住宅-紐約
+  - DOMAIN-SUFFIX,byteoversea.com,住宅-紐約
+  - DOMAIN-SUFFIX,ibyteimg.com,住宅-紐約
+  - DOMAIN-SUFFIX,muscdn.com,住宅-紐約
 
 
-  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,fbcdn.net,住宅-洛杉磯
-  - DOMAIN-SUFFIX,messenger.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,facebook.com,住宅-紐約
+  - DOMAIN-SUFFIX,fbcdn.net,住宅-紐約
+  - DOMAIN-SUFFIX,messenger.com,住宅-紐約
+  - DOMAIN-SUFFIX,whatsapp.com,住宅-紐約
+  - DOMAIN-SUFFIX,instagram.com,住宅-紐約
 
 
 
