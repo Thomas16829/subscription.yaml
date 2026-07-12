@@ -253,12 +253,12 @@ rules:
 # Google
 # =====================
 
-  - DOMAIN-SUFFIX,google.com,链式代理
-  - DOMAIN-SUFFIX,googleapis.com,链式代理
-  - DOMAIN-SUFFIX,gstatic.com,链式代理
-  - DOMAIN-SUFFIX,ggpht.com,链式代理
-  - DOMAIN-SUFFIX,googleusercontent.com,链式代理
-  - DOMAIN-KEYWORD,google,链式代理
+  - DOMAIN-SUFFIX,google.com,谷歌全家桶谷歌商店全局代理 更新APP
+  - DOMAIN-SUFFIX,googleapis.com,谷歌全家桶谷歌商店全局代理 更新APP
+  - DOMAIN-SUFFIX,gstatic.com,谷歌全家桶谷歌商店全局代理 更新APP
+  - DOMAIN-SUFFIX,ggpht.com,谷歌全家桶谷歌商店全局代理 更新APP
+  - DOMAIN-SUFFIX,googleusercontent.com,谷歌全家桶谷歌商店全局代理 更新APP
+  - DOMAIN-KEYWORD,google,谷歌全家桶谷歌商店全局代理 更新APP
 
 
 
