@@ -37,15 +37,15 @@ proxies:
 # 香港 HY2
 # =====================
 
-  - name: 香港01[HY2]
+  - name: "香港01-HY2"
     type: hysteria2
     server: hk01.hy2.sys-metric-report.com
     port: 29507
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: happ.cfastcdn.com
     skip-cert-verify: false
-    up: 1000 
-    down: 1000 
+    up: "1000 Mbps"
+    down: "1000 Mbps"
     obfs: salamander
     obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
@@ -195,7 +195,7 @@ proxy-groups:
     type: url-test
 
     proxies:
-      - 香港01[HY2]
+      - "香港01-HY2"
       - 香港02[HY2]
       - 香港A
       - 香港B
