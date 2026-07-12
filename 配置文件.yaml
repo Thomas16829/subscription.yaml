@@ -198,7 +198,7 @@ proxy-groups:
     proxies:
       - "香港01-HY2"
       - "香港02-HY2"
-      - 香港A
+      - "香港A"
       - 香港B
       - 香港C
       - 香港D
