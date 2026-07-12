@@ -29,9 +29,7 @@ dns:
     geoip-code: CN
 
 
-
 proxies:
-
 
 # =====================
 # 香港 HY2
@@ -47,7 +45,9 @@ proxies:
     up: "1000 Mbps"
     down: "1000 Mbps"
     obfs: salamander
-    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
+    ports: "20000-30000"
+
 
   - name: "香港02-HY2"
     type: hysteria2
@@ -59,7 +59,8 @@ proxies:
     up: "1000 Mbps"
     down: "1000 Mbps"
     obfs: salamander
-    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
+    ports: "20000-30000"
 
 
 
@@ -108,13 +109,13 @@ proxies:
 # 美国 SS
 # =====================
 
-     - name: "美国A"
-       type: ss
-       server: pro.relay.usa.sys-metric-report.com
-       port: 27008
-       cipher: chacha20-ietf-poly1305
-       password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-       udp: true
+  - name: "美国A"
+    type: ss
+    server: pro.relay.usa.sys-metric-report.com
+    port: 27008
+    cipher: chacha20-ietf-poly1305
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
 
 
   - name: "美国B"
@@ -175,7 +176,7 @@ proxies:
 # 美国住宅IP
 # =====================
 
-  - name: "住宅-洛杉磯"
+  - name: "住宅-洛杉矶"
     type: socks5
 
     server: 207.145.156.49
@@ -197,9 +198,7 @@ proxies:
 proxy-groups:
 
 
-# 自动测速中转
-
-  - name: 自动中转
+  - name: "自动中转"
     type: url-test
 
     proxies:
@@ -215,7 +214,7 @@ proxy-groups:
       - "美国D"
       - "A-WS-中转"
 
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
 
     interval: 300
 
@@ -223,14 +222,12 @@ proxy-groups:
 
 
 
-# 链式代理出口
-
-  - name: 链式代理
+  - name: "链式代理"
     type: select
 
     proxies:
-      - 住宅-洛杉磯
-      - 自动中转
+      - "住宅-洛杉矶"
+      - "自动中转"
       - DIRECT
 
 
@@ -259,7 +256,7 @@ rules:
 
 
 # =====================
-# Google Play / GMS
+# Google / GMS
 # =====================
 
   - PROCESS-NAME,com.android.vending,链式代理
@@ -287,7 +284,7 @@ rules:
 
 
 
-# Google 登录同步
+# Google账号同步
 
   - DOMAIN-SUFFIX,accounts.google.com,链式代理
   - DOMAIN-SUFFIX,oauth2.googleapis.com,链式代理
@@ -295,14 +292,14 @@ rules:
 
 
 
-# Firebase 推送
+# Firebase
 
   - DOMAIN-SUFFIX,fcm.googleapis.com,链式代理
   - DOMAIN-SUFFIX,firebaseio.com,链式代理
 
 
 
-# Google IP补充
+# Google IP
 
   - IP-CIDR,142.250.0.0/15,链式代理,no-resolve
   - IP-CIDR,172.217.0.0/16,链式代理,no-resolve
@@ -335,19 +332,18 @@ rules:
 # 社媒住宅IP
 # =====================
 
-  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,tiktokv.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,byteoversea.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,ibyteimg.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,muscdn.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,tiktokv.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,byteoversea.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,ibyteimg.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,muscdn.com,住宅-洛杉矶
 
-
-  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,fbcdn.net,住宅-洛杉磯
-  - DOMAIN-SUFFIX,messenger.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,fbcdn.net,住宅-洛杉矶
+  - DOMAIN-SUFFIX,messenger.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉矶
 
 
 
