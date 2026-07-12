@@ -12,7 +12,6 @@ unified-delay: true
 dns:
   enable: true
   ipv6: false
-
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
 
@@ -21,8 +20,8 @@ dns:
     - 119.29.29.29
 
   fallback:
-    - 8.8.8.8
-    - 1.1.1.1
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
 
   fallback-filter:
     geoip: true
@@ -250,15 +249,56 @@ rules:
 
 
 # =====================
-# Google
+# Google 全家桶 / Google Play / GMS
 # =====================
 
-  - DOMAIN-SUFFIX,google.com,谷歌全家桶谷歌商店全局代理 更新APP
-  - DOMAIN-SUFFIX,googleapis.com,谷歌全家桶谷歌商店全局代理 更新APP
-  - DOMAIN-SUFFIX,gstatic.com,谷歌全家桶谷歌商店全局代理 更新APP
-  - DOMAIN-SUFFIX,ggpht.com,谷歌全家桶谷歌商店全局代理 更新APP
-  - DOMAIN-SUFFIX,googleusercontent.com,谷歌全家桶谷歌商店全局代理 更新APP
-  - DOMAIN-KEYWORD,google,谷歌全家桶谷歌商店全局代理 更新APP
+# Google 主服务
+- DOMAIN-SUFFIX,google.com,链式代理
+- DOMAIN-SUFFIX,googleapis.com,链式代理
+- DOMAIN-SUFFIX,gstatic.com,链式代理
+- DOMAIN-SUFFIX,ggpht.com,链式代理
+- DOMAIN-SUFFIX,googleusercontent.com,链式代理
+- DOMAIN-SUFFIX,googletagmanager.com,链式代理
+- DOMAIN-SUFFIX,google-analytics.com,链式代理
+
+# Google Play 商店
+- DOMAIN-SUFFIX,play.google.com,链式代理
+- DOMAIN-SUFFIX,android.com,链式代理
+- DOMAIN-SUFFIX,android.clients.google.com,链式代理
+- DOMAIN-SUFFIX,connectivitycheck.gstatic.com,链式代理
+- DOMAIN-SUFFIX,play-fe.googleapis.com,链式代理
+
+# Google Play 更新 / APP 下载
+- DOMAIN-SUFFIX,dl.google.com,链式代理
+- DOMAIN-SUFFIX,redirector.gvt1.com,链式代理
+- DOMAIN-SUFFIX,update.googleapis.com,链式代理
+- DOMAIN-SUFFIX,clients2.google.com,链式代理
+
+# Google 登录 / 同步 / GMS
+- DOMAIN-SUFFIX,accounts.google.com,链式代理
+- DOMAIN-SUFFIX,oauth2.googleapis.com,链式代理
+- DOMAIN-SUFFIX,people.googleapis.com,链式代理
+- DOMAIN-SUFFIX,www.googleapis.com,链式代理
+
+# Firebase 推送（APP通知）
+- DOMAIN-SUFFIX,firebaseio.com,链式代理
+- DOMAIN-SUFFIX,firebaselogging.googleapis.com,链式代理
+- DOMAIN-SUFFIX,fcm.googleapis.com,链式代理
+
+# Google AI / YouTube / 地图
+- DOMAIN-SUFFIX,youtube.com,链式代理
+- DOMAIN-SUFFIX,youtu.be,链式代理
+- DOMAIN-SUFFIX,ytimg.com,链式代理
+- DOMAIN-SUFFIX,googlevideo.com,链式代理
+- DOMAIN-SUFFIX,maps.googleapis.com,链式代理
+
+# Google 关键词补充
+- DOMAIN-KEYWORD,google,链式代理
+
+# Google IP
+- IP-CIDR,142.250.0.0/15,链式代理,no-resolve
+- IP-CIDR,172.217.0.0/16,链式代理,no-resolve
+- IP-CIDR,216.58.192.0/19,链式代理,no-resolve
 
 
 
