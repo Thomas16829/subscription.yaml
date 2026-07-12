@@ -230,9 +230,7 @@ proxy-groups:
 rules:
 
 
-# =====================
 # 局域网
-# =====================
 
   - IP-CIDR,127.0.0.0/8,DIRECT
   - IP-CIDR,192.168.0.0/16,DIRECT
@@ -241,9 +239,7 @@ rules:
 
 
 
-# =====================
-# 国内直连
-# =====================
+# 国内
 
   - GEOSITE,cn,DIRECT
   - GEOIP,CN,DIRECT
@@ -251,15 +247,65 @@ rules:
 
 
 # =====================
-# Google
+# Google Play / GMS
 # =====================
+
+  - PROCESS-NAME,com.android.vending,链式代理
+
+  - DOMAIN-KEYWORD,google,链式代理
 
   - DOMAIN-SUFFIX,google.com,链式代理
   - DOMAIN-SUFFIX,googleapis.com,链式代理
   - DOMAIN-SUFFIX,gstatic.com,链式代理
   - DOMAIN-SUFFIX,ggpht.com,链式代理
   - DOMAIN-SUFFIX,googleusercontent.com,链式代理
-  - DOMAIN-KEYWORD,google,链式代理
+
+  - DOMAIN-SUFFIX,android.com,链式代理
+  - DOMAIN-SUFFIX,android.clients.google.com,链式代理
+
+  - DOMAIN-SUFFIX,play.google.com,链式代理
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,链式代理
+
+  - DOMAIN-SUFFIX,dl.google.com,链式代理
+  - DOMAIN-SUFFIX,gvt1.com,链式代理
+  - DOMAIN-SUFFIX,redirector.gvt1.com,链式代理
+
+  - DOMAIN-SUFFIX,update.googleapis.com,链式代理
+  - DOMAIN-SUFFIX,clients2.google.com,链式代理
+
+
+
+# Google 登录同步
+
+  - DOMAIN-SUFFIX,accounts.google.com,链式代理
+  - DOMAIN-SUFFIX,oauth2.googleapis.com,链式代理
+  - DOMAIN-SUFFIX,people.googleapis.com,链式代理
+
+
+
+# Firebase 推送
+
+  - DOMAIN-SUFFIX,fcm.googleapis.com,链式代理
+  - DOMAIN-SUFFIX,firebaseio.com,链式代理
+
+
+
+# Google IP补充
+
+  - IP-CIDR,142.250.0.0/15,链式代理,no-resolve
+  - IP-CIDR,172.217.0.0/16,链式代理,no-resolve
+  - IP-CIDR,216.58.192.0/19,链式代理,no-resolve
+
+
+
+# =====================
+# YouTube
+# =====================
+
+  - DOMAIN-SUFFIX,youtube.com,链式代理
+  - DOMAIN-SUFFIX,youtu.be,链式代理
+  - DOMAIN-SUFFIX,ytimg.com,链式代理
+  - DOMAIN-SUFFIX,googlevideo.com,链式代理
 
 
 
@@ -274,36 +320,27 @@ rules:
 
 
 # =====================
-# YouTube
-# =====================
-
-  - DOMAIN-SUFFIX,youtube.com,链式代理
-  - DOMAIN-SUFFIX,googlevideo.com,链式代理
-  - DOMAIN-SUFFIX,ytimg.com,链式代理
-
-
-
-# =====================
 # 社媒住宅IP
 # =====================
 
-  - DOMAIN-SUFFIX,tiktok.com,住宅-纽约
-  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-纽约
-  - DOMAIN-SUFFIX,tiktokv.com,住宅-纽约
-  - DOMAIN-SUFFIX,byteoversea.com,住宅-纽约
-  - DOMAIN-SUFFIX,ibyteimg.com,住宅-纽约
-  - DOMAIN-SUFFIX,muscdn.com,住宅-纽约
+  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,tiktokv.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,byteoversea.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,ibyteimg.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,muscdn.com,住宅-洛杉磯
 
-  - DOMAIN-SUFFIX,facebook.com,住宅-纽约
-  - DOMAIN-SUFFIX,fbcdn.net,住宅-纽约
-  - DOMAIN-SUFFIX,messenger.com,住宅-纽约
-  - DOMAIN-SUFFIX,whatsapp.com,住宅-纽约
-  - DOMAIN-SUFFIX,instagram.com,住宅-纽约
+
+  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,fbcdn.net,住宅-洛杉磯
+  - DOMAIN-SUFFIX,messenger.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
 
 
 
 # =====================
-# 其他国外 APP
+# 其他国外
 # =====================
 
   - DOMAIN-SUFFIX,telegram.org,链式代理
@@ -312,8 +349,6 @@ rules:
 
 
 
-# =====================
 # 默认
-# =====================
 
   - MATCH,链式代理
