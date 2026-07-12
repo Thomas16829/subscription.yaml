@@ -29,15 +29,13 @@ dns:
     geoip-code: CN
 
 
-
 proxies:
-
 
 # =====================
 # 香港 HY2
 # =====================
 
- - name: "香港01-HY2"
+  - name: "香港01-HY2"
     type: hysteria2
     server: hk01.hy2.sys-metric-report.com
     port: 29507
@@ -47,7 +45,9 @@ proxies:
     up: "1000 Mbps"
     down: "1000 Mbps"
     obfs: salamander
-    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
+    ports: "20000-30000"
+
 
   - name: "香港02-HY2"
     type: hysteria2
@@ -59,7 +59,8 @@ proxies:
     up: "1000 Mbps"
     down: "1000 Mbps"
     obfs: salamander
-    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
+    ports: "20000-30000"
 
 
 
@@ -104,48 +105,51 @@ proxies:
 
 
 
-
 # =====================
 # 美国 SS
 # =====================
 
-  - name: 美国A
+  - name: "美国A"
     type: ss
     server: pro.relay.usa.sys-metric-report.com
     port: 27008
     cipher: chacha20-ietf-poly1305
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
 
 
-  - name: 美国B
+  - name: "美国B"
     type: ss
     server: pro.relay.usb.sys-metric-report.com
     port: 27007
     cipher: chacha20-ietf-poly1305
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
 
 
-  - name: 美国C
+  - name: "美国C"
     type: ss
     server: pro.relay.usc.sys-metric-report.com
     port: 14690
     cipher: chacha20-ietf-poly1305
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
 
 
-  - name: 美国D
+  - name: "美国D"
     type: ss
     server: pro.relay.usd.sys-metric-report.com
     port: 27014
     cipher: chacha20-ietf-poly1305
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
 
 
 # =====================
 # VLESS备用
 # =====================
 
-  - name: A-WS-中转
+  - name: "A-WS-中转"
     type: vless
     server: yg1.ygkkk.dpdns.org
     port: 8443
@@ -172,7 +176,7 @@ proxies:
 # 美国住宅IP
 # =====================
 
-  - name: 住宅-紐約
+  - name: "住宅-紐約"
     type: socks5
 
     server: 65.195.110.169
@@ -183,7 +187,7 @@ proxies:
 
     udp: true
 
-    dialer-proxy: 自动中转
+    dialer-proxy: "自动中转"
 
 
 
@@ -194,9 +198,7 @@ proxies:
 proxy-groups:
 
 
-# 自动测速中转
-
-  - name: 自动中转
+  - name: "自动中转"
     type: url-test
 
     proxies:
@@ -206,13 +208,13 @@ proxy-groups:
       - "香港B"
       - "香港C"
       - "香港D"
-      - 美国A
-      - 美国B
-      - 美国C
-      - 美国D
-      - A-WS-中转
+      - "美国A"
+      - "美国B"
+      - "美国C"
+      - "美国D"
+      - "A-WS-中转"
 
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
 
     interval: 300
 
@@ -220,14 +222,12 @@ proxy-groups:
 
 
 
-# 链式代理出口
-
-  - name: 链式代理
+  - name: "链式代理"
     type: select
 
     proxies:
-      - 住宅-紐約
-      - 自动中转
+      - "住宅-紐約"
+      - "自动中转"
       - DIRECT
 
 
@@ -256,7 +256,7 @@ rules:
 
 
 # =====================
-# Google Play / GMS
+# Google / GMS
 # =====================
 
   - PROCESS-NAME,com.android.vending,链式代理
@@ -284,7 +284,7 @@ rules:
 
 
 
-# Google 登录同步
+# Google账号同步
 
   - DOMAIN-SUFFIX,accounts.google.com,链式代理
   - DOMAIN-SUFFIX,oauth2.googleapis.com,链式代理
@@ -292,14 +292,14 @@ rules:
 
 
 
-# Firebase 推送
+# Firebase
 
   - DOMAIN-SUFFIX,fcm.googleapis.com,链式代理
   - DOMAIN-SUFFIX,firebaseio.com,链式代理
 
 
 
-# Google IP补充
+# Google IP
 
   - IP-CIDR,142.250.0.0/15,链式代理,no-resolve
   - IP-CIDR,172.217.0.0/16,链式代理,no-resolve
@@ -332,19 +332,18 @@ rules:
 # 社媒住宅IP
 # =====================
 
-  - DOMAIN-SUFFIX,tiktok.com,住宅-紐約
-  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-紐約
-  - DOMAIN-SUFFIX,tiktokv.com,住宅-紐約
-  - DOMAIN-SUFFIX,byteoversea.com,住宅-紐約
-  - DOMAIN-SUFFIX,ibyteimg.com,住宅-紐約
-  - DOMAIN-SUFFIX,muscdn.com,住宅-紐約
+  - DOMAIN-SUFFIX,tiktok.com,"住宅-紐約"
+  - DOMAIN-SUFFIX,tiktokcdn.com,"住宅-紐約"
+  - DOMAIN-SUFFIX,tiktokv.com,"住宅-紐約"
+  - DOMAIN-SUFFIX,byteoversea.com,"住宅-紐約"
+  - DOMAIN-SUFFIX,ibyteimg.com,"住宅-紐約"
+  - DOMAIN-SUFFIX,muscdn.com,"住宅-紐約"
 
-
-  - DOMAIN-SUFFIX,facebook.com,住宅-紐約
-  - DOMAIN-SUFFIX,fbcdn.net,住宅-紐約
-  - DOMAIN-SUFFIX,messenger.com,住宅-紐約
-  - DOMAIN-SUFFIX,whatsapp.com,住宅-紐約
-  - DOMAIN-SUFFIX,instagram.com,住宅-紐約
+  - DOMAIN-SUFFIX,facebook.com,"住宅-紐約"
+  - DOMAIN-SUFFIX,fbcdn.net,"住宅-紐約"
+  - DOMAIN-SUFFIX,messenger.com,"住宅-紐約"
+  - DOMAIN-SUFFIX,whatsapp.com,"住宅-紐約"
+  - DOMAIN-SUFFIX,instagram.com,"住宅-紐約"
 
 
 
