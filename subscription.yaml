@@ -37,28 +37,27 @@ proxies:
 # 香港 HY2
 # =====================
 
-  - name: 香港01[HY2]
+ - name: "香港01-HY2"
     type: hysteria2
     server: hk01.hy2.sys-metric-report.com
-    port: 29419
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    up: 1000
-    down: 1000
+    port: 29507
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: happ.cfastcdn.com
     skip-cert-verify: false
+    up: "1000 Mbps"
+    down: "1000 Mbps"
     obfs: salamander
     obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
-
-  - name: 香港02[HY2]
+  - name: "香港02-HY2"
     type: hysteria2
     server: hk02.hy2.sys-metric-report.com
-    port: 28343
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    up: 1000
-    down: 1000
+    port: 26992
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: happ.cfastcdn.com
     skip-cert-verify: false
+    up: "1000 Mbps"
+    down: "1000 Mbps"
     obfs: salamander
     obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
@@ -68,36 +67,41 @@ proxies:
 # 香港 SS
 # =====================
 
-  - name: 香港A
+  - name: "香港A"
     type: ss
     server: pro.relay.hka.sys-metric-report.com
     port: 27003
     cipher: chacha20-ietf-poly1305
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
 
 
-  - name: 香港B
+  - name: "香港B"
     type: ss
     server: pro.relay.hkb.sys-metric-report.com
     port: 27010
     cipher: chacha20-ietf-poly1305
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
 
 
-  - name: 香港C
+  - name: "香港C"
     type: ss
     server: pro.relay.hkc.sys-metric-report.com
     port: 27011
     cipher: chacha20-ietf-poly1305
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
 
 
-  - name: 香港D
+  - name: "香港D"
     type: ss
     server: pro.relay.hkd.sys-metric-report.com
     port: 27012
     cipher: chacha20-ietf-poly1305
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
+
 
 
 
@@ -196,12 +200,12 @@ proxy-groups:
     type: url-test
 
     proxies:
-      - 香港01[HY2]
-      - 香港02[HY2]
-      - 香港A
-      - 香港B
-      - 香港C
-      - 香港D
+      - "香港01-HY2"
+      - "香港02-HY2"
+      - "香港A"
+      - "香港B"
+      - "香港C"
+      - "香港D"
       - 美国A
       - 美国B
       - 美国C
