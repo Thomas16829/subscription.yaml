@@ -148,7 +148,7 @@ proxies:
 # VLESS备用
 # =====================
 
-  - name: A-WS-中转
+  - name: "A-WS-中转"
     type: vless
     server: yg1.ygkkk.dpdns.org
     port: 8443
@@ -175,7 +175,7 @@ proxies:
 # 美国住宅IP
 # =====================
 
-  - name: 住宅-洛杉磯
+  - name: "住宅-洛杉矶"
     type: socks5
 
     server: 207.145.156.49
@@ -186,7 +186,7 @@ proxies:
 
     udp: true
 
-    dialer-proxy: 自动中转
+    dialer-proxy: "自动中转"
 
 
 
@@ -213,7 +213,7 @@ proxy-groups:
       - "美国B"
       - "美国C"
       - "美国D"
-      - A-WS-中转
+      - "A-WS-中转"
 
     url: http://www.gstatic.com/generate_204
 
