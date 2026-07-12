@@ -76,28 +76,31 @@ proxies:
     udp: true
 
 
-  - name: 香港B
+  - name: "香港B"
     type: ss
     server: pro.relay.hkb.sys-metric-report.com
     port: 27010
     cipher: chacha20-ietf-poly1305
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
 
 
-  - name: 香港C
+  - name: "香港C"
     type: ss
     server: pro.relay.hkc.sys-metric-report.com
     port: 27011
     cipher: chacha20-ietf-poly1305
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
 
 
-  - name: 香港D
+  - name: "香港D"
     type: ss
     server: pro.relay.hkd.sys-metric-report.com
     port: 27012
     cipher: chacha20-ietf-poly1305
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
 
 
 
@@ -199,9 +202,9 @@ proxy-groups:
       - "香港01-HY2"
       - "香港02-HY2"
       - "香港A"
-      - 香港B
-      - 香港C
-      - 香港D
+      - "香港B"
+      - "香港C"
+      - "香港D"
       - 美国A
       - 美国B
       - 美国C
