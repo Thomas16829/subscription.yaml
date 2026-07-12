@@ -33,7 +33,7 @@ dns:
 
 
 # =====================
-# 广告拦截规则集
+# 广告规则集
 # =====================
 
 rule-providers:
@@ -43,6 +43,13 @@ rule-providers:
     behavior: domain
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
     path: ./ruleset/reject.yaml
+    interval: 86400
+
+  anti-ad:
+    type: http
+    behavior: domain
+    url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
+    path: ./ruleset/anti-ad.yaml
     interval: 86400
 
     
