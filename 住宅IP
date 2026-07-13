@@ -437,6 +437,23 @@ proxies:
         Host: thomas20265.ccwu.cc
 
 
+proxies:
+
+  - name: 住宅-洛杉矶
+
+    type: socks5
+
+    server: 207.145.156.49
+
+    port: 33929
+
+    username: XOnMOuRv2wRu
+
+    password: 5iD0lGzcgcKh
+
+    udp: true
+
+
 
 
 # ==================================================
@@ -508,7 +525,7 @@ proxy-groups:
 
     use:
 
-      - 住宅洛杉矶
+      - 住宅-洛杉矶
 
 
     proxies:
