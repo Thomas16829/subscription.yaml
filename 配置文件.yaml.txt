@@ -16,8 +16,11 @@ unified-delay: true
 external-controller: 127.0.0.1:9090
 
 
+
 profile:
+
   store-selected: true
+
   store-fake-ip: true
 
 
@@ -27,7 +30,9 @@ profile:
 # =====================
 
 dns:
+
   enable: true
+
   ipv6: false
 
   enhanced-mode: fake-ip
@@ -36,56 +41,76 @@ dns:
 
 
   nameserver:
+
     - 223.5.5.5
+
     - 119.29.29.29
 
 
   fallback:
-    - 8.8.8.8
-    - 1.1.1.1
+
+    - https://dns.google/dns-query
+
+    - https://cloudflare-dns.com/dns-query
 
 
   fallback-filter:
+
     geoip: true
+
     geoip-code: CN
 
 
 
+
 # =====================
-# 广告规则集
+# 规则集
 # =====================
 
 rule-providers:
 
+
   reject:
+
     type: http
-    behavior: domain
+
+    behavior: classical
+
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
+
     path: ./ruleset/reject.yaml
+
     interval: 86400
+
 
 
   anti-ad:
+
     type: http
-    behavior: domain
+
+    behavior: classical
+
     url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
+
     path: ./ruleset/anti-ad.yaml
+
     interval: 86400
 
 
 
+
 # =====================
-# 订阅自动更新
+# 自动订阅
 # =====================
 
 proxy-providers:
+
 
   节点订阅:
 
     type: http
 
-    # 修改成你的订阅地址
-    url: "https://github.com/Thomas16829/subscription.yaml/blob/main/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.yaml.txt"
+    url: "https://raw.githubusercontent.com/Thomas16829/subscription.yaml/main/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.yaml.txt"
 
     path: ./proxy_providers/node.yaml
 
@@ -101,163 +126,17 @@ proxy-providers:
       interval: 300
 
 
+
+
+
 # =====================
-# 节点
+# 住宅IP
 # =====================
 
 proxies:
 
 
-# =====================
-# 香港 HY2
-# =====================
-
-  - name: "香港01-HY2"
-    type: hysteria2
-    server: hk01.hy2.sys-metric-report.com
-    port: 29507
-    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
-    sni: happ.cfastcdn.com
-    skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-    obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MgjjMw=="
-
-
-  - name: "香港02-HY2"
-    type: hysteria2
-    server: hk02.hy2.sys-metric-report.com
-    port: 26992
-    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
-    sni: happ.cfastcdn.com
-    skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-    obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4SYBjMw=="
-
-
-
-# =====================
-# 香港 SS
-# =====================
-
-  - name: "香港A"
-    type: ss
-    server: pro.relay.hka.sys-metric-report.com
-    port: 27003
-    cipher: chacha20-ietf-poly1305
-    password: 762c7cbb-f10b-4ec3-84d0-f017fd566308
-    udp: true
-
-
-  - name: "香港B"
-    type: ss
-    server: pro.relay.hkb.sys-metric-report.com
-    port: 27010
-    cipher: chacha20-ietf-poly1305
-    password: 762c7cbb-f10b-4ec3-84d0-f017fd566308
-    udp: true
-
-
-  - name: "香港C"
-    type: ss
-    server: pro.relay.hkc.sys-metric-report.com
-    port: 27011
-    cipher: chacha20-ietf-poly1305
-    password: 762c7cbb-f10b-4ec3-84d0-f017fd566308
-    udp: true
-
-
-  - name: "香港D"
-    type: ss
-    server: pro.relay.hkd.sys-metric-report.com
-    port: 27012
-    cipher: chacha20-ietf-poly1305
-    password: 762c7cbb-f10b-4ec3-84d0-f017fd566308
-    udp: true
-
-
-
-# =====================
-# 美国 SS
-# =====================
-
-  - name: "美国A"
-    type: ss
-    server: pro.relay.usa.sys-metric-report.com
-    port: 27008
-    cipher: chacha20-ietf-poly1305
-    password: 762c7cbb-f10b-4ec3-84d0-f017fd566308
-    udp: true
-
-
-  - name: "美国B"
-    type: ss
-    server: pro.relay.usb.sys-metric-report.com
-    port: 27007
-    cipher: chacha20-ietf-poly1305
-    password: 762c7cbb-f10b-4ec3-84d0-f017fd566308
-    udp: true
-
-
-  - name: "美国C"
-    type: ss
-    server: pro.relay.usc.sys-metric-report.com
-    port: 14690
-    cipher: chacha20-ietf-poly1305
-    password: 762c7cbb-f10b-4ec3-84d0-f017fd566308
-    udp: true
-
-
-  - name: "美国D"
-    type: ss
-    server: pro.relay.usd.sys-metric-report.com
-    port: 27014
-    cipher: chacha20-ietf-poly1305
-    password: 762c7cbb-f10b-4ec3-84d0-f017fd566308
-    udp: true
-
-
-
-# =====================
-# VLESS 中转
-# =====================
-
-  - name: "A-WS-中转"
-    type: vless
-    server: yg1.ygkkk.dpdns.org
-    port: 8443
-
-    uuid: 85c7cbb-f10b-4ec3-84d0-f017fd566308
-
-    network: ws
-
-    tls: true
-
-    udp: true
-
-    servername: thomas20265.ccwu.cc
-
-    client-fingerprint: chrome
-
-
-    ws-opts:
-
-      path: "/?ed=2560"
-
-      headers:
-
-        Host: thomas20265.ccwu.cc
-
-
-
-# =====================
-# 美国住宅IP
-# =====================
-
-  - name: "住宅-洛杉矶"
+  - name: "美国住宅IP"
 
     type: socks5
 
@@ -271,7 +150,11 @@ proxies:
 
     udp: true
 
-    dialer-proxy: "自动中转"
+    dialer-proxy: 自动中转
+
+
+
+
 
 
 # =====================
@@ -281,26 +164,14 @@ proxies:
 proxy-groups:
 
 
-  - name: "自动中转"
+  - name: 自动中转
 
     type: url-test
 
-    proxies:
+    use:
 
-      - "香港01-HY2"
-      - "香港02-HY2"
+      - 节点订阅
 
-      - "香港A"
-      - "香港B"
-      - "香港C"
-      - "香港D"
-
-      - "美国A"
-      - "美国B"
-      - "美国C"
-      - "美国D"
-
-      - "A-WS-中转"
 
     url: https://www.gstatic.com/generate_204
 
@@ -310,17 +181,31 @@ proxy-groups:
 
 
 
-  - name: "链式代理"
+
+  - name: 链式代理
 
     type: select
 
     proxies:
 
-      - "住宅-洛杉矶"
-
-      - "自动中转"
+      - 自动中转
 
       - DIRECT
+
+
+
+
+  - name: 住宅IP
+
+    type: select
+
+    proxies:
+
+      - 美国住宅IP
+
+      - 自动中转
+
+
 
 
 
@@ -331,9 +216,13 @@ proxy-groups:
 rules:
 
 
-# 广告拦截
+
+# 广告
 
   - RULE-SET,reject,REJECT
+
+  - RULE-SET,anti-ad,REJECT
+
 
 
 # 局域网
@@ -348,21 +237,16 @@ rules:
 
 
 
-# 国内直连
+# 国内
 
-  - GEOSITE,cn,DIRECT
+  - GEOSITE,CN,DIRECT
 
   - GEOIP,CN,DIRECT
 
 
 
-# =====================
-# Google / GMS
-# =====================
 
-  - PROCESS-NAME,com.android.vending,链式代理
-
-  - DOMAIN-KEYWORD,google,链式代理
+# Google
 
   - DOMAIN-SUFFIX,google.com,链式代理
 
@@ -376,55 +260,12 @@ rules:
 
   - DOMAIN-SUFFIX,android.com,链式代理
 
-  - DOMAIN-SUFFIX,android.clients.google.com,链式代理
-
   - DOMAIN-SUFFIX,play.google.com,链式代理
 
-  - DOMAIN-SUFFIX,play-fe.googleapis.com,链式代理
-
-  - DOMAIN-SUFFIX,dl.google.com,链式代理
-
-  - DOMAIN-SUFFIX,gvt1.com,链式代理
-
-  - DOMAIN-SUFFIX,redirector.gvt1.com,链式代理
-
-  - DOMAIN-SUFFIX,update.googleapis.com,链式代理
-
-  - DOMAIN-SUFFIX,clients2.google.com,链式代理
 
 
 
-# Google账号
-
-  - DOMAIN-SUFFIX,accounts.google.com,链式代理
-
-  - DOMAIN-SUFFIX,oauth2.googleapis.com,链式代理
-
-  - DOMAIN-SUFFIX,people.googleapis.com,链式代理
-
-
-
-# Firebase
-
-  - DOMAIN-SUFFIX,fcm.googleapis.com,链式代理
-
-  - DOMAIN-SUFFIX,firebaseio.com,链式代理
-
-
-
-# Google IP
-
-  - IP-CIDR,142.250.0.0/15,链式代理,no-resolve
-
-  - IP-CIDR,172.217.0.0/16,链式代理,no-resolve
-
-  - IP-CIDR,216.58.192.0/19,链式代理,no-resolve
-
-
-
-# =====================
 # YouTube
-# =====================
 
   - DOMAIN-SUFFIX,youtube.com,链式代理
 
@@ -436,9 +277,8 @@ rules:
 
 
 
-# =====================
+
 # AI
-# =====================
 
   - DOMAIN-SUFFIX,openai.com,链式代理
 
@@ -448,38 +288,27 @@ rules:
 
 
 
-# =====================
-# 社媒住宅IP
-# =====================
 
-  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉矶
+# 社交住宅IP
 
-  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,tiktok.com,住宅IP
 
-  - DOMAIN-SUFFIX,tiktokv.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,tiktokcdn.com,住宅IP
 
-  - DOMAIN-SUFFIX,byteoversea.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,tiktokv.com,住宅IP
 
-  - DOMAIN-SUFFIX,ibyteimg.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,facebook.com,住宅IP
 
-  - DOMAIN-SUFFIX,muscdn.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,fbcdn.net,住宅IP
 
+  - DOMAIN-SUFFIX,instagram.com,住宅IP
 
-  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,fbcdn.net,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,messenger.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,whatsapp.com,住宅IP
 
 
 
-# =====================
-# 其他国外
-# =====================
+
+# 其他
 
   - DOMAIN-SUFFIX,telegram.org,链式代理
 
