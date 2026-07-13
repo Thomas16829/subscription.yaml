@@ -85,7 +85,7 @@ proxy-providers:
     type: http
 
     # 修改成你的订阅地址
-    url: "你的Clash订阅链接"
+    url: "https://github.com/Thomas16829/subscription.yaml/blob/main/%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6.yaml.txt"
 
     path: ./proxy_providers/node.yaml
 
@@ -116,26 +116,26 @@ proxies:
     type: hysteria2
     server: hk01.hy2.sys-metric-report.com
     port: 29507
-    password: "你的HY2密码"
+    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: happ.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
     obfs: salamander
-    obfs-password: "你的obfs密码"
+    obfs-password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
 
 
   - name: "香港02-HY2"
     type: hysteria2
     server: hk02.hy2.sys-metric-report.com
     port: 26992
-    password: "你的HY2密码"
+    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: happ.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
     obfs: salamander
-    obfs-password: "你的obfs密码"
+    obfs-password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
 
 
 
@@ -148,7 +148,7 @@ proxies:
     server: pro.relay.hka.sys-metric-report.com
     port: 27003
     cipher: chacha20-ietf-poly1305
-    password: "你的SS密码"
+    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
     udp: true
 
 
@@ -157,7 +157,7 @@ proxies:
     server: pro.relay.hkb.sys-metric-report.com
     port: 27010
     cipher: chacha20-ietf-poly1305
-    password: "你的SS密码"
+    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
     udp: true
 
 
@@ -166,7 +166,7 @@ proxies:
     server: pro.relay.hkc.sys-metric-report.com
     port: 27011
     cipher: chacha20-ietf-poly1305
-    password: "你的SS密码"
+    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
     udp: true
 
 
@@ -175,7 +175,7 @@ proxies:
     server: pro.relay.hkd.sys-metric-report.com
     port: 27012
     cipher: chacha20-ietf-poly1305
-    password: "你的SS密码"
+    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
     udp: true
 
 
@@ -189,7 +189,7 @@ proxies:
     server: pro.relay.usa.sys-metric-report.com
     port: 27008
     cipher: chacha20-ietf-poly1305
-    password: "你的SS密码"
+    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
     udp: true
 
 
@@ -198,7 +198,7 @@ proxies:
     server: pro.relay.usb.sys-metric-report.com
     port: 27007
     cipher: chacha20-ietf-poly1305
-    password: "你的SS密码"
+    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
     udp: true
 
 
@@ -207,7 +207,7 @@ proxies:
     server: pro.relay.usc.sys-metric-report.com
     port: 14690
     cipher: chacha20-ietf-poly1305
-    password: "你的SS密码"
+    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
     udp: true
 
 
@@ -216,7 +216,7 @@ proxies:
     server: pro.relay.usd.sys-metric-report.com
     port: 27014
     cipher: chacha20-ietf-poly1305
-    password: "你的SS密码"
+    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
     udp: true
 
 
@@ -230,7 +230,7 @@ proxies:
     server: yg1.ygkkk.dpdns.org
     port: 8443
 
-    uuid: 你的UUID
+    uuid: 85c7cbb-f10b-4ec3-84d0-f017fd566308
 
     network: ws
 
@@ -265,9 +265,9 @@ proxies:
 
     port: 33929
 
-    username: "你的用户名"
+    username: 85c7cbb-f10b-4ec3-84d0-f017fd566308
 
-    password: "你的密码"
+    password: 85c7cbb-f10b-4ec3-84d0-f017fd566308
 
     udp: true
 
