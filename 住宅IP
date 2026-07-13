@@ -116,7 +116,7 @@ proxies:
     type: hysteria2
     server: hk01.hy2.sys-metric-report.com
     port: 29507
-    password: "你的HY2密码"
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: happ.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
@@ -129,7 +129,7 @@ proxies:
     type: hysteria2
     server: hk02.hy2.sys-metric-report.com
     port: 26992
-    password: "你的HY2密码"
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: happ.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
