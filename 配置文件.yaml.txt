@@ -1,165 +1,458 @@
 mixed-port: 7890
+
 allow-lan: true
+
 bind-address: "*"
 
 mode: rule
+
 log-level: info
 
 tcp-concurrent: true
+
 unified-delay: true
 
+external-controller: 127.0.0.1:9090
+
+profile:
+store-selected: true
+store-fake-ip: true
+
+=====================
+
+DNS
+
+=====================
+
 dns:
-  enable: true
-  ipv6: false
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+enable: true
+ipv6: false
 
-  nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
+enhanced-mode: fake-ip
 
-  fallback:
-    - 8.8.8.8
-    - 1.1.1.1
+fake-ip-range: 198.18.0.1/16
 
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
+nameserver:
+- 223.5.5.5
+- 119.29.29.29
+
+fallback:
+- 8.8.8.8
+- 1.1.1.1
+
+fallback-filter:
+geoip: true
+geoip-code: CN
+
+=====================
+
+广告规则集
+
+=====================
+
+rule-providers:
+
+reject:
+type: http
+behavior: domain
+url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
+path: ./ruleset/reject.yaml
+interval: 86400
+
+anti-ad:
+type: http
+behavior: domain
+url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
+path: ./ruleset/anti-ad.yaml
+interval: 86400
+
+=====================
+
+订阅自动更新
+
+=====================
+
+proxy-providers:
+
+节点订阅:
+
+type: http # 修改成你的订阅地址 url: "https://kjuobq.yau96.com/config?token=d0cff327fe324fc540b4acaa6592c477" path: ./proxy_providers/node.yaml interval: 900 health-check: enable: true url: https://www.gstatic.com/generate_204 interval: 300 
+
+=====================
+
+节点
+
+=====================
 
 proxies:
 
-# =====================
-# 香港中转
-# =====================
+=====================
 
-  - name: 香港01[HY2]
-    type: hysteria2
-    server: hk01.hy2.sys-metric-report.com
-    port: 29419
-    password: 1ca8d621-8ddd-4f31-b24
-    up: 1000
-    down: 1000
-    sni: happ.cfastcdn.com
-    skip-cert-verify: false
-    obfs: salamander
-    obfs-password: OGQ0N2E4N
+香港 HY2
 
-  - name: 香港02[HY2]
-    type: hysteria2
-    server: hk02.hy2.sys-metric-report.com
-    port: 28343
-    password: 1ca8d621
-    up: 1000
-    down: 1000
-    sni: happ.cfastcdn.com
-    skip-cert-verify: false
-    obfs: salamander
-    obfs-password: OGQ0N2E4NzQ
+=====================
 
-  - {name: 香港A, type: ss, server: pro.relay.hka.password: 1ca8d621-8ddd-4f31-b244-7158384db348}
-  - {name: 香港B, type: ss, server: pro.relay.,5, password: 1ca8d621-8ddd-4f31-b244-7158384db348}
-  - {name: 香港C, type: ss, server: pro.relay.hkc.sysipher:ssword: 1ca8d621-8ddd-4f31-b244-7158384db348}
-  - {name: 香港D, type: ss, server: pro.relay.hkd.syipher: ch8ddd-4f31-b244-7158384db348}
+name: "香港01-HY2"
+type: hysteria2
+server: hk01.hy2.sys-metric-report.com
+port: 29507
+password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+sni: happ.cfastcdn.com
+skip-cert-verify: false
+up: "1000 Mbps"
+down: "1000 Mbps"
+obfs: salamander
+obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
-# =====================
-# 美国中转
-# =====================
+name: "香港02-HY2"
+type: hysteria2
+server: hk02.hy2.sys-metric-report.com
+port: 26992
+password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+sni: happ.cfastcdn.com
+skip-cert-verify: false
+up: "1000 Mbps"
+down: "1000 Mbps"
+obfs: salamander
+obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
-  - {name: 美国A, type: ss, server: prot: 27008, cipher: chacha20-ietf-poly1305, passwor4f31-b244-7158384db348}
-  - {name: 美国B, type: ss, server: pro.relay.usb.sys-metric-report.com,d621-8ddd-4f31-b244-7158384db348}
-  - {name: 美国C, type: ss, server: pro.relay.usc.hacha20-i21-8ddd-4f31-b244-7158384db348}
-  - {name: 美国D, type: ss, server: pro.relay.usd.sys-metric-report.com, ly13031-b244-7158384db348}
+=====================
 
-# =====================
-# VLESS备用
-# =====================
+香港 SS
 
-  - name: A-WS-中转
-    type: vless
-    server: yg1.ygkkk.dpdns.org
-    port: 8443
-    uuid: e8e3ce66-9
-    network: ws
-    tls: true
-    udp: true
-    servername: thomas20265.ccwu.cc
-    client-fingeKprint: cMrome
-    ws-opts:
-      path: "/?ed=2560"
-      headers:
-        Host: thomas20265.ccwu.cc
+=====================
 
-# =====================
-# 住宅IP（关键）
-# =====================
+name: "香港A"
+type: ss
+server: pro.relay.hka.sys-metric-report.com
+port: 27003
+cipher: chacha20-ietf-poly1305
+password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+udp: true
 
-  - name: 住宅-洛杉磯
-    type: socks5
-    server: 207.135.186.69
-    port: 339
-    username: X
-    password: 5iD0
-    udp: true
-    dialer-proxy: 自动中转
+name: "香港B"
+type: ss
+server: pro.relay.hkb.sys-metric-report.com
+port: 27010
+cipher: chacha20-ietf-poly1305
+password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+udp: true
+
+name: "香港C"
+type: ss
+server: pro.relay.hkc.sys-metric-report.com
+port: 27011
+cipher: chacha20-ietf-poly1305
+password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+udp: true
+
+name: "香港D"
+type: ss
+server: pro.relay.hkd.sys-metric-report.com
+port: 27012
+cipher: chacha20-ietf-poly1305
+password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+udp: true
+
+=====================
+
+美国 SS
+
+=====================
+
+name: "美国A"
+type: ss
+server: pro.relay.usa.sys-metric-report.com
+port: 27008
+cipher: chacha20-ietf-poly1305
+password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+udp: true
+
+name: "美国B"
+type: ss
+server: pro.relay.usb.sys-metric-report.com
+port: 27007
+cipher: chacha20-ietf-poly1305
+password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+udp: true
+
+name: "美国C"
+type: ss
+server: pro.relay.usc.sys-metric-report.com
+port: 14690
+cipher: chacha20-ietf-poly1305
+password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+udp: true
+
+name: "美国D"
+type: ss
+server: pro.relay.usd.sys-metric-report.com
+port: 27014
+cipher: chacha20-ietf-poly1305
+password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+udp: true
+
+=====================
+
+VLESS 中转
+
+=====================
+
+name: "A-WS-中转"
+type: vless
+server: yg1.ygkkk.dpdns.org
+port: 8443
+
+uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+
+network: ws
+
+tls: true
+
+udp: true
+
+servername: thomas20265.ccwu.cc
+
+client-fingerprint: chrome
+
+ws-opts:
+
+path: "/?ed=2560"
+
+headers:
+
+Host: thomas20265.ccwu.cc 
+
+=====================
+
+美国住宅IP
+
+=====================
+
+name: "住宅-紐約"
+
+type: socks5
+
+server: 65.195.110.169
+
+port: 50101
+
+username: fengwenping88
+
+password: EGmfNcqGK5
+
+udp: true
+
+dialer-proxy: "自动中转"
+
+=====================
+
+代理组
+
+=====================
 
 proxy-groups:
 
-  - name: 自动中转
-    type: url-test
-    proxies:
-      - 香港01[HY2]
-      - 香港02[HY2]
-      - 香港A
-      - 香港B
-      - 香港C
-      - 香港D
-      - 美国A
-      - 美国B
-      - 美国C
-      - 美国D
-      - A-WS-中转
-    url: http://www.gstatic.com/generate_204
-    interval: 300
+name: "自动中转"
 
-  - name: 链式代理
-    type: select
-    proxies:
-      - 住宅-洛杉磯
-      - 自动中转
-      - DIRECT
+type: url-test
+
+proxies:
+
+"香港01-HY2"
+
+"香港02-HY2"
+
+"香港A"
+
+"香港B"
+
+"香港C"
+
+"香港D"
+
+"美国A"
+
+"美国B"
+
+"美国C"
+
+"美国D"
+
+"A-WS-中转"
+
+url: https://www.gstatic.com/generate_204
+
+interval: 300
+
+tolerance: 50
+
+name: "链式代理"
+
+type: select
+
+proxies:
+
+"住宅-纽约"
+
+"自动中转"
+
+DIRECT
+
+=====================
+
+分流规则
+
+=====================
 
 rules:
 
-# 局域网
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
+广告拦截
 
-# 国内
-  - GEOSITE,cn,DIRECT
-  - GEOIP,CN,DIRECT
+RULE-SET,reject,REJECT
 
-# Google全家桶
-  - DOMAIN-KEYWORD,google,链式代理
-  - DOMAIN-SUFFIX,googleapis.com,链式代理
-  - DOMAIN-SUFFIX,gstatic.com,链式代理
-  - DOMAIN-SUFFIX,googlevideo.com,链式代理
-  - DOMAIN-SUFFIX,youtube.com,链式代理
+局域网
 
-# AI
-  - DOMAIN-SUFFIX,openai.com,链式代理
-  - DOMAIN-SUFFIX,chatgpt.com,链式代理
-  - DOMAIN-SUFFIX,claude.ai,链式代理
+IP-CIDR,127.0.0.0/8,DIRECT
 
-# 社媒走住宅IP（核心）
-  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
+IP-CIDR,192.168.0.0/16,DIRECT
 
-# 其他
-  - DOMAIN-SUFFIX,telegram.org,链式代理
-  - DOMAIN-SUFFIX,github.com,链式代理
+IP-CIDR,10.0.0.0/8,DIRECT
 
-# 默认
-  - MATCH,链式代理
+IP-CIDR,172.16.0.0/12,DIRECT
+
+国内直连
+
+GEOSITE,cn,DIRECT
+
+GEOIP,CN,DIRECT
+
+=====================
+
+Google / GMS
+
+=====================
+
+PROCESS-NAME,com.android.vending,链式代理
+
+DOMAIN-KEYWORD,google,链式代理
+
+DOMAIN-SUFFIX,google.com,链式代理
+
+DOMAIN-SUFFIX,googleapis.com,链式代理
+
+DOMAIN-SUFFIX,gstatic.com,链式代理
+
+DOMAIN-SUFFIX,ggpht.com,链式代理
+
+DOMAIN-SUFFIX,googleusercontent.com,链式代理
+
+DOMAIN-SUFFIX,android.com,链式代理
+
+DOMAIN-SUFFIX,android.clients.google.com,链式代理
+
+DOMAIN-SUFFIX,play.google.com,链式代理
+
+DOMAIN-SUFFIX,play-fe.googleapis.com,链式代理
+
+DOMAIN-SUFFIX,dl.google.com,链式代理
+
+DOMAIN-SUFFIX,gvt1.com,链式代理
+
+DOMAIN-SUFFIX,redirector.gvt1.com,链式代理
+
+DOMAIN-SUFFIX,update.googleapis.com,链式代理
+
+DOMAIN-SUFFIX,clients2.google.com,链式代理
+
+Google账号
+
+DOMAIN-SUFFIX,accounts.google.com,链式代理
+
+DOMAIN-SUFFIX,oauth2.googleapis.com,链式代理
+
+DOMAIN-SUFFIX,people.googleapis.com,链式代理
+
+Firebase
+
+DOMAIN-SUFFIX,fcm.googleapis.com,链式代理
+
+DOMAIN-SUFFIX,firebaseio.com,链式代理
+
+Google IP
+
+IP-CIDR,142.250.0.0/15,链式代理,no-resolve
+
+IP-CIDR,172.217.0.0/16,链式代理,no-resolve
+
+IP-CIDR,216.58.192.0/19,链式代理,no-resolve
+
+=====================
+
+YouTube
+
+=====================
+
+DOMAIN-SUFFIX,youtube.com,链式代理
+
+DOMAIN-SUFFIX,youtu.be,链式代理
+
+DOMAIN-SUFFIX,ytimg.com,链式代理
+
+DOMAIN-SUFFIX,googlevideo.com,链式代理
+
+=====================
+
+AI
+
+=====================
+
+DOMAIN-SUFFIX,openai.com,链式代理
+
+DOMAIN-SUFFIX,chatgpt.com,链式代理
+
+DOMAIN-SUFFIX,claude.ai,链式代理
+
+=====================
+
+社媒住宅IP
+
+=====================
+
+DOMAIN-SUFFIX,tiktok.com,住宅-纽约
+
+DOMAIN-SUFFIX,tiktokcdn.com,住宅-纽约
+
+DOMAIN-SUFFIX,tiktokv.com,住宅-纽约
+
+DOMAIN-SUFFIX,byteoversea.com,住宅-纽约
+
+DOMAIN-SUFFIX,ibyteimg.com,住宅-纽约
+
+DOMAIN-SUFFIX,muscdn.com,住宅-纽约
+
+DOMAIN-SUFFIX,facebook.com,住宅-纽约
+
+DOMAIN-SUFFIX,fbcdn.net,住宅-纽约
+
+DOMAIN-SUFFIX,messenger.com,住宅-纽约
+
+DOMAIN-SUFFIX,whatsapp.com,住宅-纽约
+
+DOMAIN-SUFFIX,instagram.com,住宅-纽约
+
+=====================
+
+其他国外
+
+=====================
+
+DOMAIN-SUFFIX,telegram.org,链式代理
+
+DOMAIN-SUFFIX,github.com,链式代理
+
+DOMAIN-SUFFIX,netflix.com,链式代理
+
+默认
+
+MATCH,链式代理 規則不變 整理成可用配置
