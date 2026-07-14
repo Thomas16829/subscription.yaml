@@ -431,7 +431,7 @@ proxy-groups:
 
     proxies:
 
-      - "入口中转"
+      - "香港02-HY2"
 
       - "美国住宅IP"
 
