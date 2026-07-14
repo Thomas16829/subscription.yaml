@@ -17,6 +17,19 @@ tcp-concurrent: true
 unified-delay: true
 
 
+# =====================
+# GEO 数据
+# =====================
+
+geodata-mode: true
+
+geox-url:
+
+  geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
+
+  geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+
+
 external-controller: 127.0.0.1:9090
 
 
@@ -43,53 +56,38 @@ dns:
 
   ipv6: false
 
-
   enhanced-mode: fake-ip
 
   fake-ip-range: 198.18.0.1/16
 
-
-
-  # Google 防止 Fake-IP 异常
-
   fake-ip-filter:
-
     - "*.google.com"
-
+    - "*.google.cn"
     - "*.googleapis.com"
-
+    - "*.googleapis.cn"
     - "*.googleusercontent.com"
-
     - "*.gstatic.com"
-
     - "*.gvt1.com"
-
     - "*.gvt2.com"
-
-    - "*.gvt3.com"
-
     - "*.ggpht.com"
-
+    - "*.googlevideo.com"
+    - "*.youtube.com"
+    - "*.play.google.com"
+    - "*.android.clients.google.com"
     - "connectivitycheck.gstatic.com"
-
     - "mtalk.google.com"
-
-
+    - "time.google.com"
 
   nameserver:
 
     - 223.5.5.5
-
     - 119.29.29.29
-
 
 
   fallback:
 
     - https://dns.google/dns-query
-
     - https://cloudflare-dns.com/dns-query
-
 
 
   fallback-filter:
@@ -324,7 +322,7 @@ proxies:
 
 
 # =====================
-# 美国住宅IP
+# 美國住宅IP
 # =====================
 
   - name: "住宅-洛杉矶"
@@ -341,7 +339,7 @@ proxies:
 
     udp: true
 
-    dialer-proxy: "自动中转"
+    
 
 
 
@@ -419,7 +417,7 @@ proxy-groups:
 # 住宅洛杉矶出口
 # =====================
 
-  - name: "住宅-洛杉矶"
+  - name: "美國住宅出口"
 
     type: select
 
@@ -427,11 +425,6 @@ proxy-groups:
     proxies:
 
       - "住宅-洛杉矶"
-
-      - "住宅中转"
-
-
-
 
 
 # =====================
@@ -442,40 +435,53 @@ proxy-groups:
 
     type: select
 
+    proxies:
+
+      - "美國住宅出口"
+      - "自动中转"
+      - "美国A"
+      - "美国B"
+
+
+# =====================
+# 中转入口选择
+# =====================
+
+  - name: "中转入口"
+
+    type: select
 
     proxies:
 
-      - "住宅-洛杉矶"
-
       - "自动中转"
+
+      - "香港01-HY2"
+
+      - "香港02-HY2"
+
+      - "香港A"
+
+      - "香港B"
 
       - "美国A"
 
       - "美国B"
 
-
-
-
+      - "A-WS-中转"
 
 # =====================
-# 链式代理
+# 自动住宅链
 # =====================
 
-  - name: "链式代理"
+  - name: "住宅链式"
 
-    type: select
-
+    type: relay
 
     proxies:
 
+      - "中转入口"
+
       - "住宅-洛杉矶"
-
-      - "自动中转"
-
-      - DIRECT
-
-
-
 
 
 # =====================
@@ -486,12 +492,11 @@ proxy-groups:
 
     type: select
 
-
     proxies:
 
-      - "自动中转"
+      - "住宅链式"
 
-      - "链式代理"
+      - "中转入口"
 
       - "住宅-洛杉矶"
 
@@ -511,78 +516,85 @@ rules:
 
   - RULE-SET,reject,REJECT
 
+  - RULE-SET,anti-ad,REJECT
 
 
 # =====================
-# 2. Google Play 商店
-# APP 下载更新
-# 固定住宅-洛杉矶
+# Google Play APP更新
+# 固定美國住宅出口
 # =====================
 
+  - DOMAIN-SUFFIX,app-measurement.com,美國住宅出口
 
-  - DOMAIN-SUFFIX,play.google.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,ggpht.com,美國住宅出口
 
-  - DOMAIN-SUFFIX,play.googleapis.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,android.com,美國住宅出口
 
-  - DOMAIN-SUFFIX,play-fe.googleapis.com,住宅-洛杉矶
+  - PROCESS-NAME,com.android.vending,美國住宅出口
 
-  - DOMAIN-SUFFIX,android.clients.google.com,住宅-洛杉矶
+  - PROCESS-NAME,com.google.android.gms,美國住宅出口
 
-  - DOMAIN-SUFFIX,clients2.google.com,住宅-洛杉矶
+  - PROCESS-NAME,com.google.android.gsf,美國住宅出口
 
-  - DOMAIN-SUFFIX,clients3.google.com,住宅-洛杉矶
-
-
-
-# Google APP 更新 CDN
-
-  - DOMAIN-SUFFIX,dl.google.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,dl-ssl.google.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,gvt1.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,gvt2.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,gvt3.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,googlezip.net,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,ota.googlezip.net,住宅-洛杉矶
+  - PROCESS-NAME,com.android.providers.downloads,美國住宅出口
 
 
+# Google Play API
 
-# Google CDN IP
+  - DOMAIN-SUFFIX,googleapis.com,美國住宅出口
 
-  - IP-CIDR,142.250.0.0/15,住宅-洛杉矶,no-resolve
+  - DOMAIN-SUFFIX,googleusercontent.com,美國住宅出口
 
-  - IP-CIDR,172.217.0.0/16,住宅-洛杉矶,no-resolve
+  - DOMAIN-SUFFIX,gstatic.com,美國住宅出口
 
-  - IP-CIDR,173.194.0.0/16,住宅-洛杉矶,no-resolve
+  - DOMAIN-SUFFIX,googlezip.net,美國住宅出口
 
-  - IP-CIDR,74.125.0.0/16,住宅-洛杉矶,no-resolve
+  - DOMAIN-SUFFIX,play.google.com,美國住宅出口
 
-  - IP-CIDR,216.58.192.0/19,住宅-洛杉矶,no-resolve
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,美國住宅出口
+
+  - DOMAIN-SUFFIX,android.clients.google.com,美國住宅出口
+
+  - DOMAIN-SUFFIX,clients2.google.com,美國住宅出口
+
+  - DOMAIN-SUFFIX,clients3.google.com,美國住宅出口
 
 
+# Google 下载 CDN
 
+  - DOMAIN-SUFFIX,dl.google.com,美國住宅出口
+
+  - DOMAIN-SUFFIX,dl-ssl.google.com,美國住宅出口
+
+  - DOMAIN-SUFFIX,gvt1.com,美國住宅出口
+
+  - DOMAIN-SUFFIX,gvt2.com,美國住宅出口
+
+  - DOMAIN-SUFFIX,gvt3.com,美國住宅出口
+
+  - DOMAIN-SUFFIX,googlezip.net,美國住宅出口
+
+
+# Google IP
+
+  - IP-CIDR,142.250.0.0/15,美國住宅出口,no-resolve
+
+  - IP-CIDR,172.217.0.0/16,美國住宅出口,no-resolve
+
+  - IP-CIDR,173.194.0.0/16,美國住宅出口,no-resolve
+
+  - IP-CIDR,74.125.0.0/16,美國住宅出口,no-resolve
 
 
 # =====================
 # 3. Google 全服务
 # =====================
 
-
   - GEOSITE,google,🔍 Google
-
-
-
-
 
 # =====================
 # 4. YouTube
 # =====================
-
 
   - DOMAIN-SUFFIX,youtube.com,住宅-洛杉矶
 
@@ -593,13 +605,9 @@ rules:
   - DOMAIN-SUFFIX,googlevideo.com,住宅-洛杉矶
 
 
-
-
-
 # =====================
 # 5. AI 服务
 # =====================
-
 
   - DOMAIN-SUFFIX,openai.com,住宅-洛杉矶
 
@@ -608,13 +616,9 @@ rules:
   - DOMAIN-SUFFIX,claude.ai,住宅-洛杉矶
 
 
-
-
-
 # =====================
 # 6. 社交媒体
 # =====================
-
 
   - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉矶
 
@@ -623,7 +627,6 @@ rules:
   - DOMAIN-SUFFIX,tiktokv.com,住宅-洛杉矶
 
   - DOMAIN-SUFFIX,byteoversea.com,住宅-洛杉矶
-
 
   - DOMAIN-SUFFIX,facebook.com,住宅-洛杉矶
 
@@ -634,28 +637,20 @@ rules:
   - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉矶
 
 
-
-
-
 # =====================
 # 7. 其他国外服务
 # =====================
 
+  - DOMAIN-SUFFIX,telegram.org,住宅链式
 
-  - DOMAIN-SUFFIX,telegram.org,链式代理
+  - DOMAIN-SUFFIX,github.com,住宅链式
 
-  - DOMAIN-SUFFIX,github.com,链式代理
-
-  - DOMAIN-SUFFIX,netflix.com,链式代理
-
-
-
+  - DOMAIN-SUFFIX,netflix.com,住宅链式
 
 
 # =====================
 # 8. 局域网直连
 # =====================
-
 
   - IP-CIDR,127.0.0.0/8,DIRECT
 
@@ -666,26 +661,18 @@ rules:
   - IP-CIDR,172.16.0.0/12,DIRECT
 
 
-
-
-
 # =====================
 # 9. 国内直连
 # =====================
-
 
   - GEOSITE,cn,DIRECT
 
   - GEOIP,CN,DIRECT
 
 
-
-
-
 # =====================
 # 10. 默认
 # =====================
-
 
   - MATCH,🚀 Proxy
 
