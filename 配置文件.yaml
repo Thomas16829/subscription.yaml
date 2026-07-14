@@ -1,58 +1,34 @@
 mixed-port: 7890
 allow-lan: true
-bind-address: "*"
-
 mode: rule
 log-level: info
-
 tcp-concurrent: true
 unified-delay: true
 
-profile:
-  store-selected: true
-  store-fake-ip: true
 
-dns:
-  enable: true
-  ipv6: false
+proxy-providers:
 
-  enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+  节点订阅:
 
-  nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-
-  fallback:
-    - 8.8.8.8
-    - 1.1.1.1
-
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-
-
-# =====================
-# 广告规则集
-# =====================
-
-rule-providers:
-
-  reject:
     type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
-    path: ./ruleset/reject.yaml
-    interval: 86400
 
-  anti-ad:
-    type: http
-    behavior: domain
-    url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
-    path: ./ruleset/anti-ad.yaml
-    interval: 86400
+    # 修改成你的订阅地址
+    url: "https://kjuobq.yau96.com/config?token=d0cff327fe324fc540b4acaa6592c477"
 
-    
+    path: ./proxy_providers/node.yaml
+
+    interval: 900
+
+
+    health-check:
+
+      enable: true
+
+      url: https://www.gstatic.com/generate_204
+
+      interval: 300
+
+
 proxies:
 
 # =====================
@@ -256,129 +232,8 @@ proxy-groups:
 
 
 
-# =====================
-# 分流规则
-# =====================
-
 rules:
-
-# =====================
-# 广告拦截
-# =====================
-
-  - RULE-SET,reject,REJECT
-
-# 局域网
-
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
-
-
-
-# 国内
-
-  - GEOSITE,cn,DIRECT
-  - GEOIP,CN,DIRECT
-
-
-
-# =====================
-# Google Play / APP 更新
-# 自动中转全局更新
-# =====================
-
-# Google Play 商店
-  - DOMAIN-SUFFIX,play.google.com,自动中转
-  - DOMAIN-SUFFIX,play-fe.googleapis.com,自动中转
-  - DOMAIN-SUFFIX,play.googleapis.com,自动中转
-  - DOMAIN-SUFFIX,android.clients.google.com,自动中转
-
-# APP 下载更新 CDN
-  - DOMAIN-SUFFIX,dl.google.com,自动中转
-  - DOMAIN-SUFFIX,dl-ssl.google.com,自动中转
-  - DOMAIN-SUFFIX,gvt1.com,自动中转
-  - DOMAIN-SUFFIX,gvt2.com,自动中转
-  - DOMAIN-SUFFIX,googlezip.net,自动中转
-  - DOMAIN-SUFFIX,ota.googlezip.net,自动中转
-
-# Google API
-  - DOMAIN-SUFFIX,googleapis.com,自动中转
-  - DOMAIN-SUFFIX,gstatic.com,自动中转
-  - DOMAIN-SUFFIX,googleusercontent.com,自动中转
-  - DOMAIN-SUFFIX,ggpht.com,自动中转
-
-# Google 登录同步
-  - DOMAIN-SUFFIX,accounts.google.com,链式代理
-  - DOMAIN-SUFFIX,oauth2.googleapis.com,链式代理
-  - DOMAIN-SUFFIX,clients2.google.com,链式代理
-  - DOMAIN-SUFFIX,clients4.google.com,链式代理
-  - DOMAIN-SUFFIX,clients6.google.com,链式代理
-
-# Firebase 推送
-  - DOMAIN-SUFFIX,fcm.googleapis.com,链式代理
-  - DOMAIN-SUFFIX,firebaseio.com,链式代理
-
-# Google CDN IP（APP更新）
-  - IP-CIDR,142.250.0.0/15,自动中转,no-resolve
-  - IP-CIDR,172.217.0.0/16,自动中转,no-resolve
-  - IP-CIDR,216.58.192.0/19,自动中转,no-resolve
-  - IP-CIDR,74.125.0.0/16,自动中转,no-resolve
-  - IP-CIDR,173.194.0.0/16,自动中转,no-resolve
-
-
-
-# =====================
-# YouTube
-# =====================
-
-  - DOMAIN-SUFFIX,youtube.com,链式代理
-  - DOMAIN-SUFFIX,youtu.be,链式代理
-  - DOMAIN-SUFFIX,ytimg.com,链式代理
-  - DOMAIN-SUFFIX,googlevideo.com,链式代理
-
-
-
-# =====================
-# AI
-# =====================
-
-  - DOMAIN-SUFFIX,openai.com,链式代理
-  - DOMAIN-SUFFIX,chatgpt.com,链式代理
-  - DOMAIN-SUFFIX,claude.ai,链式代理
-
-
-
-# =====================
-# 社媒住宅IP
-# =====================
-
-  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉矶
-  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-洛杉矶
-  - DOMAIN-SUFFIX,tiktokv.com,住宅-洛杉矶
-  - DOMAIN-SUFFIX,byteoversea.com,住宅-洛杉矶
-  - DOMAIN-SUFFIX,ibyteimg.com,住宅-洛杉矶
-  - DOMAIN-SUFFIX,muscdn.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉矶
-  - DOMAIN-SUFFIX,fbcdn.net,住宅-洛杉矶
-  - DOMAIN-SUFFIX,messenger.com,住宅-洛杉矶
-  - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉矶
-  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉矶
-
-
-
-# =====================
-# 其他国外
-# =====================
-
-  - DOMAIN-SUFFIX,telegram.org,链式代理
-  - DOMAIN-SUFFIX,github.com,链式代理
-  - DOMAIN-SUFFIX,netflix.com,链式代理
-
-
-
-# 默认
-
+  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
   - MATCH,链式代理
