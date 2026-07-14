@@ -457,11 +457,11 @@ rules:
 # 6. 其他国外服务
 # =====================
 
-  - DOMAIN-SUFFIX,telegram.org,住宅链式
+  - DOMAIN-SUFFIX,telegram.org,住宅-洛杉矶
 
-  - DOMAIN-SUFFIX,github.com,住宅链式
+  - DOMAIN-SUFFIX,github.com,住宅-洛杉矶
 
-  - DOMAIN-SUFFIX,netflix.com,住宅链式
+  - DOMAIN-SUFFIX,netflix.com,住宅-洛杉矶
 
 
 # =====================
