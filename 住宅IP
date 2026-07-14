@@ -17,31 +17,11 @@ tcp-concurrent: true
 unified-delay: true
 
 
-# =====================
-# GEO 数据
-# =====================
-
-geodata-mode: true
-
-geox-url:
-
-  geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
-
-  geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
-
-
 external-controller: 127.0.0.1:9090
 
 
-
-# =====================
-# 配置保存
-# =====================
-
 profile:
-
   store-selected: true
-
   store-fake-ip: true
 
 
@@ -51,56 +31,27 @@ profile:
 # =====================
 
 dns:
-
   enable: true
-
   ipv6: false
 
   enhanced-mode: fake-ip
 
   fake-ip-range: 198.18.0.1/16
 
-  fake-ip-filter:
-    - "*.google.com"
-    - "*.google.cn"
-    - "*.googleapis.com"
-    - "*.googleapis.cn"
-    - "*.googleusercontent.com"
-    - "*.gstatic.com"
-    - "*.gvt1.com"
-    - "*.gvt2.com"
-    - "*.ggpht.com"
-    - "*.googlevideo.com"
-    - "*.youtube.com"
-    - "*.play.google.com"
-    - "*.android.clients.google.com"
-    - "connectivitycheck.gstatic.com"
-    - "mtalk.google.com"
-    - "time.google.com"
 
   nameserver:
-
     - 223.5.5.5
     - 119.29.29.29
 
 
   fallback:
-
-    - https://dns.google/dns-query
-    - https://cloudflare-dns.com/dns-query
+    - 8.8.8.8
+    - 1.1.1.1
 
 
   fallback-filter:
-
     geoip: true
-
     geoip-code: CN
-
-    geosite:
-
-      - gfw
-
-
 
 
 
@@ -110,57 +61,39 @@ dns:
 
 rule-providers:
 
-
   reject:
-
     type: http
-
     behavior: domain
-
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
-
     path: ./ruleset/reject.yaml
-
     interval: 86400
-
 
 
   anti-ad:
-
     type: http
-
     behavior: domain
-
     url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
-
     path: ./ruleset/anti-ad.yaml
-
     interval: 86400
 
 
 
-
-
 # =====================
-# 节点订阅
+# 订阅自动更新
 # =====================
 
 proxy-providers:
-
 
   节点订阅:
 
     type: http
 
-
+    # 修改成你的订阅地址
     url: "https://kjuobq.yau96.com/config?token=d0cff327fe324fc540b4acaa6592c477"
-
 
     path: ./proxy_providers/node.yaml
 
-
     interval: 900
-
 
 
     health-check:
@@ -170,13 +103,16 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
 
       interval: 300
+
+
 # =====================
 # 节点
 # =====================
 
 proxies:
 
-  # =====================
+
+# =====================
 # 香港 HY2
 # =====================
 
@@ -389,6 +325,7 @@ proxy-groups:
       - DIRECT
 
 
+
 # =====================
 # 分流规则
 # =====================
@@ -405,80 +342,74 @@ rules:
 
 
 # =====================
-# Google Play APP更新
+# 2.Google Play APP更新
 # 固定美國住宅出口
 # =====================
 
-  - DOMAIN-SUFFIX,app-measurement.com,美國住宅出口
+  - DOMAIN-SUFFIX,app-measurement.com,自动中转
 
-  - DOMAIN-SUFFIX,ggpht.com,美國住宅出口
+  - DOMAIN-SUFFIX,ggpht.com,自动中转
 
-  - DOMAIN-SUFFIX,android.com,美國住宅出口
+  - DOMAIN-SUFFIX,android.com,自动中转
 
-  - PROCESS-NAME,com.android.vending,美國住宅出口
+  - PROCESS-NAME,com.android.vending,自动中转
 
-  - PROCESS-NAME,com.google.android.gms,美國住宅出口
+  - PROCESS-NAME,com.google.android.gms,自动中转
 
-  - PROCESS-NAME,com.google.android.gsf,美國住宅出口
+  - PROCESS-NAME,com.google.android.gsf,自动中转
 
-  - PROCESS-NAME,com.android.providers.downloads,美國住宅出口
+  - PROCESS-NAME,com.android.providers.downloads,自动中转
 
 
 # Google Play API
 
-  - DOMAIN-SUFFIX,googleapis.com,美國住宅出口
+  - DOMAIN-SUFFIX,googleapis.com,自动中转
 
-  - DOMAIN-SUFFIX,googleusercontent.com,美國住宅出口
+  - DOMAIN-SUFFIX,googleusercontent.com,自动中转
 
-  - DOMAIN-SUFFIX,gstatic.com,美國住宅出口
+  - DOMAIN-SUFFIX,gstatic.com,自动中转
 
-  - DOMAIN-SUFFIX,googlezip.net,美國住宅出口
+  - DOMAIN-SUFFIX,googlezip.net,自动中转
 
-  - DOMAIN-SUFFIX,play.google.com,美國住宅出口
+  - DOMAIN-SUFFIX,play.google.com,自动中转
 
-  - DOMAIN-SUFFIX,play-fe.googleapis.com,美國住宅出口
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,自动中转
 
-  - DOMAIN-SUFFIX,android.clients.google.com,美國住宅出口
+  - DOMAIN-SUFFIX,android.clients.google.com,自动中转
 
-  - DOMAIN-SUFFIX,clients2.google.com,美國住宅出口
+  - DOMAIN-SUFFIX,clients2.google.com,自动中转
 
-  - DOMAIN-SUFFIX,clients3.google.com,美國住宅出口
+  - DOMAIN-SUFFIX,clients3.google.com,自动中转
 
 
 # Google 下载 CDN
 
-  - DOMAIN-SUFFIX,dl.google.com,美國住宅出口
+  - DOMAIN-SUFFIX,dl.google.com,自动中转
 
-  - DOMAIN-SUFFIX,dl-ssl.google.com,美國住宅出口
+  - DOMAIN-SUFFIX,dl-ssl.google.com,自动中转
 
-  - DOMAIN-SUFFIX,gvt1.com,美國住宅出口
+  - DOMAIN-SUFFIX,gvt1.com,自动中转
 
-  - DOMAIN-SUFFIX,gvt2.com,美國住宅出口
+  - DOMAIN-SUFFIX,gvt2.com,自动中转
 
-  - DOMAIN-SUFFIX,gvt3.com,美國住宅出口
+  - DOMAIN-SUFFIX,gvt3.com,自动中转
 
-  - DOMAIN-SUFFIX,googlezip.net,美國住宅出口
+  - DOMAIN-SUFFIX,googlezip.net,自动中转
 
 
 # Google IP
 
-  - IP-CIDR,142.250.0.0/15,美國住宅出口,no-resolve
+  - IP-CIDR,142.250.0.0/15,自动中转,no-resolve
 
-  - IP-CIDR,172.217.0.0/16,美國住宅出口,no-resolve
+  - IP-CIDR,172.217.0.0/16,自动中转,no-resolve
 
-  - IP-CIDR,173.194.0.0/16,美國住宅出口,no-resolve
+  - IP-CIDR,173.194.0.0/16,自动中转,no-resolve
 
-  - IP-CIDR,74.125.0.0/16,美國住宅出口,no-resolve
+  - IP-CIDR,74.125.0.0/16,自动中转,no-resolve
 
-
-# =====================
-# 3. Google 全服务
-# =====================
-
-  - GEOSITE,google,🔍 Google
 
 # =====================
-# 4. YouTube
+# 3. YouTube
 # =====================
 
   - DOMAIN-SUFFIX,youtube.com,住宅-洛杉矶
@@ -491,7 +422,7 @@ rules:
 
 
 # =====================
-# 5. AI 服务
+# 4. AI 服务
 # =====================
 
   - DOMAIN-SUFFIX,openai.com,住宅-洛杉矶
@@ -502,7 +433,7 @@ rules:
 
 
 # =====================
-# 6. 社交媒体
+# 5. 社交媒体
 # =====================
 
   - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉矶
@@ -523,7 +454,7 @@ rules:
 
 
 # =====================
-# 7. 其他国外服务
+# 6. 其他国外服务
 # =====================
 
   - DOMAIN-SUFFIX,telegram.org,住宅链式
@@ -534,7 +465,7 @@ rules:
 
 
 # =====================
-# 8. 局域网直连
+# 7. 局域网直连
 # =====================
 
   - IP-CIDR,127.0.0.0/8,DIRECT
@@ -547,7 +478,7 @@ rules:
 
 
 # =====================
-# 9. 国内直连
+# 8. 国内直连
 # =====================
 
   - GEOSITE,cn,DIRECT
@@ -556,9 +487,10 @@ rules:
 
 
 # =====================
-# 10. 默认
+# 9. 默认
 # =====================
 
-  - MATCH,🚀 Proxy
+  - MATCH,链式代理
+
 
 
