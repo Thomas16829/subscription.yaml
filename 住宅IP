@@ -1,3 +1,7 @@
+# =====================
+# Clash Meta 基础配置
+# =====================
+
 mixed-port: 7890
 
 allow-lan: true
@@ -16,8 +20,15 @@ unified-delay: true
 external-controller: 127.0.0.1:9090
 
 
+
+# =====================
+# 配置保存
+# =====================
+
 profile:
+
   store-selected: true
+
   store-fake-ip: true
 
 
@@ -27,27 +38,71 @@ profile:
 # =====================
 
 dns:
+
   enable: true
+
   ipv6: false
+
 
   enhanced-mode: fake-ip
 
   fake-ip-range: 198.18.0.1/16
 
 
+
+  # Google 防止 Fake-IP 异常
+
+  fake-ip-filter:
+
+    - "*.google.com"
+
+    - "*.googleapis.com"
+
+    - "*.googleusercontent.com"
+
+    - "*.gstatic.com"
+
+    - "*.gvt1.com"
+
+    - "*.gvt2.com"
+
+    - "*.gvt3.com"
+
+    - "*.ggpht.com"
+
+    - "connectivitycheck.gstatic.com"
+
+    - "mtalk.google.com"
+
+
+
   nameserver:
+
     - 223.5.5.5
+
     - 119.29.29.29
 
 
+
   fallback:
-    - 8.8.8.8
-    - 1.1.1.1
+
+    - https://dns.google/dns-query
+
+    - https://cloudflare-dns.com/dns-query
+
 
 
   fallback-filter:
+
     geoip: true
+
     geoip-code: CN
+
+    geosite:
+
+      - gfw
+
+
 
 
 
@@ -57,39 +112,57 @@ dns:
 
 rule-providers:
 
+
   reject:
+
     type: http
+
     behavior: domain
+
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
+
     path: ./ruleset/reject.yaml
+
     interval: 86400
+
 
 
   anti-ad:
+
     type: http
+
     behavior: domain
+
     url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
+
     path: ./ruleset/anti-ad.yaml
+
     interval: 86400
 
 
 
+
+
 # =====================
-# 订阅自动更新
+# 节点订阅
 # =====================
 
 proxy-providers:
+
 
   节点订阅:
 
     type: http
 
-    # 修改成你的订阅地址
+
     url: "https://kjuobq.yau96.com/config?token=d0cff327fe324fc540b4acaa6592c477"
+
 
     path: ./proxy_providers/node.yaml
 
+
     interval: 900
+
 
 
     health-check:
@@ -99,16 +172,13 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
 
       interval: 300
-
-
 # =====================
 # 节点
 # =====================
 
 proxies:
 
-
-# =====================
+  # =====================
 # 香港 HY2
 # =====================
 
@@ -272,12 +342,19 @@ proxies:
     udp: true
 
     dialer-proxy: "自动中转"
+
+
+
 # =====================
 # 代理组
 # =====================
 
 proxy-groups:
 
+
+# =====================
+# 自动中转
+# =====================
 
   - name: "自动中转"
 
@@ -300,6 +377,7 @@ proxy-groups:
 
       - "A-WS-中转"
 
+
     url: https://www.gstatic.com/generate_204
 
     interval: 300
@@ -308,9 +386,85 @@ proxy-groups:
 
 
 
+
+
+# =====================
+# 住宅入口中转
+# =====================
+
+  - name: "住宅中转"
+
+    type: select
+
+
+    proxies:
+
+      - "自动中转"
+
+      - "香港01-HY2"
+
+      - "香港02-HY2"
+
+      - "A-WS-中转"
+
+      - "美国A"
+
+      - "美国B"
+
+
+
+
+
+# =====================
+# 住宅洛杉矶出口
+# =====================
+
+  - name: "住宅-洛杉矶"
+
+    type: select
+
+
+    proxies:
+
+      - "住宅-洛杉矶"
+
+      - "住宅中转"
+
+
+
+
+
+# =====================
+# Google 专用
+# =====================
+
+  - name: "🔍 Google"
+
+    type: select
+
+
+    proxies:
+
+      - "住宅-洛杉矶"
+
+      - "自动中转"
+
+      - "美国A"
+
+      - "美国B"
+
+
+
+
+
+# =====================
+# 链式代理
+# =====================
+
   - name: "链式代理"
 
     type: select
+
 
     proxies:
 
@@ -322,6 +476,28 @@ proxy-groups:
 
 
 
+
+
+# =====================
+# 默认代理
+# =====================
+
+  - name: "🚀 Proxy"
+
+    type: select
+
+
+    proxies:
+
+      - "自动中转"
+
+      - "链式代理"
+
+      - "住宅-洛杉矶"
+
+      - DIRECT
+
+
 # =====================
 # 分流规则
 # =====================
@@ -329,78 +505,84 @@ proxy-groups:
 rules:
 
 
-# 广告拦截
+# =====================
+# 1. 广告拦截
+# =====================
 
   - RULE-SET,reject,REJECT
 
 
-# 局域网
-
-  - IP-CIDR,127.0.0.0/8,DIRECT
-
-  - IP-CIDR,192.168.0.0/16,DIRECT
-
-  - IP-CIDR,10.0.0.0/8,DIRECT
-
-  - IP-CIDR,172.16.0.0/12,DIRECT
-
-
-
-# 国内直连
-
-  - GEOSITE,cn,DIRECT
-
-  - GEOIP,CN,DIRECT
-
-
 
 # =====================
-# Google Play 商店 / APP更新
-# 自动中转全局代理
+# 2. Google Play 商店
+# APP 下载更新
+# 固定住宅-洛杉矶
 # =====================
 
-# Google Play 商店程序
-  - PROCESS-NAME,com.android.vending,自动中转
 
-# Google Play 服务
-  - PROCESS-NAME,com.google.android.gms,自动中转
+  - DOMAIN-SUFFIX,play.google.com,住宅-洛杉矶
 
-# Google 服务框架
-  - PROCESS-NAME,com.google.android.gsf,自动中转
+  - DOMAIN-SUFFIX,play.googleapis.com,住宅-洛杉矶
 
-# Android 下载服务
-  - PROCESS-NAME,com.android.providers.downloads,自动中转
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,住宅-洛杉矶
 
+  - DOMAIN-SUFFIX,android.clients.google.com,住宅-洛杉矶
 
-# Play 商店 API
-  - DOMAIN-SUFFIX,play.google.com,自动中转
-  - DOMAIN-SUFFIX,play-fe.googleapis.com,自动中转
-  - DOMAIN-SUFFIX,play.googleapis.com,自动中转
-  - DOMAIN-SUFFIX,android.clients.google.com,自动中转
-  - DOMAIN-SUFFIX,clients2.google.com,自动中转
-  - DOMAIN-SUFFIX,clients3.google.com,自动中转
+  - DOMAIN-SUFFIX,clients2.google.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,clients3.google.com,住宅-洛杉矶
 
 
-# APP 更新 CDN
-  - DOMAIN-SUFFIX,dl.google.com,自动中转
-  - DOMAIN-SUFFIX,dl-ssl.google.com,自动中转
-  - DOMAIN-SUFFIX,gvt1.com,自动中转
-  - DOMAIN-SUFFIX,gvt2.com,自动中转
-  - DOMAIN-SUFFIX,gvt3.com,自动中转
-  - DOMAIN-SUFFIX,googlezip.net,自动中转
-  - DOMAIN-SUFFIX,ota.googlezip.net,自动中转
+
+# Google APP 更新 CDN
+
+  - DOMAIN-SUFFIX,dl.google.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,dl-ssl.google.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,gvt1.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,gvt2.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,gvt3.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,googlezip.net,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,ota.googlezip.net,住宅-洛杉矶
+
 
 
 # Google CDN IP
-  - IP-CIDR,142.250.0.0/15,自动中转,no-resolve
-  - IP-CIDR,172.217.0.0/16,自动中转,no-resolve
-  - IP-CIDR,216.58.192.0/19,自动中转,no-resolve
-  - IP-CIDR,74.125.0.0/16,自动中转,no-resolve
-  - IP-CIDR,173.194.0.0/16,自动中转,no-resolve
+
+  - IP-CIDR,142.250.0.0/15,住宅-洛杉矶,no-resolve
+
+  - IP-CIDR,172.217.0.0/16,住宅-洛杉矶,no-resolve
+
+  - IP-CIDR,173.194.0.0/16,住宅-洛杉矶,no-resolve
+
+  - IP-CIDR,74.125.0.0/16,住宅-洛杉矶,no-resolve
+
+  - IP-CIDR,216.58.192.0/19,住宅-洛杉矶,no-resolve
+
+
+
+
 
 # =====================
-# YouTube
+# 3. Google 全服务
 # =====================
+
+
+  - GEOSITE,google,🔍 Google
+
+
+
+
+
+# =====================
+# 4. YouTube
+# =====================
+
 
   - DOMAIN-SUFFIX,youtube.com,住宅-洛杉矶
 
@@ -412,9 +594,12 @@ rules:
 
 
 
+
+
 # =====================
-# AI
+# 5. AI 服务
 # =====================
+
 
   - DOMAIN-SUFFIX,openai.com,住宅-洛杉矶
 
@@ -424,9 +609,12 @@ rules:
 
 
 
+
+
 # =====================
-# 社媒住宅IP
+# 6. 社交媒体
 # =====================
+
 
   - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉矶
 
@@ -436,26 +624,23 @@ rules:
 
   - DOMAIN-SUFFIX,byteoversea.com,住宅-洛杉矶
 
-  - DOMAIN-SUFFIX,ibyteimg.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,muscdn.com,住宅-洛杉矶
-
 
   - DOMAIN-SUFFIX,facebook.com,住宅-洛杉矶
 
   - DOMAIN-SUFFIX,fbcdn.net,住宅-洛杉矶
 
-  - DOMAIN-SUFFIX,messenger.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉矶
 
   - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉矶
 
-  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉矶
+
 
 
 
 # =====================
-# 其他国外
+# 7. 其他国外服务
 # =====================
+
 
   - DOMAIN-SUFFIX,telegram.org,链式代理
 
@@ -465,6 +650,43 @@ rules:
 
 
 
-# 默认
 
-  - MATCH,链式代理
+
+# =====================
+# 8. 局域网直连
+# =====================
+
+
+  - IP-CIDR,127.0.0.0/8,DIRECT
+
+  - IP-CIDR,192.168.0.0/16,DIRECT
+
+  - IP-CIDR,10.0.0.0/8,DIRECT
+
+  - IP-CIDR,172.16.0.0/12,DIRECT
+
+
+
+
+
+# =====================
+# 9. 国内直连
+# =====================
+
+
+  - GEOSITE,cn,DIRECT
+
+  - GEOIP,CN,DIRECT
+
+
+
+
+
+# =====================
+# 10. 默认
+# =====================
+
+
+  - MATCH,🚀 Proxy
+
+
