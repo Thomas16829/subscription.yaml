@@ -275,55 +275,134 @@ proxies:
 
     udp: true
 
-    dialer-proxy: "自动中转"
+
+    # 核心：
+    # 美国住宅通过香港节点出去
+
+    dialer-proxy: "香港中转"
+
+
 # =====================
 # 代理组
 # =====================
 
+
 proxy-groups:
 
 
-  - name: "自动中转"
 
-    type: url-test
+# =====================
+# 香港固定中转
+# =====================
 
-    proxies:
-
-      - "香港01-HY2"
-      - "香港02-HY2"
-
-      - "香港A"
-      - "香港B"
-      - "香港C"
-      - "香港D"
-
-      - "美国A"
-      - "美国B"
-      - "美国C"
-      - "美国D"
-
-      - "A-WS-中转"
-
-    url: https://www.gstatic.com/generate_204
-
-    interval: 300
-
-    tolerance: 50
-
-
-
-  - name: "链式代理"
+  - name: "香港中转"
 
     type: select
 
     proxies:
 
-      - "住宅-洛杉矶"
+      - "香港01-HY2"
 
-      - "自动中转"
+      - "香港02-HY2"
+
+      - "A-WS-中转"
+
+
+# =====================
+# 美国住宅出口
+# =====================
+
+  - name: "美国住宅出口"
+
+    type: select
+
+    proxies:
+
+      - "美国住宅-洛杉矶"
+
+      - "香港中转"
+
+
+
+# =====================
+# 普通海外
+# =====================
+
+  - name: "海外代理"
+
+    type: select
+
+    proxies:
+
+      - "香港中转"
+
+      - "美国住宅出口"
+
+
+
+# =====================
+# Google服务
+# =====================
+
+  - name: "Google服务"
+
+    type: select
+
+    proxies:
+
+      - "香港中转"
+
+      - "美国住宅出口"
+
+
+
+# =====================
+# AI服务
+# =====================
+
+  - name: "AI服务"
+
+    type: select
+
+    proxies:
+
+      - "美国住宅出口"
+
+      - "香港中转"
+
+
+
+# =====================
+# 社交媒体
+# =====================
+
+  - name: "社媒住宅"
+
+    type: select
+
+    proxies:
+
+      - "美国住宅出口"
+
+      - "香港中转"
+
+
+
+# =====================
+# 默认
+# =====================
+
+  - name: "GLOBAL"
+
+    type: select
+
+    proxies:
+
+      - "香港中转"
+
+      - "美国住宅出口"
 
       - DIRECT
-
 
 
 # =====================
@@ -333,13 +412,19 @@ proxy-groups:
 rules:
 
 
+# =====================
 # 广告拦截
+# =====================
 
   - RULE-SET,reject,REJECT
 
   - RULE-SET,anti-ad,REJECT
 
-# 局域网
+
+
+# =====================
+# 局域网直连
+# =====================
 
   - IP-CIDR,127.0.0.0/8,DIRECT
 
@@ -351,125 +436,152 @@ rules:
 
 
 
-# 国内直连
+# =====================
+# Google Play / Android更新
+# 香港中转
+# =====================
+
+
+  - PROCESS-NAME,com.android.vending,Google服务
+
+  - PROCESS-NAME,com.google.android.gms,Google服务
+
+  - PROCESS-NAME,com.google.android.gsf,Google服务
+
+  - PROCESS-NAME,com.android.providers.downloads,Google服务
+
+
+
+  - DOMAIN-SUFFIX,play.google.com,Google服务
+
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,Google服务
+
+  - DOMAIN-SUFFIX,play.googleapis.com,Google服务
+
+  - DOMAIN-SUFFIX,android.clients.google.com,Google服务
+
+  - DOMAIN-SUFFIX,clients2.google.com,Google服务
+
+  - DOMAIN-SUFFIX,clients3.google.com,Google服务
+
+
+
+# Google APP下载 CDN
+
+  - DOMAIN-SUFFIX,dl.google.com,Google服务
+
+  - DOMAIN-SUFFIX,dl-ssl.google.com,Google服务
+
+  - DOMAIN-SUFFIX,gvt1.com,Google服务
+
+  - DOMAIN-SUFFIX,gvt2.com,Google服务
+
+  - DOMAIN-SUFFIX,gvt3.com,Google服务
+
+  - DOMAIN-SUFFIX,googlezip.net,Google服务
+
+
+
+# Google IP
+
+  - IP-CIDR,142.250.0.0/15,Google服务,no-resolve
+
+  - IP-CIDR,172.217.0.0/16,Google服务,no-resolve
+
+  - IP-CIDR,216.58.192.0/19,Google服务,no-resolve
+
+  - IP-CIDR,74.125.0.0/16,Google服务,no-resolve
+
+  - IP-CIDR,173.194.0.0/16,Google服务,no-resolve
+
+
+
+# =====================
+# AI
+# 香港 → 美国住宅
+# =====================
+
+
+  - DOMAIN-SUFFIX,openai.com,AI服务
+
+  - DOMAIN-SUFFIX,chatgpt.com,AI服务
+
+  - DOMAIN-SUFFIX,claude.ai,AI服务
+
+
+
+# =====================
+# YouTube
+# =====================
+
+
+  - DOMAIN-SUFFIX,youtube.com,香港中转
+
+  - DOMAIN-SUFFIX,youtu.be,香港中转
+
+  - DOMAIN-SUFFIX,ytimg.com,香港中转
+
+  - DOMAIN-SUFFIX,googlevideo.com,香港中转
+
+
+
+# =====================
+# TikTok
+# 香港 → 美国住宅
+# =====================
+
+
+  - DOMAIN-SUFFIX,tiktok.com,社媒住宅
+
+  - DOMAIN-SUFFIX,tiktokcdn.com,社媒住宅
+
+  - DOMAIN-SUFFIX,tiktokv.com,社媒住宅
+
+  - DOMAIN-SUFFIX,byteoversea.com,社媒住宅
+
+  - DOMAIN-SUFFIX,ibyteimg.com,社媒住宅
+
+  - DOMAIN-SUFFIX,muscdn.com,社媒住宅
+
+
+
+# =====================
+# Facebook / Instagram
+# =====================
+
+
+  - DOMAIN-SUFFIX,facebook.com,社媒住宅
+
+  - DOMAIN-SUFFIX,fbcdn.net,社媒住宅
+
+  - DOMAIN-SUFFIX,instagram.com,社媒住宅
+
+  - DOMAIN-SUFFIX,messenger.com,社媒住宅
+
+  - DOMAIN-SUFFIX,whatsapp.com,社媒住宅
+
+
+
+# =====================
+# 其他海外
+# =====================
+
 
   - GEOSITE,cn,DIRECT
 
   - GEOIP,CN,DIRECT
 
 
+  - DOMAIN-SUFFIX,telegram.org,香港中转
 
-# =====================
-# Google Play 商店 / APP更新
-# 自动中转全局代理
-# =====================
+  - DOMAIN-SUFFIX,github.com,香港中转
 
-# Google Play 商店程序
-  - PROCESS-NAME,com.android.vending,自动中转
-
-# Google Play 服务
-  - PROCESS-NAME,com.google.android.gms,自动中转
-
-# Google 服务框架
-  - PROCESS-NAME,com.google.android.gsf,自动中转
-
-# Android 下载服务
-  - PROCESS-NAME,com.android.providers.downloads,自动中转
-
-
-# Play 商店 API
-  - DOMAIN-SUFFIX,play.google.com,自动中转
-  - DOMAIN-SUFFIX,play-fe.googleapis.com,自动中转
-  - DOMAIN-SUFFIX,play.googleapis.com,自动中转
-  - DOMAIN-SUFFIX,android.clients.google.com,自动中转
-  - DOMAIN-SUFFIX,clients2.google.com,自动中转
-  - DOMAIN-SUFFIX,clients3.google.com,自动中转
-
-
-# APP 更新 CDN
-  - DOMAIN-SUFFIX,dl.google.com,自动中转
-  - DOMAIN-SUFFIX,dl-ssl.google.com,自动中转
-  - DOMAIN-SUFFIX,gvt1.com,自动中转
-  - DOMAIN-SUFFIX,gvt2.com,自动中转
-  - DOMAIN-SUFFIX,gvt3.com,自动中转
-  - DOMAIN-SUFFIX,googlezip.net,自动中转
-  - DOMAIN-SUFFIX,ota.googlezip.net,自动中转
-
-
-# Google CDN IP
-  - IP-CIDR,142.250.0.0/15,自动中转,no-resolve
-  - IP-CIDR,172.217.0.0/16,自动中转,no-resolve
-  - IP-CIDR,216.58.192.0/19,自动中转,no-resolve
-  - IP-CIDR,74.125.0.0/16,自动中转,no-resolve
-  - IP-CIDR,173.194.0.0/16,自动中转,no-resolve
-
-# =====================
-# YouTube
-# =====================
-
-  - DOMAIN-SUFFIX,youtube.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,youtu.be,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,ytimg.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,googlevideo.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,netflix.com,香港中转
 
 
 
 # =====================
-# AI
-# =====================
-
-  - DOMAIN-SUFFIX,openai.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,chatgpt.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,claude.ai,住宅-洛杉矶
-
-
-
-# =====================
-# 社媒住宅IP
-# =====================
-
-  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,tiktokv.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,byteoversea.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,ibyteimg.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,muscdn.com,住宅-洛杉矶
-
-
-  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,fbcdn.net,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,messenger.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉矶
-
-
-
-# =====================
-# 其他国外
-# =====================
-
-  - DOMAIN-SUFFIX,telegram.org,链式代理
-
-  - DOMAIN-SUFFIX,github.com,链式代理
-
-  - DOMAIN-SUFFIX,netflix.com,链式代理
-
-
-
 # 默认
+# =====================
 
-  - MATCH,链式代理
+  - MATCH,海外代理
