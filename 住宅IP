@@ -1,5 +1,5 @@
 # =====================
-# Clash Meta 基础配置
+# Clash Meta 真链式配置
 # =====================
 
 mixed-port: 7890
@@ -21,7 +21,9 @@ external-controller: 127.0.0.1:9090
 
 
 profile:
+
   store-selected: true
+
   store-fake-ip: true
 
 
@@ -31,7 +33,9 @@ profile:
 # =====================
 
 dns:
+
   enable: true
+
   ipv6: false
 
   enhanced-mode: fake-ip
@@ -40,55 +44,90 @@ dns:
 
 
   nameserver:
+
     - 223.5.5.5
+
     - 119.29.29.29
 
 
   fallback:
+
     - 8.8.8.8
+
     - 1.1.1.1
 
 
   fallback-filter:
+
     geoip: true
+
     geoip-code: CN
 
 
 
 # =====================
-# 广告规则集
+# GEO 数据
+# =====================
+
+geodata-mode: true
+
+
+geox-url:
+
+  geoip: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geoip.dat
+
+  geosite: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/geosite.dat
+
+  mmdb: https://github.com/MetaCubeX/meta-rules-dat/releases/download/latest/country.mmdb
+
+
+
+# =====================
+# 广告规则
 # =====================
 
 rule-providers:
 
+
   reject:
+
     type: http
+
     behavior: domain
+
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
+
     path: ./ruleset/reject.yaml
+
     interval: 86400
+
 
 
   anti-ad:
+
     type: http
+
     behavior: domain
+
     url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
+
     path: ./ruleset/anti-ad.yaml
+
     interval: 86400
 
 
 
 # =====================
-# 订阅自动更新
+# 节点订阅自动更新
 # =====================
 
 proxy-providers:
+
 
   节点订阅:
 
     type: http
 
-    # 修改成你的订阅地址
     url: "https://kjuobq.yau96.com/config?token=d0cff327fe324fc540b4acaa6592c477"
 
     path: ./proxy_providers/node.yaml
@@ -103,8 +142,6 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
 
       interval: 300
-
-
 # =====================
 # 节点
 # =====================
@@ -117,28 +154,49 @@ proxies:
 # =====================
 
   - name: "香港01-HY2"
+
     type: hysteria2
+
     server: hk01.hy2.sys-metric-report.com
+
     port: 29507
+
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+
     sni: happ.cfastcdn.com
+
     skip-cert-verify: false
+
     up: "1000 Mbps"
+
     down: "1000 Mbps"
+
     obfs: salamander
+
     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
 
+
   - name: "香港02-HY2"
+
     type: hysteria2
+
     server: hk02.hy2.sys-metric-report.com
+
     port: 26992
+
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+
     sni: happ.cfastcdn.com
+
     skip-cert-verify: false
+
     up: "1000 Mbps"
+
     down: "1000 Mbps"
+
     obfs: salamander
+
     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
 
@@ -148,38 +206,65 @@ proxies:
 # =====================
 
   - name: "香港A"
+
     type: ss
+
     server: pro.relay.hka.sys-metric-report.com
+
     port: 27003
+
     cipher: chacha20-ietf-poly1305
+
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+
     udp: true
+
 
 
   - name: "香港B"
+
     type: ss
+
     server: pro.relay.hkb.sys-metric-report.com
+
     port: 27010
+
     cipher: chacha20-ietf-poly1305
+
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+
     udp: true
+
 
 
   - name: "香港C"
+
     type: ss
+
     server: pro.relay.hkc.sys-metric-report.com
+
     port: 27011
+
     cipher: chacha20-ietf-poly1305
+
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+
     udp: true
 
 
+
   - name: "香港D"
+
     type: ss
+
     server: pro.relay.hkd.sys-metric-report.com
+
     port: 27012
+
     cipher: chacha20-ietf-poly1305
+
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+
     udp: true
 
 
@@ -189,49 +274,79 @@ proxies:
 # =====================
 
   - name: "美国A"
+
     type: ss
+
     server: pro.relay.usa.sys-metric-report.com
+
     port: 27008
+
     cipher: chacha20-ietf-poly1305
+
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+
     udp: true
+
 
 
   - name: "美国B"
+
     type: ss
+
     server: pro.relay.usb.sys-metric-report.com
+
     port: 27007
+
     cipher: chacha20-ietf-poly1305
+
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+
     udp: true
+
 
 
   - name: "美国C"
+
     type: ss
+
     server: pro.relay.usc.sys-metric-report.com
+
     port: 14690
+
     cipher: chacha20-ietf-poly1305
+
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+
     udp: true
+
 
 
   - name: "美国D"
+
     type: ss
+
     server: pro.relay.usd.sys-metric-report.com
+
     port: 27014
+
     cipher: chacha20-ietf-poly1305
+
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+
     udp: true
 
 
 
 # =====================
-# VLESS 中转
+# VLESS 中转入口
 # =====================
 
   - name: "A-WS-中转"
+
     type: vless
+
     server: yg1.ygkkk.dpdns.org
+
     port: 8443
 
     uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
@@ -258,10 +373,10 @@ proxies:
 
 
 # =====================
-# 美国住宅IP
+# 美国住宅出口
 # =====================
 
-  - name: "住宅-洛杉矶"
+  - name: "美国住宅IP"
 
     type: socks5
 
@@ -275,13 +390,54 @@ proxies:
 
     udp: true
 
-    dialer-proxy: "自动中转"
+
+
 # =====================
 # 代理组
 # =====================
 
 proxy-groups:
 
+
+# 第一跳
+
+  - name: "入口中转"
+
+    type: select
+
+    proxies:
+
+      - "A-WS-中转"
+
+      - "香港01-HY2"
+
+      - "香港02-HY2"
+
+      - "香港A"
+
+      - "香港B"
+
+      - "香港C"
+
+      - "香港D"
+
+
+
+# 真链式
+
+  - name: "住宅链式出口"
+
+    type: relay
+
+    proxies:
+
+      - "入口中转"
+
+      - "美国住宅IP"
+
+
+
+# 自动选择
 
   - name: "自动中转"
 
@@ -290,6 +446,7 @@ proxy-groups:
     proxies:
 
       - "香港01-HY2"
+
       - "香港02-HY2"
 
       - "香港A"
@@ -312,28 +469,28 @@ proxy-groups:
 
 
 
+# 总出口
+
   - name: "链式代理"
 
     type: select
 
     proxies:
 
-      - "住宅-洛杉矶"
+      - "住宅链式出口"
 
       - "自动中转"
 
       - DIRECT
-
-
-
 # =====================
 # 分流规则
 # =====================
 
 rules:
 
+
 # =====================
-# 1. 广告拦截
+# 广告拦截
 # =====================
 
   - RULE-SET,reject,REJECT
@@ -341,131 +498,132 @@ rules:
   - RULE-SET,anti-ad,REJECT
 
 
+
 # =====================
-# 2.Google Play APP更新
-# 固定美國住宅出口
+# Google Play APP更新
 # =====================
 
-  - DOMAIN-SUFFIX,app-measurement.com,自动中转
+  - PROCESS-NAME,com.android.vending,住宅链式出口
 
-  - DOMAIN-SUFFIX,ggpht.com,自动中转
+  - PROCESS-NAME,com.google.android.gms,住宅链式出口
 
-  - DOMAIN-SUFFIX,android.com,自动中转
+  - PROCESS-NAME,com.google.android.gsf,住宅链式出口
 
-  - PROCESS-NAME,com.android.vending,自动中转
-
-  - PROCESS-NAME,com.google.android.gms,自动中转
-
-  - PROCESS-NAME,com.google.android.gsf,自动中转
-
-  - PROCESS-NAME,com.android.providers.downloads,自动中转
+  - PROCESS-NAME,com.android.providers.downloads,住宅链式出口
 
 
-# Google Play API
 
-  - DOMAIN-SUFFIX,googleapis.com,自动中转
+# Google API
 
-  - DOMAIN-SUFFIX,googleusercontent.com,自动中转
+  - DOMAIN-SUFFIX,googleapis.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,gstatic.com,自动中转
+  - DOMAIN-SUFFIX,googleusercontent.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,googlezip.net,自动中转
+  - DOMAIN-SUFFIX,gstatic.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,play.google.com,自动中转
+  - DOMAIN-SUFFIX,googlezip.net,住宅链式出口
 
-  - DOMAIN-SUFFIX,play-fe.googleapis.com,自动中转
+  - DOMAIN-SUFFIX,play.google.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,android.clients.google.com,自动中转
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,clients2.google.com,自动中转
+  - DOMAIN-SUFFIX,android.clients.google.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,clients3.google.com,自动中转
+  - DOMAIN-SUFFIX,clients2.google.com,住宅链式出口
+
+  - DOMAIN-SUFFIX,clients3.google.com,住宅链式出口
+
 
 
 # Google 下载 CDN
 
-  - DOMAIN-SUFFIX,dl.google.com,自动中转
+  - DOMAIN-SUFFIX,dl.google.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,dl-ssl.google.com,自动中转
+  - DOMAIN-SUFFIX,dl-ssl.google.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,gvt1.com,自动中转
+  - DOMAIN-SUFFIX,gvt1.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,gvt2.com,自动中转
+  - DOMAIN-SUFFIX,gvt2.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,gvt3.com,自动中转
+  - DOMAIN-SUFFIX,gvt3.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,googlezip.net,自动中转
 
 
 # Google IP
 
-  - IP-CIDR,142.250.0.0/15,自动中转,no-resolve
+  - IP-CIDR,142.250.0.0/15,住宅链式出口,no-resolve
 
-  - IP-CIDR,172.217.0.0/16,自动中转,no-resolve
+  - IP-CIDR,172.217.0.0/16,住宅链式出口,no-resolve
 
-  - IP-CIDR,173.194.0.0/16,自动中转,no-resolve
+  - IP-CIDR,173.194.0.0/16,住宅链式出口,no-resolve
 
-  - IP-CIDR,74.125.0.0/16,自动中转,no-resolve
+  - IP-CIDR,74.125.0.0/16,住宅链式出口,no-resolve
 
-
-# =====================
-# 3. YouTube
-# =====================
-
-  - DOMAIN-SUFFIX,youtube.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,youtu.be,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,ytimg.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,googlevideo.com,住宅-洛杉矶
 
 
 # =====================
-# 4. AI 服务
+# YouTube
 # =====================
 
-  - DOMAIN-SUFFIX,openai.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,youtube.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,chatgpt.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,youtu.be,住宅链式出口
 
-  - DOMAIN-SUFFIX,claude.ai,住宅-洛杉矶
+  - DOMAIN-SUFFIX,ytimg.com,住宅链式出口
 
+  - DOMAIN-SUFFIX,googlevideo.com,住宅链式出口
 
-# =====================
-# 5. 社交媒体
-# =====================
-
-  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,tiktokv.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,byteoversea.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,fbcdn.net,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉矶
-
-  - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉矶
 
 
 # =====================
-# 6. 其他国外服务
+# AI 服务
 # =====================
 
-  - DOMAIN-SUFFIX,telegram.org,住宅-洛杉矶
+  - DOMAIN-SUFFIX,openai.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,github.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,chatgpt.com,住宅链式出口
 
-  - DOMAIN-SUFFIX,netflix.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,claude.ai,住宅链式出口
+
 
 
 # =====================
-# 7. 局域网直连
+# 社交媒体
+# =====================
+
+  - DOMAIN-SUFFIX,tiktok.com,住宅链式出口
+
+  - DOMAIN-SUFFIX,tiktokcdn.com,住宅链式出口
+
+  - DOMAIN-SUFFIX,tiktokv.com,住宅链式出口
+
+  - DOMAIN-SUFFIX,byteoversea.com,住宅链式出口
+
+
+  - DOMAIN-SUFFIX,facebook.com,住宅链式出口
+
+  - DOMAIN-SUFFIX,fbcdn.net,住宅链式出口
+
+  - DOMAIN-SUFFIX,instagram.com,住宅链式出口
+
+  - DOMAIN-SUFFIX,whatsapp.com,住宅链式出口
+
+
+
+# =====================
+# 其他国外服务
+# =====================
+
+  - DOMAIN-SUFFIX,telegram.org,住宅链式出口
+
+  - DOMAIN-SUFFIX,github.com,住宅链式出口
+
+  - DOMAIN-SUFFIX,netflix.com,住宅链式出口
+
+
+
+# =====================
+# 局域网直连
 # =====================
 
   - IP-CIDR,127.0.0.0/8,DIRECT
@@ -477,8 +635,9 @@ rules:
   - IP-CIDR,172.16.0.0/12,DIRECT
 
 
+
 # =====================
-# 8. 国内直连
+# 国内直连
 # =====================
 
   - GEOSITE,cn,DIRECT
@@ -486,11 +645,11 @@ rules:
   - GEOIP,CN,DIRECT
 
 
+
 # =====================
-# 9. 默认
+# 默认
 # =====================
 
   - MATCH,链式代理
-
 
 
