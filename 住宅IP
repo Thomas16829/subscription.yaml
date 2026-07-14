@@ -360,18 +360,36 @@ rules:
 # =====================
 
 # Google Play 商店
+- PROCESS-NAME,com.android.vending,自动中转
+
+# Google Play 服务
+- PROCESS-NAME,com.google.android.gms,自动中转
+
+# Google 服务框架
+- PROCESS-NAME,com.google.android.gsf,自动中转
+
+# Android 下载服务
+- PROCESS-NAME,com.android.providers.downloads,自动中转
+
+# Google Play 商店
   - DOMAIN-SUFFIX,play.google.com,自动中转
   - DOMAIN-SUFFIX,play-fe.googleapis.com,自动中转
   - DOMAIN-SUFFIX,play.googleapis.com,自动中转
   - DOMAIN-SUFFIX,android.clients.google.com,自动中转
+  - DOMAIN-SUFFIX,clients2.google.com,自动中转
+  - DOMAIN-SUFFIX,clients3.google.com,自动中转
+
+
 
 # APP 下载更新 CDN
   - DOMAIN-SUFFIX,dl.google.com,自动中转
   - DOMAIN-SUFFIX,dl-ssl.google.com,自动中转
   - DOMAIN-SUFFIX,gvt1.com,自动中转
   - DOMAIN-SUFFIX,gvt2.com,自动中转
+  - DOMAIN-SUFFIX,gvt3.com,自动中转
   - DOMAIN-SUFFIX,googlezip.net,自动中转
   - DOMAIN-SUFFIX,ota.googlezip.net,自动中转
+  - DOMAIN-SUFFIX,googleusercontent.com,自动中转
 
 # Google API
   - DOMAIN-SUFFIX,googleapis.com,自动中转
@@ -396,6 +414,22 @@ rules:
   - IP-CIDR,216.58.192.0/19,自动中转,no-resolve
   - IP-CIDR,74.125.0.0/16,自动中转,no-resolve
   - IP-CIDR,173.194.0.0/16,自动中转,no-resolve
+
+
+# =====================
+# Google / GMS
+# =====================
+
+- DOMAIN-KEYWORD,google,链式代理
+- DOMAIN-SUFFIX,google.com,链式代理
+- DOMAIN-SUFFIX,googleapis.com,链式代理
+- DOMAIN-SUFFIX,gstatic.com,链式代理
+- DOMAIN-SUFFIX,ggpht.com,链式代理
+- DOMAIN-SUFFIX,android.com,链式代理
+- DOMAIN-SUFFIX,accounts.google.com,链式代理
+- DOMAIN-SUFFIX,oauth2.googleapis.com,链式代理
+- DOMAIN-SUFFIX,fcm.googleapis.com,链式代理
+- DOMAIN-SUFFIX,firebaseio.com,链式代理
 
 
 # =====================
