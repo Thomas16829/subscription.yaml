@@ -442,6 +442,16 @@ proxy-groups:
 
       - DIRECT
 
+  
+  - name: "社媒住宅"
+
+    type: select
+
+    proxies:
+
+      - "住宅-洛杉矶"
+      - "自动中转"
+
 
 # =====================
 # 分流规则
@@ -596,31 +606,67 @@ rules:
 # 社媒住宅IP
 # =====================
 
-  - DOMAIN-SUFFIX,tiktok.com,住宅-紐約
+  # TikTok
 
-  - DOMAIN-SUFFIX,tiktokcdn.com,住宅-紐約
+  - DOMAIN-SUFFIX,tiktok.com,社媒住宅
 
-  - DOMAIN-SUFFIX,tiktokv.com,住宅-紐約
+  - DOMAIN-SUFFIX,tiktokcdn.com,社媒住宅
 
-  - DOMAIN-SUFFIX,byteoversea.com,住宅-紐約
+  - DOMAIN-SUFFIX,tiktokv.com,社媒住宅
 
-  - DOMAIN-SUFFIX,ibyteimg.com,住宅-紐約
+  - DOMAIN-SUFFIX,byteoversea.com,社媒住宅
 
-  - DOMAIN-SUFFIX,muscdn.com,住宅-紐約
+  - DOMAIN-SUFFIX,ibyteimg.com,社媒住宅
 
+  - DOMAIN-SUFFIX,muscdn.com,社媒住宅
 
-  - DOMAIN-SUFFIX,facebook.com,住宅-紐約
+  - DOMAIN-SUFFIX,bytecdn.cn,社媒住宅
 
-  - DOMAIN-SUFFIX,fbcdn.net,住宅-紐約
+ # Meta
 
-  - DOMAIN-SUFFIX,messenger.com,住宅-紐約
+  - DOMAIN-SUFFIX,facebook.com,社媒住宅
 
-  - DOMAIN-SUFFIX,whatsapp.com,住宅-紐約
+  - DOMAIN-SUFFIX,fbcdn.net,社媒住宅
 
-  - DOMAIN-SUFFIX,instagram.com,住宅-紐約
+  - DOMAIN-SUFFIX,fbsbx.com,社媒住宅
 
+  - DOMAIN-SUFFIX,instagram.com,社媒住宅
 
+  - DOMAIN-SUFFIX,cdninstagram.com,社媒住宅
 
+  - DOMAIN-SUFFIX,messenger.com,社媒住宅
+
+  - DOMAIN-SUFFIX,whatsapp.com,社媒住宅
+
+  - DOMAIN-SUFFIX,whatsapp.net,社媒住宅
+
+  - DOMAIN-SUFFIX,googleadservices.com,社媒住宅
+
+  - DOMAIN-SUFFIX,doubleclick.net,社媒住宅
+
+  - DOMAIN-SUFFIX,googlesyndication.com,社媒住宅
+
+  - DOMAIN-SUFFIX,google-analytics.com,社媒住宅
+
+  - DOMAIN-SUFFIX,amazon.com,社媒住宅
+
+  - DOMAIN-SUFFIX,amazonaws.com,自动中转
+
+  - DOMAIN-SUFFIX,shopify.com,社媒住宅
+
+  - DOMAIN-SUFFIX,myshopify.com,社媒住宅
+
+  - DOMAIN-SUFFIX,paypal.com,社媒住宅
+
+  - DOMAIN-SUFFIX,paypalobjects.com,社媒住宅
+
+  - DOMAIN-SUFFIX,stripe.com,社媒住宅
+
+  - DOMAIN-SUFFIX,mailchimp.com,自动中转
+
+  - DOMAIN-SUFFIX,sendgrid.net,自动中转
+
+  - DOMAIN-SUFFIX,hubspot.com,社媒住宅
 
 
 # =====================
@@ -632,9 +678,6 @@ rules:
   - DOMAIN-SUFFIX,github.com,链式代理
 
   - DOMAIN-SUFFIX,netflix.com,链式代理
-
-
-
 
 
 # 默认
