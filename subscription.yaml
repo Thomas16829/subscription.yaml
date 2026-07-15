@@ -462,6 +462,8 @@ rules:
 # 广告拦截
 
   - RULE-SET,reject,REJECT
+
+  - RULE-SET,anti-ad,REJECT
   
 
 # 局域网
@@ -586,8 +588,6 @@ rules:
 
 
 
-
-
 # =====================
 # AI
 # =====================
@@ -597,9 +597,6 @@ rules:
   - DOMAIN-SUFFIX,chatgpt.com,住宅-紐約
 
   - DOMAIN-SUFFIX,claude.ai,住宅-紐約
-
-
-
 
 
 # =====================
