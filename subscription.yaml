@@ -378,7 +378,7 @@ proxies:
 
     password: EGmfNcqGK5
 
-    udp: false
+    udp: true
 
     dialer-proxy: "自动中转"
 
