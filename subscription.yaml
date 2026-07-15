@@ -443,22 +443,16 @@ proxy-groups:
       - DIRECT
 
 
-
-
-
 # =====================
 # 分流规则
 # =====================
 
 rules:
 
-
-
 # 广告拦截
 
   - RULE-SET,reject,REJECT
-
-
+  
 
 # 局域网
 
@@ -471,7 +465,6 @@ rules:
   - IP-CIDR,172.16.0.0/12,DIRECT
 
 
-
 # 国内直连
 
   - GEOSITE,cn,DIRECT
@@ -479,53 +472,94 @@ rules:
   - GEOIP,CN,DIRECT
 
 
-
-
-
 # =====================
-# Google Play 商店 / APP更新
-# 自动中转全局代理
+# Google Play / Android 更新优化
+# 自动中转
 # =====================
 
-# Google Play 商店程序
+
+# Play 商店 APP
+
   - PROCESS-NAME,com.android.vending,自动中转
 
+
 # Google Play 服务
+
   - PROCESS-NAME,com.google.android.gms,自动中转
 
+
 # Google 服务框架
+
   - PROCESS-NAME,com.google.android.gsf,自动中转
 
-# Android 下载服务
+
+# Android 下载管理
+
   - PROCESS-NAME,com.android.providers.downloads,自动中转
 
 
-# Play 商店 API
+
+# Google 登录认证
+
+  - DOMAIN-SUFFIX,accounts.google.com,自动中转
+
+  - DOMAIN-SUFFIX,oauth2.googleapis.com,自动中转
+
+  - DOMAIN-SUFFIX,connectivitycheck.gstatic.com,自动中转
+
+
+
+# Play API
+
   - DOMAIN-SUFFIX,play.google.com,自动中转
-  - DOMAIN-SUFFIX,play-fe.googleapis.com,自动中转
+
   - DOMAIN-SUFFIX,play.googleapis.com,自动中转
+
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,自动中转
+
   - DOMAIN-SUFFIX,android.clients.google.com,自动中转
+
   - DOMAIN-SUFFIX,clients2.google.com,自动中转
+
   - DOMAIN-SUFFIX,clients3.google.com,自动中转
 
 
-# APP 更新 CDN
+# Google API
+
+  - DOMAIN-SUFFIX,googleapis.com,自动中转
+
+
+# APK 更新服务器
+
   - DOMAIN-SUFFIX,dl.google.com,自动中转
+
   - DOMAIN-SUFFIX,dl-ssl.google.com,自动中转
+
+
+# Google 下载 CDN
+
   - DOMAIN-SUFFIX,gvt1.com,自动中转
+
   - DOMAIN-SUFFIX,gvt2.com,自动中转
+
   - DOMAIN-SUFFIX,gvt3.com,自动中转
+
   - DOMAIN-SUFFIX,googlezip.net,自动中转
+
   - DOMAIN-SUFFIX,ota.googlezip.net,自动中转
 
 
 # Google CDN IP
-  - IP-CIDR,142.250.0.0/15,自动中转,no-resolve
-  - IP-CIDR,172.217.0.0/16,自动中转,no-resolve
-  - IP-CIDR,216.58.192.0/19,自动中转,no-resolve
-  - IP-CIDR,74.125.0.0/16,自动中转,no-resolve
-  - IP-CIDR,173.194.0.0/16,自动中转,no-resolve
 
+  - IP-CIDR,142.250.0.0/15,自动中转,no-resolve
+
+  - IP-CIDR,172.217.0.0/16,自动中转,no-resolve
+
+  - IP-CIDR,216.58.192.0/19,自动中转,no-resolve
+
+  - IP-CIDR,74.125.0.0/16,自动中转,no-resolve
+
+  - IP-CIDR,173.194.0.0/16,自动中转,no-resolve# =====================
 
 
 # =====================
