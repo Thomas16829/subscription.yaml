@@ -31,27 +31,31 @@ profile:
 # =====================
 
 dns:
+
   enable: true
+
   ipv6: false
 
   enhanced-mode: fake-ip
 
-  fake-ip-range: 198.18.0.1/16
-
 
   nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
+
+    - https://1.1.1.1/dns-query
+
+    - https://dns.google/dns-query
 
 
   fallback:
-    - 8.8.8.8
-    - 1.1.1.1
+
+    - https://1.0.0.1/dns-query
+
+    - https://8.8.8.8/dns-query
 
 
   fallback-filter:
-    geoip: true
-    geoip-code: CN
+
+    geoip: false
 
 
 
@@ -273,7 +277,7 @@ proxies:
 
     password: 5iD0lGzcgcKh
 
-    udp: true
+    udp: false
 
     dialer-proxy: "自动中转"
 # =====================
@@ -365,43 +369,43 @@ rules:
 # =====================
 
 # Google Play 商店程序
-  - PROCESS-NAME,com.android.vending,自动中转
+  - PROCESS-NAME,com.android.vending,住宅-洛杉矶
 
 # Google Play 服务
-  - PROCESS-NAME,com.google.android.gms,自动中转
+  - PROCESS-NAME,com.google.android.gms,住宅-洛杉矶
 
 # Google 服务框架
-  - PROCESS-NAME,com.google.android.gsf,自动中转
+  - PROCESS-NAME,com.google.android.gsf,住宅-洛杉矶
 
 # Android 下载服务
-  - PROCESS-NAME,com.android.providers.downloads,自动中转
+  - PROCESS-NAME,com.android.providers.downloads,住宅-洛杉矶
 
 
 # Play 商店 API
-  - DOMAIN-SUFFIX,play.google.com,自动中转
-  - DOMAIN-SUFFIX,play-fe.googleapis.com,自动中转
-  - DOMAIN-SUFFIX,play.googleapis.com,自动中转
-  - DOMAIN-SUFFIX,android.clients.google.com,自动中转
-  - DOMAIN-SUFFIX,clients2.google.com,自动中转
-  - DOMAIN-SUFFIX,clients3.google.com,自动中转
+  - DOMAIN-SUFFIX,play.google.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,play.googleapis.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,android.clients.google.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,clients2.google.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,clients3.google.com,住宅-洛杉矶
 
 
 # APP 更新 CDN
-  - DOMAIN-SUFFIX,dl.google.com,自动中转
-  - DOMAIN-SUFFIX,dl-ssl.google.com,自动中转
-  - DOMAIN-SUFFIX,gvt1.com,自动中转
-  - DOMAIN-SUFFIX,gvt2.com,自动中转
-  - DOMAIN-SUFFIX,gvt3.com,自动中转
-  - DOMAIN-SUFFIX,googlezip.net,自动中转
-  - DOMAIN-SUFFIX,ota.googlezip.net,自动中转
+  - DOMAIN-SUFFIX,dl.google.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,dl-ssl.google.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,gvt1.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,gvt2.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,gvt3.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,googlezip.net,住宅-洛杉矶
+  - DOMAIN-SUFFIX,ota.googlezip.net,住宅-洛杉矶
 
 
 # Google CDN IP
-  - IP-CIDR,142.250.0.0/15,自动中转,no-resolve
-  - IP-CIDR,172.217.0.0/16,自动中转,no-resolve
-  - IP-CIDR,216.58.192.0/19,自动中转,no-resolve
-  - IP-CIDR,74.125.0.0/16,自动中转,no-resolve
-  - IP-CIDR,173.194.0.0/16,自动中转,no-resolve
+  - IP-CIDR,142.250.0.0/15,住宅-洛杉矶,no-resolve
+  - IP-CIDR,172.217.0.0/16,住宅-洛杉矶,no-resolve
+  - IP-CIDR,216.58.192.0/19,住宅-洛杉矶,no-resolve
+  - IP-CIDR,74.125.0.0/16,住宅-洛杉矶,no-resolve
+  - IP-CIDR,173.194.0.0/16,住宅-洛杉矶,no-resolve
 
 # =====================
 # YouTube
@@ -445,6 +449,11 @@ rules:
 
   - DOMAIN-SUFFIX,muscdn.com,住宅-洛杉矶
 
+  - DOMAIN-SUFFIX,cdninstagram.com,住宅-洛杉矶
+  
+  - DOMAIN-SUFFIX,fbsbx.com,住宅-洛杉矶
+  
+  - DOMAIN-SUFFIX,fb.com,住宅-洛杉矶
 
   - DOMAIN-SUFFIX,facebook.com,住宅-洛杉矶
 
@@ -455,6 +464,24 @@ rules:
   - DOMAIN-SUFFIX,whatsapp.com,住宅-洛杉矶
 
   - DOMAIN-SUFFIX,instagram.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,linkedin.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,licdn.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,x.com,住宅-洛杉矶
+  
+  - DOMAIN-SUFFIX,twitter.com,住宅-洛杉矶
+  
+  - DOMAIN-SUFFIX,twimg.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,outlook.com,住宅-洛杉矶
+  
+  - DOMAIN-SUFFIX,hotmail.com,住宅-洛杉矶
+  
+  - DOMAIN-SUFFIX,gmail.com,住宅-洛杉矶
+  
+  - DOMAIN-SUFFIX,mail.google.com,住宅-洛杉矶
 
 
 
