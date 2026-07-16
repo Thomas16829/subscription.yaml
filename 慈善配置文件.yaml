@@ -1,0 +1,547 @@
+# =====================
+# Clash Meta 真链式配置
+# =====================
+
+mixed-port: 7890
+
+allow-lan: true
+
+bind-address: "*"
+
+mode: rule
+
+log-level: info
+
+tcp-concurrent: true
+
+unified-delay: true
+
+
+external-controller: 127.0.0.1:9090
+
+
+profile:
+  store-selected: true
+  store-fake-ip: true
+
+
+
+# =====================
+# DNS
+# =====================
+
+dns:
+  enable: true
+  ipv6: false
+
+  enhanced-mode: fake-ip
+
+  fake-ip-range: 198.18.0.1/16
+
+
+  nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+
+  fallback:
+    - 8.8.8.8
+    - 1.1.1.1
+
+
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+
+
+
+# =====================
+# 广告规则集
+# =====================
+
+rule-providers:
+
+  reject:
+    type: http
+    behavior: domain
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
+    path: ./ruleset/reject.yaml
+    interval: 86400
+
+
+  anti-ad:
+    type: http
+    behavior: domain
+    url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
+    path: ./ruleset/anti-ad.yaml
+    interval: 86400
+
+
+
+# =====================
+# 订阅自动更新
+# =====================
+
+proxy-providers:
+
+  节点订阅:
+
+    type: http
+
+    # 修改成你的订阅地址
+    url: "https://dy-2.xn--30rs3bu7r87f.com/csjc/api/v1/client/subscribe?token=131ca10e00a060cd99d6138d78c81ca1"
+
+    path: ./proxy_providers/node.yaml
+
+    interval: 900
+
+
+    health-check:
+
+      enable: true
+
+      url: https://www.gstatic.com/generate_204
+
+      interval: 300
+
+
+# =====================
+# 节点
+# =====================
+
+proxies:
+
+
+# =====================
+# 香港 HKT
+# =====================
+
+  - name: "香港02 HKT"
+    type: anytls
+    server: hktddns-cs1.aikunapp.com
+    port: 6002
+    password: d2a308b9-0e2b-450d-bfe1-f662ae74fb72
+    udp: true
+    sni: www.apple.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+
+
+  - name: "香港03 HKT"
+    type: anytls
+    server: hktddns-cs2.aikunapp.com
+    port: 6002
+    password: d2a308b9-0e2b-450d-bfe1-f662ae74fb72
+    udp: true
+    sni: www.apple.com
+    skip-cert-verify: true
+    client-fingerprint: chrome
+
+
+# =====================
+# aws  优化线路
+# =====================
+
+  - name: "香港 aws  优化线路"
+    type: anytls
+    server: aws-hkhk.aikunapp.com
+    port: 6002
+    password: d2a308b9-0e2b-450d-bfe1-f662ae74fb72
+    udp: true
+    sni: bootcdn.xuexi.cn
+    skip-cert-verify: true
+    client-fingerprint: chrome
+
+
+  - name: "日本 aws 优化线路"
+    type: anytls
+    server: aws-2.aikunapp.com
+    port: 6002
+    password: d2a308b9-0e2b-450d-bfe1-f662ae74fb72
+    udp: true
+    sni: bootcdn.xuexi.cn
+    skip-cert-verify: true
+    client-fingerprint: chrome
+
+  - name: "新加坡 aws 优化线路"
+    type: anytls
+    server: aws-1.aikunapp.com
+    port: 6002
+    password: d2a308b9-0e2b-450d-bfe1-f662ae74fb72
+    udp: true
+    sni: bootcdn.xuexi.cn
+    skip-cert-verify: true
+    client-fingerprint: chrome
+
+
+# =====================
+# 新加坡高速下载
+# =====================
+
+  - name: "新加坡1|高速下载|移动优化"
+    type: anytls
+    server: sg-fdc.aikunapp.com
+    port: 6002
+    password: d2a308b9-0e2b-450d-bfe1-f662ae74fb72
+    udp: true
+    sni: 127.0.0.1
+    skip-cert-verify: true
+    client-fingerprint: chrome
+
+
+  - name: "新加坡2|高速下载|移动优化"
+    type: anytls
+    server: sg-fdc2.aikunapp.com
+    port: 6002
+    password: d2a308b9-0e2b-450d-bfe1-f662ae74fb72
+    udp: true
+    sni: sfgneljdtryg.fdcservers.net
+    skip-cert-verify: true
+    client-fingerprint: chrome
+
+
+# =====================
+# VLESS 中转
+# =====================
+
+  - name: "A-WS-中转"
+    type: vless
+    server: yg1.ygkkk.dpdns.org
+    port: 8443
+
+    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+
+    network: ws
+
+    tls: true
+
+    udp: true
+
+    servername: thomas20265.ccwu.cc
+
+    client-fingerprint: chrome
+
+
+    ws-opts:
+
+      path: "/?ed=2560"
+
+      headers:
+
+        Host: thomas20265.ccwu.cc
+
+
+
+# =====================
+# 美国住宅IP
+# =====================
+
+  - name: "住宅-洛杉矶"
+
+    type: socks5
+
+    server: 207.145.156.49
+
+    port: 33929
+
+    username: XOnMOuRv2wRu
+
+    password: 5iD0lGzcgcKh
+
+    udp: true
+
+    dialer-proxy: "自动中转"
+# =====================
+# 代理组
+# =====================
+
+proxy-groups:
+
+
+  - name: "自动中转"
+
+    type: url-test
+
+    proxies:
+
+      - "香港02 HKT"
+      - "香港03 HKT"
+
+      - "香港 aws  优化线路"
+      - "新加坡 aws 优化线路"
+      - "日本 aws 优化线路"
+
+      - "新加坡1|高速下载|移动优化"
+      - "新加坡2|高速下载|移动优化"
+      
+      - "A-WS-中转"
+
+    url: https://www.gstatic.com/generate_204
+
+    interval: 300
+
+    tolerance: 50
+
+
+
+  - name: "链式代理"
+
+    type: select
+
+    proxies:
+
+      - "住宅-洛杉矶"
+
+      - "自动中转"
+
+      - DIRECT
+
+  - name: "社媒住宅"
+
+    type: select
+
+    proxies:
+
+      - "住宅-洛杉矶"
+
+ 
+# =====================
+# 分流规则
+# =====================
+
+rules:
+
+# 局域网
+
+  - IP-CIDR,127.0.0.0/8,DIRECT
+
+  - IP-CIDR,192.168.0.0/16,DIRECT
+
+  - IP-CIDR,10.0.0.0/8,DIRECT
+
+  - IP-CIDR,172.16.0.0/12,DIRECT
+
+# 广告拦截
+
+  - RULE-SET,reject,REJECT
+
+  - RULE-SET,anti-ad,REJECT
+
+
+  - DOMAIN-KEYWORD,google,链式代理
+
+
+# =====================
+# Google Play / Android 更新优化
+# 自动中转
+# =====================
+
+
+# Play 商店 APP
+
+  - PROCESS-NAME,com.android.vending,链式代理
+
+
+# Google Play 服务
+
+  - PROCESS-NAME,com.google.android.gms,链式代理
+
+
+# Google 服务框架
+
+  - PROCESS-NAME,com.google.android.gsf,链式代理
+
+
+# Android 下载管理
+
+  - PROCESS-NAME,com.android.providers.downloads,链式代理
+
+
+
+# Google 登录认证
+
+  - DOMAIN-SUFFIX,accounts.google.com,链式代理
+
+  - DOMAIN-SUFFIX,oauth2.googleapis.com,链式代理
+
+  - DOMAIN-SUFFIX,connectivitycheck.gstatic.com,链式代理
+
+
+
+# Play API
+
+  - DOMAIN-SUFFIX,play.google.com,链式代理
+
+  - DOMAIN-SUFFIX,play.googleapis.com,链式代理
+
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,链式代理
+
+  - DOMAIN-SUFFIX,android.clients.google.com,链式代理
+
+  - DOMAIN-SUFFIX,clients2.google.com,链式代理
+
+  - DOMAIN-SUFFIX,clients3.google.com,链式代理
+
+
+# Google API
+
+  - DOMAIN-SUFFIX,googleapis.com,链式代理
+
+
+# APK 更新服务器
+
+  - DOMAIN-SUFFIX,dl.google.com,链式代理
+
+  - DOMAIN-SUFFIX,dl-ssl.google.com,链式代理
+
+
+# Google 下载 CDN
+
+  - DOMAIN-SUFFIX,gvt1.com,链式代理
+
+  - DOMAIN-SUFFIX,gvt2.com,链式代理
+
+  - DOMAIN-SUFFIX,gvt3.com,链式代理
+
+  - DOMAIN-SUFFIX,googlezip.net,链式代理
+
+  - DOMAIN-SUFFIX,ota.googlezip.net,链式代理
+
+  - DOMAIN-SUFFIX,gvt1-cn.com,链式代理
+  
+  - DOMAIN-SUFFIX,gvt2-cn.com,链式代理
+  
+  - DOMAIN-SUFFIX,gvt1.net,链式代理
+
+  - DOMAIN-SUFFIX,gvt2.net,链式代理
+
+  - DOMAIN-SUFFIX,gstatic.com,链式代理
+
+
+# Google CDN IP
+
+  - IP-CIDR,142.250.0.0/15,链式代理,no-resolve
+
+  - IP-CIDR,172.217.0.0/16,链式代理,no-resolve
+
+  - IP-CIDR,216.58.192.0/19,链式代理,no-resolve
+
+  - IP-CIDR,74.125.0.0/16,链式代理,no-resolve
+
+  - IP-CIDR,173.194.0.0/16,链式代理,no-resolve
+# =====================
+
+
+# 国内直连
+
+  - GEOSITE,cn,DIRECT
+
+  - GEOIP,CN,DIRECT
+
+
+# YouTube
+# =====================
+
+  - DOMAIN-SUFFIX,youtube.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,youtu.be,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,ytimg.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,googlevideo.com,住宅-洛杉矶
+
+
+# =====================
+# AI
+# =====================
+
+  - DOMAIN-SUFFIX,openai.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,chatgpt.com,住宅-洛杉矶
+
+  - DOMAIN-SUFFIX,claude.ai,住宅-洛杉矶
+
+
+
+# =====================
+# 社媒住宅IP
+# =====================
+
+  # TikTok
+
+  - DOMAIN-SUFFIX,tiktok.com,社媒住宅
+
+  - DOMAIN-SUFFIX,tiktokcdn.com,社媒住宅
+
+  - DOMAIN-SUFFIX,tiktokv.com,社媒住宅
+
+  - DOMAIN-SUFFIX,byteoversea.com,社媒住宅
+
+  - DOMAIN-SUFFIX,ibyteimg.com,社媒住宅
+
+  - DOMAIN-SUFFIX,muscdn.com,社媒住宅
+
+  - DOMAIN-SUFFIX,bytecdn.cn,社媒住宅
+
+ # Meta
+
+  - DOMAIN-SUFFIX,facebook.com,社媒住宅
+
+  - DOMAIN-SUFFIX,fbcdn.net,社媒住宅
+
+  - DOMAIN-SUFFIX,fbsbx.com,社媒住宅
+
+  - DOMAIN-SUFFIX,instagram.com,社媒住宅
+
+  - DOMAIN-SUFFIX,cdninstagram.com,社媒住宅
+
+  - DOMAIN-SUFFIX,messenger.com,社媒住宅
+
+  - DOMAIN-SUFFIX,whatsapp.com,社媒住宅
+
+  - DOMAIN-SUFFIX,whatsapp.net,社媒住宅
+
+  - DOMAIN-SUFFIX,googleadservices.com,社媒住宅
+
+  - DOMAIN-SUFFIX,doubleclick.net,社媒住宅
+
+  - DOMAIN-SUFFIX,googlesyndication.com,社媒住宅
+
+  - DOMAIN-SUFFIX,google-analytics.com,社媒住宅
+
+  - DOMAIN-SUFFIX,amazon.com,社媒住宅
+
+  - DOMAIN-SUFFIX,amazonaws.com,自动中转
+
+  - DOMAIN-SUFFIX,shopify.com,社媒住宅
+
+  - DOMAIN-SUFFIX,myshopify.com,社媒住宅
+
+  - DOMAIN-SUFFIX,paypal.com,社媒住宅
+
+  - DOMAIN-SUFFIX,paypalobjects.com,社媒住宅
+
+  - DOMAIN-SUFFIX,stripe.com,社媒住宅
+
+  - DOMAIN-SUFFIX,mailchimp.com,自动中转
+
+  - DOMAIN-SUFFIX,sendgrid.net,自动中转
+
+  - DOMAIN-SUFFIX,hubspot.com,社媒住宅
+
+  
+# =====================
+# 其他国外
+# =====================
+
+  - DOMAIN-SUFFIX,telegram.org,社媒住宅
+
+  - DOMAIN-SUFFIX,github.com,社媒住宅
+
+  - DOMAIN-SUFFIX,netflix.com,社媒住宅
+
+
+
+# 默认
+
+  - MATCH,链式代理
