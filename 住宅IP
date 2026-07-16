@@ -335,7 +335,8 @@ proxy-groups:
   - name: "Google专用"
     type: select
     proxies:
-      - 香港02-HY2
+      - "住宅-洛杉矶"
+      - "自动中转"
 
 
 # =====================
@@ -468,7 +469,8 @@ rules:
 
   - IP-CIDR,74.125.0.0/16,Google专用,no-resolve
 
-  - IP-CIDR,173.194.0.0/16,Google专用,no-resolve# =====================
+  - IP-CIDR,173.194.0.0/16,Google专用,no-resolve
+# =====================
 
 
 # YouTube
