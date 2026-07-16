@@ -450,11 +450,6 @@ proxy-groups:
     proxies:
 
       - "住宅-紐約"
-
-  - name: "Google专用"
-    type: select
-    proxies:
-      - "链式代理"
       
 
 
@@ -492,96 +487,96 @@ rules:
 
 # Play 商店 APP
 
-  - PROCESS-NAME,com.android.vending,Google专用
+  - PROCESS-NAME,com.android.vending,链式代理
 
 
 # Google Play 服务
 
-  - PROCESS-NAME,com.google.android.gms,Google专用
+  - PROCESS-NAME,com.google.android.gms,链式代理
 
 
 # Google 服务框架
 
-  - PROCESS-NAME,com.google.android.gsf,Google专用
+  - PROCESS-NAME,com.google.android.gsf,链式代理
 
 
 # Android 下载管理
 
-  - PROCESS-NAME,com.android.providers.downloads,Google专用
+  - PROCESS-NAME,com.android.providers.downloads,链式代理
 
 
 
 # Google 登录认证
 
-  - DOMAIN-SUFFIX,accounts.google.com,Google专用
+  - DOMAIN-SUFFIX,accounts.google.com,链式代理
 
-  - DOMAIN-SUFFIX,oauth2.googleapis.com,Google专用
+  - DOMAIN-SUFFIX,oauth2.googleapis.com,链式代理
 
-  - DOMAIN-SUFFIX,connectivitycheck.gstatic.com,Google专用
+  - DOMAIN-SUFFIX,connectivitycheck.gstatic.com,链式代理
 
 
 
 # Play API
 
-  - DOMAIN-SUFFIX,play.google.com,Google专用
+  - DOMAIN-SUFFIX,play.google.com,链式代理
 
-  - DOMAIN-SUFFIX,play.googleapis.com,Google专用
+  - DOMAIN-SUFFIX,play.googleapis.com,链式代理
 
-  - DOMAIN-SUFFIX,play-fe.googleapis.com,Google专用
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,链式代理
 
-  - DOMAIN-SUFFIX,android.clients.google.com,Google专用
+  - DOMAIN-SUFFIX,android.clients.google.com,链式代理
 
-  - DOMAIN-SUFFIX,clients2.google.com,Google专用
+  - DOMAIN-SUFFIX,clients2.google.com,链式代理
 
-  - DOMAIN-SUFFIX,clients3.google.com,Google专用
+  - DOMAIN-SUFFIX,clients3.google.com,链式代理
 
 
 # Google API
 
-  - DOMAIN-SUFFIX,googleapis.com,Google专用
+  - DOMAIN-SUFFIX,googleapis.com,链式代理
 
 
 # APK 更新服务器
 
-  - DOMAIN-SUFFIX,dl.google.com,Google专用
+  - DOMAIN-SUFFIX,dl.google.com,链式代理
 
-  - DOMAIN-SUFFIX,dl-ssl.google.com,Google专用
+  - DOMAIN-SUFFIX,dl-ssl.google.com,链式代理
 
 
 # Google 下载 CDN
 
-  - DOMAIN-SUFFIX,gvt1.com,Google专用
-
-  - DOMAIN-SUFFIX,gvt2.com,Google专用
-
-  - DOMAIN-SUFFIX,gvt3.com,Google专用
-
-  - DOMAIN-SUFFIX,googlezip.net,Google专用
-
-  - DOMAIN-SUFFIX,ota.googlezip.net,Google专用
-
-  - DOMAIN-SUFFIX,gvt1-cn.com,Google专用
+  - DOMAIN-SUFFIX,gvt1.com,链式代理
   
-  - DOMAIN-SUFFIX,gvt2-cn.com,Google专用
+  - DOMAIN-SUFFIX,gvt2.com,链式代理
+
+  - DOMAIN-SUFFIX,gvt3.com,链式代理
+
+  - DOMAIN-SUFFIX,googlezip.net,链式代理
+
+  - DOMAIN-SUFFIX,ota.googlezip.net,链式代理
+
+  - DOMAIN-SUFFIX,gvt1-cn.com,链式代理
   
-  - DOMAIN-SUFFIX,gvt1.net,Google专用
+  - DOMAIN-SUFFIX,gvt2-cn.com,链式代理
+  
+  - DOMAIN-SUFFIX,gvt1.net,链式代理
 
-  - DOMAIN-SUFFIX,gvt2.net,Google专用
+  - DOMAIN-SUFFIX,gvt2.net,链式代理
 
-  - DOMAIN-SUFFIX,gstatic.com,Google专用
+  - DOMAIN-SUFFIX,gstatic.com,链式代理
 
 
 # Google CDN IP
 
-  - IP-CIDR,142.250.0.0/15,Google专用,no-resolve
+  - IP-CIDR,142.250.0.0/15,链式代理,no-resolve
 
-  - IP-CIDR,172.217.0.0/16,Google专用,no-resolve
+  - IP-CIDR,172.217.0.0/16,链式代理,no-resolve
 
-  - IP-CIDR,216.58.192.0/19,Google专用,no-resolve
+  - IP-CIDR,216.58.192.0/19,链式代理,no-resolve
 
-  - IP-CIDR,74.125.0.0/16,Google专用,no-resolve
+  - IP-CIDR,74.125.0.0/16,链式代理,no-resolve
 
-  - IP-CIDR,173.194.0.0/16,Google专用,no-resolve
+  - IP-CIDR,173.194.0.0/16,链式代理,no-resolve
 # =====================
 
 
