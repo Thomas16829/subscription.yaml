@@ -451,7 +451,7 @@ proxy-groups:
 
       - "住宅-紐約"
 
-   - name: "Google专用"
+  - name: "Google专用"
     type: select
     proxies:
       - "链式代理"
