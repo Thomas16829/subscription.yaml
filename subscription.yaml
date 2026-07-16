@@ -451,24 +451,18 @@ proxy-groups:
 
       - "住宅-紐約"
 
-  - name: "Google专用"
+   - name: "Google专用"
     type: select
     proxies:
-      - 香港02-HY2
-    
+      - "链式代理"
+      
+
 
 # =====================
 # 分流规则
 # =====================
 
 rules:
-
-# 广告拦截
-
-  - RULE-SET,reject,REJECT
-
-  - RULE-SET,anti-ad,REJECT
-  
 
 # 局域网
 
@@ -480,12 +474,14 @@ rules:
 
   - IP-CIDR,172.16.0.0/12,DIRECT
 
+# 广告拦截
 
-# 国内直连
+  - RULE-SET,reject,REJECT
 
-  - GEOSITE,cn,DIRECT
+  - RULE-SET,anti-ad,REJECT
 
-  - GEOIP,CN,DIRECT
+
+  - DOMAIN-KEYWORD,google,链式代理
 
 
 # =====================
@@ -585,21 +581,27 @@ rules:
 
   - IP-CIDR,74.125.0.0/16,Google专用,no-resolve
 
-  - IP-CIDR,173.194.0.0/16,Google专用,no-resolve# =====================
-
-
+  - IP-CIDR,173.194.0.0/16,Google专用,no-resolve
 # =====================
+
+
+# 国内直连
+
+  - GEOSITE,cn,DIRECT
+
+  - GEOIP,CN,DIRECT
+
+
 # YouTube
 # =====================
 
-  - DOMAIN-SUFFIX,youtube.com,住宅-紐約
+  - DOMAIN-SUFFIX,youtube.com,链式代理
 
-  - DOMAIN-SUFFIX,youtu.be,住宅-紐約
+  - DOMAIN-SUFFIX,youtu.be,链式代理
 
-  - DOMAIN-SUFFIX,ytimg.com,住宅-紐約
+  - DOMAIN-SUFFIX,ytimg.com,链式代理
 
-  - DOMAIN-SUFFIX,googlevideo.com,住宅-紐約
-
+  - DOMAIN-SUFFIX,googlevideo.com,链式代理
 
 
 # =====================
@@ -611,6 +613,7 @@ rules:
   - DOMAIN-SUFFIX,chatgpt.com,住宅-紐約
 
   - DOMAIN-SUFFIX,claude.ai,住宅-紐約
+
 
 
 # =====================
@@ -679,16 +682,17 @@ rules:
 
   - DOMAIN-SUFFIX,hubspot.com,社媒住宅
 
-
+  
 # =====================
 # 其他国外
 # =====================
 
-  - DOMAIN-SUFFIX,telegram.org,链式代理
+  - DOMAIN-SUFFIX,telegram.org,社媒住宅
 
-  - DOMAIN-SUFFIX,github.com,链式代理
+  - DOMAIN-SUFFIX,github.com,社媒住宅
 
-  - DOMAIN-SUFFIX,netflix.com,链式代理
+  - DOMAIN-SUFFIX,netflix.com,社媒住宅
+
 
 
 # 默认
