@@ -277,24 +277,8 @@ proxies:
 
     udp: true
 
-    dialer-proxy: "香港链路"
+    dialer-proxy: "香港前置"
 # =====================
-# 代理组
-# =====================
-
-proxy-groups:
-
-
- proxy-groups:
-
-
-# =====================
-# 代理组
-# =====================
-
-proxy-groups:
-
-  # =====================
 # 代理组
 # =====================
 
@@ -312,19 +296,6 @@ proxy-groups:
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-
-
-  - name: "香港链路"
-  type: url-test
-  proxies:
-    - 香港01-HY2
-    - 香港02-HY2
-    - 香港A
-    - 香港B
-    - 香港C
-    - 香港D
-  url: https://www.gstatic.com/generate_204
-  interval: 300
 
   - name: "住宅链式代理"
   type: fallback
