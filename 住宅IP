@@ -49,9 +49,6 @@ dns:
     - https://1.1.1.1
     - https://8.8.8.8
 
-  fallback:
-    - https://1.0.0.1
-    - https://8.8.4.4
 
   fallback-filter:
     geoip: true
