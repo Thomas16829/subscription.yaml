@@ -10,7 +10,7 @@ bind-address: "*"
 
 mode: rule
 
-log-level: info
+log-level: debug
 
 tcp-concurrent: true
 
