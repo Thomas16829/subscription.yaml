@@ -394,7 +394,7 @@ rules:
 
   - DOMAIN-SUFFIX,play.googleapis.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,play-fe.googleapis.com,链式代理
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,住宅链式代理
 
   - DOMAIN-SUFFIX,android.clients.google.com,住宅链式代理
 
@@ -584,4 +584,4 @@ rules:
 
 # 默认
 
-  - MATCH,链式代理
+  - MATCH,住宅链式代理
