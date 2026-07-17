@@ -166,7 +166,7 @@ proxies:
     skip-cert-verify: true
     client-fingerprint: chrome
 
-  - name: "新加坡 aws 优化线路"
+  - name: "香港2 aws 优化线路"
     type: anytls
     server: aws-1.aikunapp.com
     port: 6002
@@ -253,7 +253,7 @@ proxies:
 
     udp: true
 
-    dialer-proxy: "自动中转"
+    dialer-proxy: "香港前置"
 # =====================
 # 代理组
 # =====================
@@ -261,7 +261,7 @@ proxies:
 proxy-groups:
 
 
-  - name: "自动中转"
+  - name: "香港前置"
 
     type: url-test
 
@@ -271,14 +271,8 @@ proxy-groups:
       - "香港03 HKT"
 
       - "香港 aws  优化线路"
-      - "新加坡 aws 优化线路"
-      - "日本 aws 优化线路"
-
-      - "新加坡1|高速下载|移动优化"
-      - "新加坡2|高速下载|移动优化"
-      
-      - "A-WS-中转"
-
+      - "香港2 aws 优化线路"
+     
     url: http://www.gstatic.com/generate_204
 
     interval: 300
@@ -287,7 +281,7 @@ proxy-groups:
 
 
 
-  - name: "链式代理"
+  - name: "住宅链式代理"
 
     type: select
 
@@ -295,19 +289,9 @@ proxy-groups:
 
       - "住宅-洛杉矶"
 
-      - "自动中转"
+      - "香港前置"
 
-      - DIRECT
 
-  - name: "社媒住宅"
-
-    type: select
-
-    proxies:
-
-      - "住宅-洛杉矶"
-
- 
 # =====================
 # 分流规则
 # =====================
@@ -330,9 +314,15 @@ rules:
 
   - RULE-SET,anti-ad,REJECT
 
+# 社媒优先住宅
 
-  - DOMAIN-KEYWORD,google,链式代理
+  - DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).*,住宅链式代理
 
+
+
+
+
+  - DOMAIN-KEYWORD,google,住宅链式代理
 
 # =====================
 # Google Play / Android 更新优化
@@ -342,96 +332,96 @@ rules:
 
 # Play 商店 APP
 
-  - PROCESS-NAME,com.android.vending,链式代理
+  - PROCESS-NAME,com.android.vending,住宅链式代理
 
 
 # Google Play 服务
 
-  - PROCESS-NAME,com.google.android.gms,链式代理
+  - PROCESS-NAME,com.google.android.gms,住宅链式代理
 
 
 # Google 服务框架
 
-  - PROCESS-NAME,com.google.android.gsf,链式代理
+  - PROCESS-NAME,com.google.android.gsf,住宅链式代理
 
 
 # Android 下载管理
 
-  - PROCESS-NAME,com.android.providers.downloads,链式代理
+  - PROCESS-NAME,com.android.providers.downloads,住宅链式代理
 
 
 
 # Google 登录认证
 
-  - DOMAIN-SUFFIX,accounts.google.com,链式代理
+  - DOMAIN-SUFFIX,accounts.google.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,oauth2.googleapis.com,链式代理
+  - DOMAIN-SUFFIX,oauth2.googleapis.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,connectivitycheck.gstatic.com,链式代理
+  - DOMAIN-SUFFIX,connectivitycheck.gstatic.com,住宅链式代理
 
 
 
 # Play API
 
-  - DOMAIN-SUFFIX,play.google.com,链式代理
+  - DOMAIN-SUFFIX,play.google.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,play.googleapis.com,链式代理
+  - DOMAIN-SUFFIX,play.googleapis.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,play-fe.googleapis.com,链式代理
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,android.clients.google.com,链式代理
+  - DOMAIN-SUFFIX,android.clients.google.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,clients2.google.com,链式代理
+  - DOMAIN-SUFFIX,clients2.google.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,clients3.google.com,链式代理
+  - DOMAIN-SUFFIX,clients3.google.com,住宅链式代理
 
 
 # Google API
 
-  - DOMAIN-SUFFIX,googleapis.com,链式代理
+  - DOMAIN-SUFFIX,googleapis.com,住宅链式代理
 
 
 # APK 更新服务器
 
-  - DOMAIN-SUFFIX,dl.google.com,链式代理
+  - DOMAIN-SUFFIX,dl.google.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,dl-ssl.google.com,链式代理
+  - DOMAIN-SUFFIX,dl-ssl.google.com,住宅链式代理
 
 
 # Google 下载 CDN
 
-  - DOMAIN-SUFFIX,gvt1.com,链式代理
+  - DOMAIN-SUFFIX,gvt1.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,gvt2.com,链式代理
+  - DOMAIN-SUFFIX,gvt2.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,gvt3.com,链式代理
+  - DOMAIN-SUFFIX,gvt3.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,googlezip.net,链式代理
+  - DOMAIN-SUFFIX,googlezip.net,住宅链式代理
 
-  - DOMAIN-SUFFIX,ota.googlezip.net,链式代理
+  - DOMAIN-SUFFIX,ota.googlezip.net,住宅链式代理
 
-  - DOMAIN-SUFFIX,gvt1-cn.com,链式代理
+  - DOMAIN-SUFFIX,gvt1-cn.com,住宅链式代理
   
-  - DOMAIN-SUFFIX,gvt2-cn.com,链式代理
+  - DOMAIN-SUFFIX,gvt2-cn.com,住宅链式代理
   
-  - DOMAIN-SUFFIX,gvt1.net,链式代理
+  - DOMAIN-SUFFIX,gvt1.net,住宅链式代理
 
-  - DOMAIN-SUFFIX,gvt2.net,链式代理
+  - DOMAIN-SUFFIX,gvt2.net,住宅链式代理
 
-  - DOMAIN-SUFFIX,gstatic.com,链式代理
+  - DOMAIN-SUFFIX,gstatic.com,住宅链式代理
 
 
 # Google CDN IP
 
-  - IP-CIDR,142.250.0.0/15,链式代理,no-resolve
+  - IP-CIDR,142.250.0.0/15,住宅链式代理,no-resolve
 
-  - IP-CIDR,172.217.0.0/16,链式代理,no-resolve
+  - IP-CIDR,172.217.0.0/16,住宅链式代理,no-resolve
 
-  - IP-CIDR,216.58.192.0/19,链式代理,no-resolve
+  - IP-CIDR,216.58.192.0/19,住宅链式代理,no-resolve
 
-  - IP-CIDR,74.125.0.0/16,链式代理,no-resolve
+  - IP-CIDR,74.125.0.0/16,住宅链式代理,no-resolve
 
-  - IP-CIDR,173.194.0.0/16,链式代理,no-resolve
+  - IP-CIDR,173.194.0.0/16,住宅链式代理,no-resolve
 # =====================
 
 
@@ -445,25 +435,23 @@ rules:
 # YouTube
 # =====================
 
-  - DOMAIN-SUFFIX,youtube.com,链式代理
+  - DOMAIN-SUFFIX,youtube.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,youtu.be,链式代理
+  - DOMAIN-SUFFIX,youtu.be,住宅链式代理
 
-  - DOMAIN-SUFFIX,ytimg.com,链式代理
+  - DOMAIN-SUFFIX,ytimg.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,googlevideo.com,链式代理
-
+  - DOMAIN-SUFFIX,googlevideo.com,住宅链式代理
 
 # =====================
 # AI
 # =====================
 
-  - DOMAIN-SUFFIX,openai.com,链式代理
+  - DOMAIN-SUFFIX,openai.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,chatgpt.com,链式代理
+  - DOMAIN-SUFFIX,chatgpt.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,claude.ai,链式代理
-
+  - DOMAIN-SUFFIX,claude.ai,住宅链式代理
 
 
 # =====================
@@ -472,101 +460,377 @@ rules:
 
   # TikTok
 
-  - DOMAIN-SUFFIX,tiktok.com,社媒住宅
+  - DOMAIN-SUFFIX,tiktok.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,tiktokcdn.com,社媒住宅
+  - DOMAIN-SUFFIX,tiktokcdn.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,tiktokv.com,社媒住宅
+  - DOMAIN-SUFFIX,tiktokv.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,byteoversea.com,社媒住宅
+  - DOMAIN-SUFFIX,byteoversea.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,ibyteimg.com,社媒住宅
+  - DOMAIN-SUFFIX,ibyteimg.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,muscdn.com,社媒住宅
+  - DOMAIN-SUFFIX,muscdn.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,bytecdn.cn,社媒住宅
+  - DOMAIN-SUFFIX,bytecdn.cn,住宅链式代理
 
  # Meta
 
-  - DOMAIN-SUFFIX,facebook.com,社媒住宅
+  - DOMAIN-SUFFIX,facebook.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,fbcdn.net,社媒住宅
+  - DOMAIN-SUFFIX,fbcdn.net,住宅链式代理
 
-  - DOMAIN-SUFFIX,fbsbx.com,社媒住宅
+  - DOMAIN-SUFFIX,fbsbx.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,instagram.com,社媒住宅
+  - DOMAIN-SUFFIX,instagram.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,cdninstagram.com,社媒住宅
+  - DOMAIN-SUFFIX,cdninstagram.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,messenger.com,社媒住宅
+  - DOMAIN-SUFFIX,messenger.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,whatsapp.com,社媒住宅
+  - DOMAIN-SUFFIX,whatsapp.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,whatsapp.net,社媒住宅
+  - DOMAIN-SUFFIX,whatsapp.net,住宅链式代理
 
-  - DOMAIN-SUFFIX,googleadservices.com,社媒住宅
+  - DOMAIN-SUFFIX,googleadservices.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,doubleclick.net,社媒住宅
+  - DOMAIN-SUFFIX,doubleclick.net,住宅链式代理
 
-  - DOMAIN-SUFFIX,googlesyndication.com,社媒住宅
+  - DOMAIN-SUFFIX,googlesyndication.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,google-analytics.com,社媒住宅
+  - DOMAIN-SUFFIX,google-analytics.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,amazon.com,社媒住宅
+  - DOMAIN-SUFFIX,amazon.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,amazonaws.com,自动中转
+  - DOMAIN-SUFFIX,amazonaws.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,shopify.com,社媒住宅
+  - DOMAIN-SUFFIX,shopify.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,myshopify.com,社媒住宅
+  - DOMAIN-SUFFIX,myshopify.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,paypal.com,社媒住宅
+  - DOMAIN-SUFFIX,paypal.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,paypalobjects.com,社媒住宅
+  - DOMAIN-SUFFIX,paypalobjects.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,stripe.com,社媒住宅
+  - DOMAIN-SUFFIX,stripe.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,mailchimp.com,自动中转
+  - DOMAIN-SUFFIX,mailchimp.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,sendgrid.net,自动中转
+  - DOMAIN-SUFFIX,sendgrid.net,住宅链式代理
 
-  - DOMAIN-SUFFIX,hubspot.com,社媒住宅
+  - DOMAIN-SUFFIX,hubspot.com,住宅链式代理
+
  # =====================
  # LINE
  # =====================
-  - DOMAIN-SUFFIX,line.me,社媒住宅
-  - DOMAIN-SUFFIX,line-apps.com,社媒住宅
-  - DOMAIN-SUFFIX,line-scdn.net,社媒住宅
-  - DOMAIN-SUFFIX,line.naver.jp,社媒住宅
+  - DOMAIN-SUFFIX,line.me,住宅链式代理
+  - DOMAIN-SUFFIX,line-apps.com,住宅链式代理
+  - DOMAIN-SUFFIX,line-scdn.net,住宅链式代理
+  - DOMAIN-SUFFIX,line.naver.jp,住宅链式代理
 
  # =====================
  # Zalo
  # =====================
-  - DOMAIN-SUFFIX,zalo.me,社媒住宅
-  - DOMAIN-SUFFIX,zaloapp.com,社媒住宅
-  - DOMAIN-SUFFIX,zalo.vn,社媒住宅
-  - DOMAIN-SUFFIX,zdn.vn,社媒住宅
+  - DOMAIN-SUFFIX,zalo.me,住宅链式代理
+  - DOMAIN-SUFFIX,zaloapp.com,住宅链式代理
+  - DOMAIN-SUFFIX,zalo.vn,住宅链式代理
+  - DOMAIN-SUFFIX,zdn.vn,住宅链式代理
 
  # =====================
  # LinkedIn（领英）
  # =====================
-  - DOMAIN-SUFFIX,linkedin.com,社媒住宅
-  - DOMAIN-SUFFIX,licdn.com,社媒住宅
-
+  - DOMAIN-SUFFIX,linkedin.com,住宅链式代理
+  - DOMAIN-SUFFIX,licdn.com,住宅链式代理
 
   
 # =====================
 # 其他国外
 # =====================
 
-  - DOMAIN-SUFFIX,telegram.org,社媒住宅
+  - DOMAIN-SUFFIX,telegram.org,住宅链式代理
 
-  - DOMAIN-SUFFIX,github.com,社媒住宅
+  - DOMAIN-SUFFIX,github.com,住宅链式代理
 
-  - DOMAIN-SUFFIX,netflix.com,社媒住宅
+  - DOMAIN-SUFFIX,netflix.com,住宅链式代理
 
 
 
 # 默认
 
-  - MATCH,链式代理
+  - MATCH,住宅链式代理- name: "住宅链式代理"
+
+    type: select
+
+    proxies:
+
+      - "住宅-洛杉矶"
+
+      - "香港前置"
+
+
+# =====================
+# 分流规则
+# =====================
+
+rules:
+
+# 局域网
+
+  - IP-CIDR,127.0.0.0/8,DIRECT
+
+  - IP-CIDR,192.168.0.0/16,DIRECT
+
+  - IP-CIDR,10.0.0.0/8,DIRECT
+
+  - IP-CIDR,172.16.0.0/12,DIRECT
+
+# 广告拦截
+
+  - RULE-SET,reject,REJECT
+
+  - RULE-SET,anti-ad,REJECT
+
+# 社媒优先住宅
+
+  - DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).*,住宅链式代理
+
+
+
+
+
+  - DOMAIN-KEYWORD,google,住宅链式代理
+
+# =====================
+# Google Play / Android 更新优化
+# 自动中转
+# =====================
+
+
+# Play 商店 APP
+
+  - PROCESS-NAME,com.android.vending,住宅链式代理
+
+
+# Google Play 服务
+
+  - PROCESS-NAME,com.google.android.gms,住宅链式代理
+
+
+# Google 服务框架
+
+  - PROCESS-NAME,com.google.android.gsf,住宅链式代理
+
+
+# Android 下载管理
+
+  - PROCESS-NAME,com.android.providers.downloads,住宅链式代理
+
+
+
+# Google 登录认证
+
+  - DOMAIN-SUFFIX,accounts.google.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,oauth2.googleapis.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,connectivitycheck.gstatic.com,住宅链式代理
+
+
+
+# Play API
+
+  - DOMAIN-SUFFIX,play.google.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,play.googleapis.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,play-fe.googleapis.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,android.clients.google.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,clients2.google.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,clients3.google.com,住宅链式代理
+
+
+# Google API
+
+  - DOMAIN-SUFFIX,googleapis.com,住宅链式代理
+
+
+# APK 更新服务器
+
+  - DOMAIN-SUFFIX,dl.google.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,dl-ssl.google.com,住宅链式代理
+
+
+# Google 下载 CDN
+
+  - DOMAIN-SUFFIX,gvt1.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,gvt2.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,gvt3.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,googlezip.net,住宅链式代理
+
+  - DOMAIN-SUFFIX,ota.googlezip.net,住宅链式代理
+
+  - DOMAIN-SUFFIX,gvt1-cn.com,住宅链式代理
+  
+  - DOMAIN-SUFFIX,gvt2-cn.com,住宅链式代理
+  
+  - DOMAIN-SUFFIX,gvt1.net,住宅链式代理
+
+  - DOMAIN-SUFFIX,gvt2.net,住宅链式代理
+
+  - DOMAIN-SUFFIX,gstatic.com,住宅链式代理
+
+
+# Google CDN IP
+
+  - IP-CIDR,142.250.0.0/15,住宅链式代理,no-resolve
+
+  - IP-CIDR,172.217.0.0/16,住宅链式代理,no-resolve
+
+  - IP-CIDR,216.58.192.0/19,住宅链式代理,no-resolve
+
+  - IP-CIDR,74.125.0.0/16,住宅链式代理,no-resolve
+
+  - IP-CIDR,173.194.0.0/16,住宅链式代理,no-resolve
+# =====================
+
+
+# 国内直连
+
+  - GEOSITE,cn,DIRECT
+
+  - GEOIP,CN,DIRECT
+
+
+# YouTube
+# =====================
+
+  - DOMAIN-SUFFIX,youtube.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,youtu.be,住宅链式代理
+
+  - DOMAIN-SUFFIX,ytimg.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,googlevideo.com,住宅链式代理
+
+# =====================
+# AI
+# =====================
+
+  - DOMAIN-SUFFIX,openai.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,chatgpt.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,claude.ai,住宅链式代理
+
+
+# =====================
+# 社媒住宅IP
+# =====================
+
+  # TikTok
+
+  - DOMAIN-SUFFIX,tiktok.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,tiktokcdn.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,tiktokv.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,byteoversea.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,ibyteimg.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,muscdn.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,bytecdn.cn,住宅链式代理
+
+ # Meta
+
+  - DOMAIN-SUFFIX,facebook.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,fbcdn.net,住宅链式代理
+
+  - DOMAIN-SUFFIX,fbsbx.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,instagram.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,cdninstagram.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,messenger.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,whatsapp.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,whatsapp.net,住宅链式代理
+
+  - DOMAIN-SUFFIX,googleadservices.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,doubleclick.net,住宅链式代理
+
+  - DOMAIN-SUFFIX,googlesyndication.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,google-analytics.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,amazon.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,amazonaws.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,shopify.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,myshopify.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,paypal.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,paypalobjects.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,stripe.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,mailchimp.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,sendgrid.net,住宅链式代理
+
+  - DOMAIN-SUFFIX,hubspot.com,住宅链式代理
+
+ # =====================
+ # LINE
+ # =====================
+  - DOMAIN-SUFFIX,line.me,住宅链式代理
+  - DOMAIN-SUFFIX,line-apps.com,住宅链式代理
+  - DOMAIN-SUFFIX,line-scdn.net,住宅链式代理
+  - DOMAIN-SUFFIX,line.naver.jp,住宅链式代理
+
+ # =====================
+ # Zalo
+ # =====================
+  - DOMAIN-SUFFIX,zalo.me,住宅链式代理
+  - DOMAIN-SUFFIX,zaloapp.com,住宅链式代理
+  - DOMAIN-SUFFIX,zalo.vn,住宅链式代理
+  - DOMAIN-SUFFIX,zdn.vn,住宅链式代理
+
+ # =====================
+ # LinkedIn（领英）
+ # =====================
+  - DOMAIN-SUFFIX,linkedin.com,住宅链式代理
+  - DOMAIN-SUFFIX,licdn.com,住宅链式代理
+
+  
+# =====================
+# 其他国外
+# =====================
+
+  - DOMAIN-SUFFIX,telegram.org,住宅链式代理
+
+  - DOMAIN-SUFFIX,github.com,住宅链式代理
+
+  - DOMAIN-SUFFIX,netflix.com,住宅链式代理
+
+
+
+# 默认
+
+  - MATCH,住宅链式代理
