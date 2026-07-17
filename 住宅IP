@@ -33,20 +33,18 @@ profile:
 dns:
   enable: true
   ipv6: false
-
   enhanced-mode: fake-ip
 
-  fake-ip-range: 198.18.0.1/16
-
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - "time.windows.com"
 
   nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-
-
-  fallback:
-    - 8.8.8.8
-    - 1.1.1.1
+    - https://1.1.1.1/dns-query
+    - https://8.8.8.8/dns-query
 
 
   fallback-filter:
@@ -100,7 +98,7 @@ proxy-providers:
 
       enable: true
 
-      url: https://www.gstatic.com/generate_204
+      url: https://cp.cloudflare.com/generate_204
 
       interval: 300
 
@@ -556,6 +554,28 @@ rules:
   - DOMAIN-SUFFIX,sendgrid.net,自动中转
 
   - DOMAIN-SUFFIX,hubspot.com,社媒住宅
+
+ # =====================
+ # LINE
+ # =====================
+  - DOMAIN-SUFFIX,line.me,社媒住宅
+  - DOMAIN-SUFFIX,line-apps.com,社媒住宅
+  - DOMAIN-SUFFIX,line-scdn.net,社媒住宅
+  - DOMAIN-SUFFIX,line.naver.jp,社媒住宅
+
+ # =====================
+ # Zalo
+ # =====================
+  - DOMAIN-SUFFIX,zalo.me,社媒住宅
+  - DOMAIN-SUFFIX,zaloapp.com,社媒住宅
+  - DOMAIN-SUFFIX,zalo.vn,社媒住宅
+  - DOMAIN-SUFFIX,zdn.vn,社媒住宅
+
+ # =====================
+ # LinkedIn（领英）
+ # =====================
+  - DOMAIN-SUFFIX,linkedin.com,社媒住宅
+  - DOMAIN-SUFFIX,licdn.com,社媒住宅
 
   
 # =====================
