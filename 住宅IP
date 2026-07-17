@@ -474,24 +474,24 @@ rules:
 # YouTube
 # =====================
 
-  - DOMAIN-SUFFIX,youtube.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,youtube.com,链式代理
 
-  - DOMAIN-SUFFIX,youtu.be,住宅-洛杉矶
+  - DOMAIN-SUFFIX,youtu.be,链式代理
 
-  - DOMAIN-SUFFIX,ytimg.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,ytimg.com,链式代理
 
-  - DOMAIN-SUFFIX,googlevideo.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,googlevideo.com,链式代理
 
 
 # =====================
 # AI
 # =====================
 
-  - DOMAIN-SUFFIX,openai.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,openai.com,链式代理
 
-  - DOMAIN-SUFFIX,chatgpt.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,chatgpt.com,链式代理
 
-  - DOMAIN-SUFFIX,claude.ai,住宅-洛杉矶
+  - DOMAIN-SUFFIX,claude.ai,链式代理
 
 
 
