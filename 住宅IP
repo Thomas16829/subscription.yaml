@@ -344,6 +344,10 @@ rules:
 
   - DOMAIN-KEYWORD,google,住宅链式代理
 
+# 社媒优先住宅
+
+  - DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).*,住宅链式代理
+
 
 # =====================
 # Google Play / Android 更新优化
@@ -474,9 +478,6 @@ rules:
 
   - DOMAIN-SUFFIX,claude.ai,住宅链式代理
 
-# 社媒优先住宅
-
-- DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).* ,住宅链式代理
 
 # =====================
 # 社媒住宅IP
