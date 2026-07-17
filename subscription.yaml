@@ -130,8 +130,7 @@ proxy-providers:
       enable: true
 
 
-      url: https://cp.cloudflare.com/generate_204
-
+      url: http://www.gstatic.com/generate_204
 
       interval: 300
 
@@ -419,7 +418,7 @@ proxy-groups:
       - "A-WS-中转"
 
 
-    url: https://cp.cloudflare.com/generate_204
+    url: http://www.gstatic.com/generate_204
 
     interval: 300
 
