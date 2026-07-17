@@ -298,12 +298,12 @@ proxy-groups:
     tolerance: 50
 
   - name: "住宅链式代理"
-    type: fallback
+
+    type: select
+
     proxies:
+
       - 住宅-洛杉矶
-      - 香港前置
-  url: https://www.gstatic.com/generate_204
-  interval: 300
 
 
 # =====================
