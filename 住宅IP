@@ -301,7 +301,7 @@ proxy-groups:
   type: fallback
   proxies:
     - 住宅-洛杉矶
-    - 香港链路
+    - 香港前置
   url: https://www.gstatic.com/generate_204
   interval: 300
 
