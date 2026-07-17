@@ -341,13 +341,15 @@ rules:
 
   - RULE-SET,anti-ad,REJECT
 
-
-  - DOMAIN-KEYWORD,google,住宅链式代理
-
 # 社媒优先住宅
 
   - DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).*,住宅链式代理
 
+
+
+
+
+  - DOMAIN-KEYWORD,google,住宅链式代理
 
 # =====================
 # Google Play / Android 更新优化
