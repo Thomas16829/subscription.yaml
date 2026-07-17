@@ -397,7 +397,7 @@ proxies:
 proxy-groups:
 
 
-  - "香港前置"
+  - name: "香港前置"
 
     type: url-test
 
@@ -426,7 +426,7 @@ proxy-groups:
 
     proxies:
 
-      - "住宅-洛杉矶"
+      - "住宅-紐約"
 
       - "香港前置"
 
