@@ -397,7 +397,7 @@ proxies:
 proxy-groups:
 
 
-   - "香港前置"
+  - "香港前置"
 
     type: url-test
 
@@ -420,7 +420,7 @@ proxy-groups:
 
 
 
-   - name: "住宅链式代理"
+  - name: "住宅链式代理"
 
     type: select
 
