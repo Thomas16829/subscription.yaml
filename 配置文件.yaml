@@ -29,8 +29,12 @@ proxy-providers:
 # =====================
 proxies:
 
+
+# =====================
 # 香港 HY2
- - name: "香港01-HY2"
+# =====================
+
+  - name: "香港01-HY2"
     type: hysteria2
     server: hk01ngnmsl.sys-metric-report.com
     port: 26888
@@ -56,18 +60,46 @@ proxies:
     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
 
+
+# =====================
 # 香港 SS
-  - {name: 香港A, type: ss, server: pro.relay.hka.sys-metric-report.com, port: 27003, cipher: chacha20-ietf-poly1305, password: 485c7cbb-f10b-4ec3-84d0-f017fd566308, udp: true}
-  - {name: 香港B, type: ss, server: pro.relay.hkb.sys-metric-report.com, port: 27010, cipher: chacha20-ietf-poly1305, password: 485c7cbb-f10b-4ec3-84d0-f017fd566308, udp: true}
-  - {name: 香港C, type: ss, server: pro.relay.hkc.sys-metric-report.com, port: 27011, cipher: chacha20-ietf-poly1305, password: 485c7cbb-f10b-4ec3-84d0-f017fd566308, udp: true}
-  - {name: 香港D, type: ss, server: pro.relay.hkd.sys-metric-report.com, port: 27012, cipher: chacha20-ietf-poly1305, password: 485c7cbb-f10b-4ec3-84d0-f017fd566308, udp: true}
+# =====================
+
+  - name: "香港A"
+    type: ss
+    server: pro.relay.hka.sys-metric-report.com
+    port: 27003
+    cipher: chacha20-ietf-poly1305
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
 
 
-# 美国 SS
-  - {name: 美国A, type: ss, server: pro.relay.usa.sys-metric-report.com, port: 27008, cipher: chacha20-ietf-poly1305, password: 485c7cbb-f10b-4ec3-84d0-f017fd566308, udp: true}
-  - {name: 美国B, type: ss, server: pro.relay.usb.sys-metric-report.com, port: 27007, cipher: chacha20-ietf-poly1305, password: 485c7cbb-f10b-4ec3-84d0-f017fd566308, udp: true}
-  - {name: 美国C, type: ss, server: pro.relay.usc.sys-metric-report.com, port: 14690, cipher: chacha20-ietf-poly1305, password: 485c7cbb-f10b-4ec3-84d0-f017fd566308, udp: true}
-  - {name: 美国D, type: ss, server: pro.relay.usd.sys-metric-report.com, port: 27014, cipher: chacha20-ietf-poly1305, password: 485c7cbb-f10b-4ec3-84d0-f017fd566308, udp: true}
+  - name: "香港B"
+    type: ss
+    server: pro.relay.hkb.sys-metric-report.com
+    port: 27010
+    cipher: chacha20-ietf-poly1305
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
+
+
+  - name: "香港C"
+    type: ss
+    server: pro.relay.hkc.sys-metric-report.com
+    port: 27011
+    cipher: chacha20-ietf-poly1305
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
+
+
+  - name: "香港D"
+    type: ss
+    server: pro.relay.hkd.sys-metric-report.com
+    port: 27012
+    cipher: chacha20-ietf-poly1305
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    udp: true
+
 
 
 # VLESS 中转
@@ -112,10 +144,6 @@ proxy-groups:
       - 香港B
       - 香港C
       - 香港D
-      - 美国A
-      - 美国B
-      - 美国C
-      - 美国D
       - A-WS-中转
     url: https://www.gstatic.com/generate_204
     interval: 300
