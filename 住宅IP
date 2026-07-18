@@ -120,10 +120,10 @@ proxies:
 
   - name: "香港01-HY2"
     type: hysteria2
-    server: hk01.hy2.sys-metric-report.com
-    port: 29507
+    server: hk01ngnmsl.sys-metric-report.com
+    port: 26888
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    sni: happ.cfastcdn.com
+    sni: hkngnmsl.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
@@ -133,10 +133,10 @@ proxies:
 
   - name: "香港02-HY2"
     type: hysteria2
-    server: hk02.hy2.sys-metric-report.com
-    port: 26992
+    server: hk02ngnmsl.sys-metric-report.com
+    port: 22352
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    sni: happ.cfastcdn.com
+    sni: hkngnmsl.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
