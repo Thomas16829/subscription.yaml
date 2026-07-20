@@ -144,7 +144,6 @@ proxy-groups:
       - 香港B
       - 香港C
       - 香港D
-      - A-WS-中转
     url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
