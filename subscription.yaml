@@ -351,17 +351,17 @@ proxies:
 # 美国住宅IP
 # =====================
 
-  - name: "住宅-紐約"
+  - name: "住宅-洛杉矶"
 
     type: socks5
 
-    server: 65.195.110.169
+    server: 66.80.127.188
 
-    port: 50101
+    port: 39531
 
-    username: fengwenping88
+    username: hgBvv4YzIEjV
 
-    password: EGmfNcqGK5
+    password: 6P1LHwUi0GMZ
 
     udp: true
 
@@ -404,7 +404,7 @@ proxy-groups:
 
     proxies:
 
-      - "住宅-紐約"
+      - "住宅-洛杉矶"
 
 
 # =====================
