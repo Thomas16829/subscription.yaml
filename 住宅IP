@@ -16,12 +16,6 @@ tcp-concurrent: true
 
 unified-delay: true
 
-find-process-mode: strict
-
-keep-alive-idle: 600
-
-keep-alive-interval: 15
-
 
 external-controller: 127.0.0.1:9090
 
@@ -63,73 +57,50 @@ dns:
 
     geoip-code: CN
 
-
-
-
 # =====================
 # 广告规则集
 # =====================
 
 rule-providers:
 
-
   reject:
-
     type: http
-
     behavior: domain
-
     url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
-
     path: ./ruleset/reject.yaml
-
     interval: 86400
-
 
 
   anti-ad:
-
     type: http
-
     behavior: domain
-
     url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
-
     path: ./ruleset/anti-ad.yaml
-
     interval: 86400
-
 
 
 
 # =====================
-# 节点订阅自动更新
+# 订阅自动更新
 # =====================
 
 proxy-providers:
 
-
   节点订阅:
-
 
     type: http
 
-
+    # 修改成你的订阅地址
     url: "https://kjuobq.yau96.com/config?token=d0cff327fe324fc540b4acaa6592c477"
 
-
     path: ./proxy_providers/node.yaml
-
 
     interval: 900
 
 
-
     health-check:
 
-
       enable: true
-
 
       url: http://www.gstatic.com/generate_204
 
@@ -229,8 +200,6 @@ proxies:
     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
 
-
-
 # =====================
 # VLESS 中转
 # =====================
@@ -279,9 +248,9 @@ proxies:
 
     password: 5iD0lGzcgcKh
 
-    udp: false
+    udp: true
 
-    dialer-proxy: 香港前置
+    dialer-proxy: "香港前置"
 # =====================
 # 代理组
 # =====================
