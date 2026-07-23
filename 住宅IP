@@ -1,15 +1,12 @@
-# =====================================
-# Clash Meta Multi Platform Config
-# =====================================
-
-
 # =====================
-# 基础
+# Clash Meta 真链式配置
 # =====================
 
 mixed-port: 7890
 
-allow-lan: false
+allow-lan: true
+
+bind-address: "*"
 
 mode: rule
 
@@ -21,26 +18,22 @@ unified-delay: true
 
 find-process-mode: strict
 
+keep-alive-idle: 600
+
+keep-alive-interval: 15
+
 
 external-controller: 127.0.0.1:9090
 
 
-
-# =====================
-# Profile
-# =====================
-
 profile:
-
   store-selected: true
-
   store-fake-ip: true
 
 
 
 # =====================
 # DNS
-# 三端兼容
 # =====================
 
 dns:
@@ -49,49 +42,19 @@ dns:
 
   ipv6: false
 
-
   enhanced-mode: fake-ip
-
-
-  fake-ip-range: 198.18.0.1/16
-
-
-  fake-ip-filter:
-
-    - "*.lan"
-
-    - "*.local"
-
-    - "localhost"
-
-    - "time.*.com"
-
-    - "*.ntp.org"
-
-
-
-  default-nameserver:
-
-    - 223.5.5.5
-
-    - 119.29.29.29
-
 
 
   nameserver:
 
-    - https://dns.alidns.com/dns-query
-
-    - https://doh.pub/dns-query
-
+    - 223.5.5.5
+    - 119.29.29.29
 
 
   fallback:
 
-    - https://dns.google/dns-query
-
-    - https://cloudflare-dns.com/dns-query
-
+    - 8.8.8.8
+    - 1.1.1.1
 
 
   fallback-filter:
@@ -102,8 +65,9 @@ dns:
 
 
 
+
 # =====================
-# Rule Provider
+# 广告规则集
 # =====================
 
 rule-providers:
@@ -137,14 +101,16 @@ rule-providers:
 
 
 
+
 # =====================
-# Proxy Provider
+# 节点订阅自动更新
 # =====================
 
 proxy-providers:
 
 
-  nodes:
+  节点订阅:
+
 
     type: http
 
@@ -155,7 +121,8 @@ proxy-providers:
     path: ./proxy_providers/node.yaml
 
 
-    interval: 300
+    interval: 900
+
 
 
     health-check:
@@ -164,11 +131,9 @@ proxy-providers:
       enable: true
 
 
-      url: https://www.gstatic.com/generate_204
+      url: http://www.gstatic.com/generate_204
 
-
-      interval:300
-
+      interval: 300
 
 
 # =====================
