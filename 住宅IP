@@ -167,7 +167,7 @@ proxy-providers:
       url: https://www.gstatic.com/generate_204
 
 
-      interval: 50
+      interval:300
 
 
 
@@ -354,9 +354,6 @@ proxy-groups:
       - "住宅-洛杉矶"
 
 
-# =====================
-# Rules
-# =====================
 # =====================
 # Rules
 # =====================
