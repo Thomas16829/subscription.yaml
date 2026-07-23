@@ -1,15 +1,5 @@
 # =====================================
 # Clash Meta Multi Platform Config
-# Clash Verge Rev
-# Clash Meta Android
-# Stash iOS
-#
-# 真链式：
-# 美国住宅 SOCKS5
-#        ↓
-# 香港前置
-#        ↓
-# Internet
 # =====================================
 
 
@@ -19,7 +9,7 @@
 
 mixed-port: 7890
 
-allow-lan: true
+allow-lan: false
 
 mode: rule
 
@@ -326,7 +316,7 @@ proxies:
 
     udp: false
 
-    dialer-proxy: "香港前置"
+    dialer-proxy: 香港前置
 # =====================
 # 代理组
 # =====================
