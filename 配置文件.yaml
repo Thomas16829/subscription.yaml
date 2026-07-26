@@ -1,184 +1,250 @@
 mixed-port: 7890
+
 allow-lan: true
 bind-address: "*"
+
 mode: rule
+
 log-level: info
+
 tcp-concurrent: true
 unified-delay: true
 
+
 external-controller: 127.0.0.1:9090
 
+
 # =====================
-# 订阅
+# 订阅节点
 # =====================
+
 proxy-providers:
+
   节点订阅:
+
     type: http
+
     url: "https://kjuobq.yau96.com/config?token=d0cff327fe324fc540b4acaa6592c477"
+
     path: ./proxy_providers/node.yaml
+
     interval: 900
 
+
     health-check:
+
       enable: true
+
       url: https://www.gstatic.com/generate_204
+
       interval: 300
+
 
 
 # =====================
 # 本地节点
 # =====================
+
 proxies:
 
 
-# =====================
 # 香港 HY2
-# =====================
 
-  - name: "香港01-HY2"
+  - name: 香港01-HY2
     type: hysteria2
     server: hk01ngnmsl.sys-metric-report.com
     port: 21572
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: hkngnmsl.cfastcdn.com
     skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
+    up: 1000 Mbps
+    down: 1000 Mbps
     obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
 
-  - name: "香港02-HY2"
+
+  - name: 香港02-HY2
     type: hysteria2
     server: hk02ngnmsl.sys-metric-report.com
     port: 24688
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: hkngnmsl.cfastcdn.com
     skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
+    up: 1000 Mbps
+    down: 1000 Mbps
     obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
 
-  - name: "香港03-HY2"
+
+  - name: 香港03-HY2
     type: hysteria2
     server: jp01ngnmsl.sys-metric-report.com
     port: 26598
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: jpngnmsl.cfastcdn.com
     skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
+    up: 1000 Mbps
+    down: 1000 Mbps
     obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
 
 
-  - name: "香港04-HY2"
+  - name: 香港04-HY2
     type: hysteria2
     server: jp02ngnmsl.sys-metric-report.com
     port: 23167
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: jpngnmsl.cfastcdn.com
     skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
+    up: 1000 Mbps
+    down: 1000 Mbps
     obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
 
 
-  - name: "香港05-HY2"
+  - name: 香港05-HY2
     type: hysteria2
     server: jp03ngnmsl.sys-metric-report.com
     port: 25071
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: jpngnmsl.cfastcdn.com
     skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
+    up: 1000 Mbps
+    down: 1000 Mbps
     obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
 
 
-
-  - name: "香港06-HY2"
+  - name: 香港06-HY2
     type: hysteria2
     server: sgp01ngnmsl.sys-metric-report.com
     port: 23618
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: sgpngnmsl.cfastcdn.com
     skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
+    up: 1000 Mbps
+    down: 1000 Mbps
     obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
 
 
-# VLESS 中转
+# VLESS中转
+
   - name: A-WS-中转
+
     type: vless
+
     server: yg1.ygkkk.dpdns.org
+
     port: 8443
+
     uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+
     network: ws
+
     tls: true
+
     udp: true
+
     servername: thomas20265.ccwu.cc
+
     client-fingerprint: chrome
+
     ws-opts:
-      path: "/?ed=2560"
+
+      path: /?ed=2560
+
       headers:
+
         Host: thomas20265.ccwu.cc
 
 
-# 住宅IP（链式出口）
+
+# 美国住宅出口
+
   - name: 住宅-洛杉矶
+
     type: socks5
+
     server: 207.145.156.49
+
     port: 33929
+
     username: XOnMOuRv2wRu
+
     password: 5iD0lGzcgcKh
+
     udp: true
+
     dialer-proxy: 香港前置
+
+
 
 
 # =====================
 # 代理组
 # =====================
+
+
 proxy-groups:
 
+
   - name: 香港前置
+
     type: url-test
+
     proxies:
+
       - 香港01-HY2
       - 香港02-HY2
       - 香港03-HY2
       - 香港04-HY2
       - 香港05-HY2
       - 香港06-HY2
-      
+
+
     url: https://www.gstatic.com/generate_204
+
     interval: 300
+
     tolerance: 50
 
 
+
   - name: 链式代理
+
     type: select
+
     proxies:
+
       - 住宅-洛杉矶
+
       - 香港前置
+
       - DIRECT
 
 
+
+
 # =====================
-# 分流规则
+# 分流
 # =====================
 
+
 rules:
+
+
   - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉矶
+
   - DOMAIN-SUFFIX,facebook.com,住宅-洛杉矶
+
   - DOMAIN-SUFFIX,instagram.com,住宅-洛杉矶
+
+
   - MATCH,链式代理
