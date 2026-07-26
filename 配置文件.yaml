@@ -178,7 +178,7 @@ proxy-groups:
 # =====================
 
 rules:
-  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉磯
-  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉磯
+  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉矶
   - MATCH,链式代理
