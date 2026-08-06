@@ -122,9 +122,9 @@ proxies:
   - name: "香港01-HY2"
     type: hysteria2
     server: hk01ngnmsl.sys-metric-report.com
-    port: 28331
+    port: 22250
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    sni: hkngnmsl.cfastcdn.com
+    sni: hkngnqjsl.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
@@ -135,9 +135,9 @@ proxies:
   - name: "香港02-HY2"
     type: hysteria2
     server: sgp01ngnmsl.sys-metric-report.com
-    port: 25513
+    port: 21265
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    sni: hkngnmsl.cfastcdn.com
+    sni: sgngnqjsl.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
@@ -148,9 +148,9 @@ proxies:
   - name: "香港03-HY2"
     type: hysteria2
     server: jp01ngnmsl.sys-metric-report.com
-    port: 22166
+    port: 25466
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    sni: jpngnmsl.cfastcdn.com
+    sni: jpngnqjsl.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
@@ -162,9 +162,9 @@ proxies:
   - name: "香港04-HY2"
     type: hysteria2
     server: jp02ngnmsl.sys-metric-report.com
-    port: 22576
+    port: 23811
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    sni: jpngnmsl.cfastcdn.com
+    sni: jpngnqjsl.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
@@ -176,9 +176,9 @@ proxies:
   - name: "香港05-HY2"
     type: hysteria2
     server: jp03ngnmsl.sys-metric-report.com
-    port: 29572
+    port: 26220
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    sni: jpngnmsl.cfastcdn.com
+    sni: jpngnqjsl.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
