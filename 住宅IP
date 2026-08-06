@@ -122,7 +122,7 @@ proxies:
   - name: "香港01-HY2"
     type: hysteria2
     server: hk01ngnmsl.sys-metric-report.com
-    port: 22846
+    port: 28331
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: hkngnmsl.cfastcdn.com
     skip-cert-verify: false
@@ -135,7 +135,7 @@ proxies:
   - name: "香港02-HY2"
     type: hysteria2
     server: sgp01ngnmsl.sys-metric-report.com
-    port: 25650
+    port: 25513
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: hkngnmsl.cfastcdn.com
     skip-cert-verify: false
@@ -148,7 +148,7 @@ proxies:
   - name: "香港03-HY2"
     type: hysteria2
     server: jp01ngnmsl.sys-metric-report.com
-    port: 22222
+    port: 22166
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: jpngnmsl.cfastcdn.com
     skip-cert-verify: false
@@ -162,7 +162,7 @@ proxies:
   - name: "香港04-HY2"
     type: hysteria2
     server: jp02ngnmsl.sys-metric-report.com
-    port: 23185
+    port: 22576
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: jpngnmsl.cfastcdn.com
     skip-cert-verify: false
@@ -176,7 +176,7 @@ proxies:
   - name: "香港05-HY2"
     type: hysteria2
     server: jp03ngnmsl.sys-metric-report.com
-    port: 27485
+    port: 29572
     password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     sni: jpngnmsl.cfastcdn.com
     skip-cert-verify: false
