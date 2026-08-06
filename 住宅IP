@@ -198,7 +198,7 @@ proxies:
     up: "1000 Mbps"
     down: "1000 Mbps"
     obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
+    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw==" 
 
 
 # =====================
