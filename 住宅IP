@@ -197,7 +197,7 @@ proxy-providers:
 # =====================
 
 
-  - name: "🇺🇸 VLESS-WS中转"
+- name: "🇺🇸 VLESS-WS中转"
   type: vless
   server: yg1.ygkkk.dpdns.org
   port: 8443
