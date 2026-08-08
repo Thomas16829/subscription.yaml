@@ -84,26 +84,16 @@ rule-providers:
 # =====================
 
 proxy-providers:
-
   节点订阅:
-
     type: http
-
     url: "https://kjuobq.yau96.com/config?token=d0cff327fe324fc540b4acaa6592c477"
-
     path: ./proxy_providers/node.yaml
-
     interval: 900
 
-
     health-check:
-
       enable: true
-
       url: http://www.gstatic.com/generate_204
-
       interval: 300
-
 
 
 # =====================
@@ -252,9 +242,9 @@ proxy-providers:
 
       - "🇭🇰 香港01[HY2]"
       - "🇭🇰 香港02[HY2]"
-      - "🇯🇵 日本01-[HY2]"
-      - "🇯🇵 日本02-[HY2]"
-      - "🇯🇵 日本03-[HY2]"
+      - "🇯🇵 日本01[HY2]"
+      - "🇯🇵 日本02[HY2]"
+      - "🇯🇵 日本03[HY2]"
       - "🇰🇷 韩国01-[HY2]"
 
 
