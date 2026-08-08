@@ -198,30 +198,22 @@ proxy-providers:
 
 
   - name: "🇺🇸 VLESS-WS中转"
-    type: vless
-    server: yg1.ygkkk.dpdns.org
-    port: 8443
+  type: vless
+  server: yg1.ygkkk.dpdns.org
+  port: 8443
+  uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
 
-    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+  network: ws
+  tls: true
+  udp: true
 
-    network: ws
+  servername: thomas20265.ccwu.cc
+  client-fingerprint: chrome
 
-    tls: true
-
-    udp: true
-
-    servername: thomas20265.ccwu.cc
-
-    client-fingerprint: chrome
-
-
-    ws-opts:
-
-      path: "/?ed=2560"
-
-       headers:
-         Host: thomas20265.ccwu.cc
-
+  ws-opts:
+    path: "/?ed=2560"
+    headers:
+      Host: thomas20265.ccwu.cc
 
 # =====================
 # 美国住宅IP出口
@@ -229,20 +221,13 @@ proxy-providers:
 
 
   - name: "🇺🇸 洛杉矶住宅IP"
-
-    type: socks5
-
-    server: 207.145.156.49
-
-    port: 33929
-
-    username: "XOnMOuRv2wRu"
-
-    password: "5iD0lGzcgcKh"
-
-    udp: true
-
-    dialer-proxy: "🇭🇰 HY2前置"
+  type: socks5
+  server: 207.145.156.49
+  port: 33929
+  username: "XOnMOuRv2wRu"
+  password: "5iD0lGzcgcKh"
+  udp: true
+  dialer-proxy: "🇭🇰 HY2前置"
 
 
 
@@ -251,13 +236,10 @@ proxy-providers:
 # =====================
 
 
-proxy-groups:
-
-
 # HY2自动选择
 
+  proxy-groups:
   - name: "🇭🇰 HY2前置"
-
     type: url-test
 
     url: http://www.gstatic.com/generate_204
