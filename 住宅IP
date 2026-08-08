@@ -177,7 +177,7 @@ proxy-providers:
     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
 
-  - name: "🇰🇷 韩国01-HY2"
+  - name: "🇰🇷 韩国01-[HY2]"
     type: hysteria2
     server: kr01ngnmsl.sys-metric-report.com
     port: 29386
@@ -219,10 +219,8 @@ proxy-providers:
 
       path: "/?ed=2560"
 
-      headers:
-
-        Host: thomas20265.ccwu.cc
-
+       headers:
+         Host: thomas20265.ccwu.cc
 
 
 # =====================
@@ -270,12 +268,12 @@ proxy-groups:
 
     proxies:
 
-      - "🇭🇰 香港01-HY2"
+      - "🇭🇰 香港01[HY2]"
       - "🇭🇰 香港02[HY2]"
-      - "🇯🇵 日本01-HY2"
-      - "🇯🇵 日本02-HY2"
-      - "🇯🇵 日本03-HY2"
-      - "🇰🇷 韩国01-HY2"
+      - "🇯🇵 日本01-[HY2]"
+      - "🇯🇵 日本02-[HY2]"
+      - "🇯🇵 日本03-[HY2]"
+      - "🇰🇷 韩国01-[HY2]"
 
 
 
