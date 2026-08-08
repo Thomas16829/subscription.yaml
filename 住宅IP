@@ -119,92 +119,94 @@ proxies:
 # 香港 HY2
 # =====================
 
-   - name:"香港01-HY2"
-     type: hysteria2
-     server: hk01ngnmsl.sys-metric-report.com
-     port: 22164
-     password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-     sni: hkngnqjsl.cfastcdn.com
-     skip-cert-verify: false
-     up: 1000 Mbps
-     down: 1000 Mbps
-     obfs: salamander
-     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-     ports: 20000-30000
+   proxies:
+  
+  # ---- 香港/日本/新加坡 HY2（前置节点，用于住宅IP拨号） ----
+  
+# =====================
+# 香港 HY2
+# =====================
+
+  - name: "香港01-HY2"
+    type: hysteria2
+    server: hk01ngnmsl.sys-metric-report.com
+    port: 28331
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    sni: hkngnmsl.cfastcdn.com
+    skip-cert-verify: false
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+    obfs: salamander
+    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
 
-   - name: "香港02-HY2"
-     type: hysteria2
-     server: hk02ngnmsl.sys-metric-report.com
-     port: 27278
-     password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-     sni: hkngnqjsl.cfastcdn.com
-     skip-cert-verify: false
-     up: 1000 Mbps
-     down: 1000 Mbps
-     obfs: salamander
-     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-     ports: 20000-30000
+  - name: "香港02-HY2"
+    type: hysteria2
+    server: sgp01ngnmsl.sys-metric-report.com
+    port: 25513
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    sni: hkngnmsl.cfastcdn.com
+    skip-cert-verify: false
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+    obfs: salamander
+    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
 
-   - name: "香港03-HY2"
-     type: hysteria2
-     server: jp01ngnmsl.sys-metric-report.com
-     port: 24060
-     password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-     sni: jpngnqjsl.cfastcdn.com
-     skip-cert-verify: false
-     up: 1000 Mbps
-     down: 1000 Mbps
-     obfs: salamander
-     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-     ports: 20000-30000
-
-
-
-   - name: "香港04-HY2"
-     type: hysteria2
-     server: jp02ngnmsl.sys-metric-report.com
-     port: 22221
-     password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-     sni: jpngnqjsl.cfastcdn.com
-     skip-cert-verify: false
-     up: 1000 Mbps
-     down: 1000 Mbps
-     obfs: salamander
-     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-     ports: 20000-30000
- 
-
-
-   - name: "香港05-HY2"
-     type: hysteria2
-     server: jp03ngnmsl.sys-metric-report.com
-     port: 21312
-     password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-     sni: jpngnqjsl.cfastcdn.com
-     skip-cert-verify: false
-     up: 1000 Mbps
-     down: 1000 Mbps
-     obfs: salamander
-     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-     ports: 20000-30000
+  - name: "香港03-HY2"
+    type: hysteria2
+    server: jp01ngnmsl.sys-metric-report.com
+    port: 22166
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    sni: jpngnmsl.cfastcdn.com
+    skip-cert-verify: false
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+    obfs: salamander
+    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
 
 
+  - name: "香港04-HY2"
+    type: hysteria2
+    server: jp02ngnmsl.sys-metric-report.com
+    port: 22576
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    sni: jpngnmsl.cfastcdn.com
+    skip-cert-verify: false
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+    obfs: salamander
+    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
-   - name: "香港06-HY2"
-     type: hysteria2
-     server: kr01ngnmsl.sys-metric-report.com
-     port: 28180
-     password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-     sni: krngnqjsl.cfastcdn.com
-     skip-cert-verify: false
-     up: 1000 Mbps
-     down: 1000 Mbps
-     obfs: salamander
-     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-     ports: 20000-30000
+
+
+  - name: "香港05-HY2"
+    type: hysteria2
+    server: jp03ngnmsl.sys-metric-report.com
+    port: 29572
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    sni: jpngnmsl.cfastcdn.com
+    skip-cert-verify: false
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+    obfs: salamander
+    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
+
+
+
+
+  - name: "香港06-HY2"
+    type: hysteria2
+    server: kr01ngnmsl.sys-metric-report.com
+    port: 26645
+    password: 485c7cbb-f10b-4ec3-84d0-f017fd566308
+    sni: krngnqjsl.cfastcdn.com
+    skip-cert-verify: false
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+    obfs: salamander
+    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
 # =====================
 # VLESS 中转
