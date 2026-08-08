@@ -161,6 +161,7 @@ proxies:
     port: 39531
     username: hgBvv4YzIEjV
     password: 6P1LHwUi0GMZ
+    udp: true
     dialer-proxy: "HK 香港前置"
 
 # =====================
