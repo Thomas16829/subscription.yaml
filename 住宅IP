@@ -107,85 +107,74 @@ proxy-providers:
 
 
 # =====================
-# 节点
-# =====================
-
-proxies:
-
-
-# =====================
 # HY2 前置节点
 # =====================
 
+  proxies:
 
-  - name: "🇭🇰 香港01-HY2"
+  - name: "🇭🇰 香港01[HY2]"
     type: hysteria2
     server: hk01ngnmsl.sys-metric-report.com
-    port: 28062
+    port: 20672
     password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-    sni: hkngnmsl.cfastcdn.com
+    sni: hkngnqjsl.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
     obfs: salamander
     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-    ports: 20000-30000
 
 
-  - name: "🇸🇬 新加坡01-HY2"
+  - name: "🇭🇰 香港02[HY2]"
     type: hysteria2
-    server: sgp01ngnmsl.sys-metric-report.com
-    port: 20992
+    server: hk02ngnmsl.sys-metric-report.com
+    port: 23765
     password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-    sni: hkngnmsl.cfastcdn.com
+    sni: hkngnqjsl.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
     obfs: salamander
     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-    ports: 20000-30000
 
 
-  - name: "🇯🇵 日本01-HY2"
+  - name: "🇯🇵 日本01[HY2]"
     type: hysteria2
     server: jp01ngnmsl.sys-metric-report.com
-    port: 20948
+    port: 29767
     password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-    sni: jpngnmsl.cfastcdn.com
+    sni: jpngnqjsl.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
     obfs: salamander
     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-    ports: 20000-30000
 
 
-  - name: "🇯🇵 日本02-HY2"
+  - name: "🇯🇵 日本02[HY2]"
     type: hysteria2
     server: jp02ngnmsl.sys-metric-report.com
-    port: 27544
+    port: 27321
     password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-    sni: jpngnmsl.cfastcdn.com
+    sni: jpngnqjsl.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
     obfs: salamander
     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-    ports: 20000-30000
 
 
-  - name: "🇯🇵 日本03-HY2"
+  - name: "🇯🇵 日本03[HY2]"
     type: hysteria2
     server: jp03ngnmsl.sys-metric-report.com
-    port: 26574
+    port: 26379
     password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-    sni: jpngnmsl.cfastcdn.com
+    sni: jpngnqjsl.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
     obfs: salamander
     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-    ports: 20000-30000
 
 
   - name: "🇰🇷 韩国01-HY2"
@@ -282,7 +271,7 @@ proxy-groups:
     proxies:
 
       - "🇭🇰 香港01-HY2"
-      - "🇸🇬 新加坡01-HY2"
+      - "🇭🇰 香港02[HY2]"
       - "🇯🇵 日本01-HY2"
       - "🇯🇵 日本02-HY2"
       - "🇯🇵 日本03-HY2"
