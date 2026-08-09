@@ -50,7 +50,7 @@ proxies:
 
 # 香港 HY2
 
-  - name: "香港01-HY2"
+  - name: "🇭🇰 香港01[HY2]"
     type: hysteria2
     server: hk01ngnmsl.sys-metric-report.com
     port: 22250
@@ -63,7 +63,7 @@ proxies:
     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
 
-  - name: "香港02-HY2"
+  - name: "🇭🇰 香港02[HY2]"
     type: hysteria2
     server: sgp01ngnmsl.sys-metric-report.com
     port: 21265
@@ -76,7 +76,7 @@ proxies:
     obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
 
 
-  - name: "香港03-HY2"
+  - name: "🇭🇰 香港03[HY2]"
     type: hysteria2
     server: jp01ngnmsl.sys-metric-report.com
     port: 25466
@@ -90,7 +90,7 @@ proxies:
 
 
 
-  - name: "香港04-HY2"
+  - name: "🇭🇰 香港04[HY2]"
     type: hysteria2
     server: jp02ngnmsl.sys-metric-report.com
     port: 23811
@@ -104,7 +104,7 @@ proxies:
 
 
 
-  - name: "香港05-HY2"
+  - name: "🇭🇰 香港05[HY2]"
     type: hysteria2
     server: jp03ngnmsl.sys-metric-report.com
     port: 26220
@@ -119,7 +119,7 @@ proxies:
 
 
 
-  - name: "香港06-HY2"
+  - name: "🇭🇰 香港06[HY2]"
     type: hysteria2
     server: kr01ngnmsl.sys-metric-report.com
     port: 26645
@@ -134,7 +134,7 @@ proxies:
 
 # VLESS中转
 
-  - name: A-WS-中转
+  - name: "🇭🇰 香港07[HY2]"
 
     type: vless
 
@@ -166,7 +166,7 @@ proxies:
 
 # 美国住宅出口
 
-  - name: 住宅-洛杉矶
+  - name: "🇺🇸 住宅-洛杉矶"
 
     type: socks5
 
@@ -180,7 +180,7 @@ proxies:
 
     udp: true
 
-    dialer-proxy: 香港前置
+    dialer-proxy: "🇭🇰 香港前置"
 
 
 
@@ -191,41 +191,23 @@ proxies:
 
 
 proxy-groups:
-
-
-  - name: 香港前置
-
+  - name: "🇭🇰 香港前置"
     type: url-test
-
     proxies:
-
-      - 香港01-HY2
-      - 香港02-HY2
-      - 香港03-HY2
-      - 香港04-HY2
-      - 香港05-HY2
-      - 香港06-HY2
-
-
-    url: https://www.gstatic.com/generate_204
-
+      - "🇭🇰 香港01[HY2]"
+      - "🇭🇰 香港02[HY2]"
+      - "🇭🇰 香港03[HY2]"
+      - "🇭🇰 香港04[HY2]"
+      - "🇭🇰 香港05[HY2]"
+      - "🇭🇰 香港06[HY2]"
+    url: http://www.gstatic.com/generate_204
     interval: 300
-
     tolerance: 50
 
-
-
-  - name: 链式代理
-
+  - name: "🇺🇸 住宅链式代理"
     type: select
-
     proxies:
-
-      - 住宅-洛杉矶
-
-      - 香港前置
-
-      - DIRECT
+      - "🇺🇸 住宅-洛杉矶"
 
 
 
@@ -238,11 +220,11 @@ proxy-groups:
 rules:
 
 
-  - DOMAIN-SUFFIX,tiktok.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,tiktok.com,🇺🇸 住宅-洛杉矶
 
-  - DOMAIN-SUFFIX,facebook.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,facebook.com,🇺🇸 住宅-洛杉矶
 
-  - DOMAIN-SUFFIX,instagram.com,住宅-洛杉矶
+  - DOMAIN-SUFFIX,instagram.com,🇺🇸 住宅-洛杉矶
 
 
-  - MATCH,链式代理
+  - MATCH,🇺🇸 住宅链式代理
