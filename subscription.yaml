@@ -84,10 +84,10 @@ proxies:
   # 美国住宅IP（通过前置订阅拨号）
   - name: "🇺🇸 住宅-洛杉矶"
     type: socks5
-    server: 206.135.152.143
-    port: 33943
-    username: Gspg77qEpSKm
-    password: IfUN7Zuldcj1
+    server: 207.145.156.49
+    port: 33929
+    username: XOnMOuRv2wRu
+    password: 5iD0lGzcgcKh
     udp: true
     dialer-proxy: "🌏 Reality前置"
 
