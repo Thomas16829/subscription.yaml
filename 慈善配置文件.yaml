@@ -277,7 +277,24 @@ proxies:
     ws-opts:
       path: "/?ed=2560"
       headers:
-        Host: thomas20265.ccwu.cc      
+        Host: thomas20265.ccwu.cc 
+
+  - name: "🇺🇸 洛杉矶"
+    type: vmess
+    server: 35.212.132.62
+    port: 56021
+    uuid: f9570768-93f0-40fa-bed6-14b3836dc7e0
+    alterId: 0
+    cipher: auto
+    udp: true
+
+    network: ws
+    ws-opts:
+      path: /f9570768-93f0-40fa-bed6-14b3836dc7e0-vm
+      headers:
+        Host: www.bing.com
+
+    tls: false      
 
 
 
@@ -322,6 +339,7 @@ proxy-groups:
       - "🇭🇰 香港10"
       - "🇭🇰 香港11"
       - "🇭🇰 香港12"
+      - "🇺🇸 洛杉矶"
       
     url: http://www.gstatic.com/generate_204
 
