@@ -1,6 +1,5 @@
 # =====================
-# Clash Meta / Mihomo
-# 真链式住宅IP配置
+# Clash Meta 真链式住宅IP配置
 # =====================
 
 mixed-port: 7890
@@ -59,128 +58,57 @@ rule-providers:
     interval: 86400
 
 # =====================
-# 节点
+# 前置节点订阅（香港/台湾机场订阅，自动获取最新节点）
+# =====================
+
+proxy-providers:
+
+  front_sub:
+    type: http
+    url: "https://kjuobq.yau96.com/config?token=d0cff327fe324fc540b4acaa6592c477"
+    path: ./proxy_providers/front_sub.yaml
+    interval: 3600
+    filter: "香港|台湾|HK|TW|Reality|VLESS"
+
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+
+# =====================
+# 节点（仅保留住宅 IP，前置节点全部来自订阅）
 # =====================
 
 proxies:
-  # ---- 香港/日本/新加坡 HY2（前置节点，用于住宅IP拨号） ----
 
-  # 香港
-  - name: "🇭🇰 香港01[HY2]"
-    type: hysteria2
-    server: hk01ngnmsl.sys-metric-report.com
-    port: 20644
-    password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-    sni: hkngnqjsl.cfastcdn.com
-    skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-    obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-
-  - name: "🇭🇰 香港02[HY2]"
-    type: hysteria2
-    server: hk02ngnmsl.sys-metric-report.com
-    port: 29871
-    password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-    sni: hkngnqjsl.cfastcdn.com
-    skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-    obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-
-  - name: "🇭🇰 香港03[HY2]"
-    type: hysteria2
-    server: jp01ngnmsl.sys-metric-report.com
-    port: 24878
-    password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-    sni: jpngnqjsl.cfastcdn.com
-    skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-    obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-
-  - name: "🇭🇰 香港04[HY2]"
-    type: hysteria2
-    server: jp02ngnmsl.sys-metric-report.com
-    port: 24797
-    password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-    sni: jpngnqjsl.cfastcdn.com
-    skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-    obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-
-  - name: "🇭🇰 香港05[HY2]"
-    type: hysteria2
-    server: jp03ngnmsl.sys-metric-report.com
-    port: 24216
-    password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-    sni: jpngnqjsl.cfastcdn.com
-    skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-    obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-
-  - name: "🇭🇰 香港06[HY2]"
-    type: hysteria2
-    server: kr01ngnmsl.sys-metric-report.com
-    port: 22385
-    password: "485c7cbb-f10b-4ec3-84d0-f017fd566308"
-    sni: krngnqjsl.cfastcdn.com
-    skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-    obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-
-  # ---- VLESS 中转 ----
-  - name: "A-WS-中转"
-    type: vless
-    server: yg1.ygkkk.dpdns.org
-    port: 8443
-    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
-    network: ws
-    tls: true
-    udp: true
-    servername: thomas20265.ccwu.cc
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/?ed=2560"
-      headers:
-        Host: thomas20265.ccwu.cc
-
-  # ---- 美国住宅 IP（通过香港前置节点拨号） ----
+  # 美国住宅IP（通过前置订阅拨号）
   - name: "🇺🇸 住宅-洛杉矶"
     type: socks5
-    server: 66.80.127.188
-    port: 39531
-    username: hgBvv4YzIEjV
-    password: 6P1LHwUi0GMZ
+    server: 206.135.152.143
+    port: 33943
+    username: Gspg77qEpSKm
+    password: IfUN7Zuldcj1
     udp: true
-    dialer-proxy: "🇭🇰 香港前置"
+    dialer-proxy: "🌏 Reality前置"
 
 # =====================
 # 代理组
 # =====================
 
 proxy-groups:
-  - name: "🇭🇰 香港前置"
+
+  # 从订阅里自动测速，选最快的作为前置节点
+  - name: "🌏 Reality前置"
+
     type: url-test
-    proxies:
-      - "🇭🇰 香港01[HY2]"
-      - "🇭🇰 香港02[HY2]"
-      - "🇭🇰 香港03[HY2]"
-      - "🇭🇰 香港04[HY2]"
-      - "🇭🇰 香港05[HY2]"
-      - "🇭🇰 香港06[HY2]"
+
+    use:
+      - front_sub
+
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
+    lazy: true
 
   - name: "🇺🇸 住宅链式代理"
     type: select
@@ -192,115 +120,112 @@ proxy-groups:
 # =====================
 
 rules:
-
   # ---- 局域网/内网直连 ----
-   - IP-CIDR,127.0.0.0/8,DIRECT
-   - IP-CIDR,192.168.0.0/16,DIRECT
-   - IP-CIDR,10.0.0.0/8,DIRECT
-   - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
 
   # ---- 广告拦截 ----
-   - RULE-SET,reject,REJECT
-   - RULE-SET,anti-ad,REJECT
+  - RULE-SET,reject,REJECT
+  - RULE-SET,anti-ad,REJECT
 
   # ---- 社媒（正则，优先住宅IP） ----
-   - DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).*,🇺🇸 住宅链式代理
+  - DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).*,🇺🇸 住宅链式代理
 
-  # ---- Google 全家桶（含 Play/Gmail/搜索/API 等，一条 keyword 覆盖绝大部分） ----
-   - DOMAIN-KEYWORD,google,🇺🇸 住宅链式代理
+  # ---- Google 全家桶 ----
+  - DOMAIN-KEYWORD,google,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,gstatic.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,gvt1.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,gvt2.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,gvt3.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,gvt1-cn.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,gvt2-cn.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,gvt1.net,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,gvt2.net,🇺🇸 住宅链式代理
 
-  # 不含 "google" 字样、需要单独列出的 Google 相关域名/CDN
-   - DOMAIN-SUFFIX,gstatic.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,gvt1.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,gvt2.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,gvt3.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,gvt1-cn.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,gvt2-cn.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,gvt1.net,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,gvt2.net,🇺🇸 住宅链式代理
+  # Google CDN IP 段
+  - IP-CIDR,142.250.0.0/15,🇺🇸 住宅链式代理,no-resolve
+  - IP-CIDR,172.217.0.0/16,🇺🇸 住宅链式代理,no-resolve
+  - IP-CIDR,216.58.192.0/19,🇺🇸 住宅链式代理,no-resolve
+  - IP-CIDR,74.125.0.0/16,🇺🇸 住宅链式代理,no-resolve
+  - IP-CIDR,173.194.0.0/16,🇺🇸 住宅链式代理,no-resolve
 
-  # Google CDN IP 段（域名规则命中不了 IP，需单独保留）
-   - IP-CIDR,142.250.0.0/15,🇺🇸 住宅链式代理,no-resolve
-   - IP-CIDR,172.217.0.0/16,🇺🇸 住宅链式代理,no-resolve
-   - IP-CIDR,216.58.192.0/19,🇺🇸 住宅链式代理,no-resolve
-   - IP-CIDR,74.125.0.0/16,🇺🇸 住宅链式代理,no-resolve
-   - IP-CIDR,173.194.0.0/16,🇺🇸 住宅链式代理,no-resolve
-
-  # Google Play / Android 更新（本机运行 Clash 时才生效，路由器/多设备场景下无效，靠上面的域名规则兜底）
-   - PROCESS-NAME,com.android.vending,🇺🇸 住宅链式代理
-   - PROCESS-NAME,com.google.android.gms,🇺🇸 住宅链式代理
-   - PROCESS-NAME,com.google.android.gsf,🇺🇸 住宅链式代理
-   - PROCESS-NAME,com.android.providers.downloads,🇺🇸 住宅链式代理
+  # Google Play / Android
+  - PROCESS-NAME,com.android.vending,🇺🇸 住宅链式代理
+  - PROCESS-NAME,com.google.android.gms,🇺🇸 住宅链式代理
+  - PROCESS-NAME,com.google.android.gsf,🇺🇸 住宅链式代理
+  - PROCESS-NAME,com.android.providers.downloads,🇺🇸 住宅链式代理
 
   # ---- YouTube ----
-   - DOMAIN-SUFFIX,youtube.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,youtu.be,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,ytimg.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,youtube.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,youtu.be,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,ytimg.com,🇺🇸 住宅链式代理
 
   # ---- AI ----
-   - DOMAIN-SUFFIX,openai.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,chatgpt.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,claude.ai,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,openai.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,chatgpt.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,claude.ai,🇺🇸 住宅链式代理
 
   # ---- TikTok ----
-   - DOMAIN-SUFFIX,tiktok.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,tiktokcdn.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,tiktokv.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,byteoversea.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,ibyteimg.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,muscdn.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,bytecdn.cn,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,tiktok.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,tiktokcdn.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,tiktokv.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,byteoversea.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,ibyteimg.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,muscdn.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,bytecdn.cn,🇺🇸 住宅链式代理
 
   # ---- Meta ----
-   - DOMAIN-SUFFIX,facebook.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,fbcdn.net,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,fbsbx.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,instagram.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,cdninstagram.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,messenger.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,whatsapp.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,whatsapp.net,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,googleadservices.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,doubleclick.net,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,googlesyndication.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,google-analytics.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,facebook.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,fbcdn.net,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,fbsbx.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,instagram.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,cdninstagram.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,messenger.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,whatsapp.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,whatsapp.net,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,googleadservices.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,doubleclick.net,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,googlesyndication.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,google-analytics.com,🇺🇸 住宅链式代理
 
   # ---- 电商/支付/营销工具 ----
-   - DOMAIN-SUFFIX,amazon.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,amazonaws.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,shopify.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,myshopify.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,paypal.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,paypalobjects.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,stripe.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,mailchimp.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,sendgrid.net,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,hubspot.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,amazon.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,amazonaws.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,shopify.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,myshopify.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,paypal.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,paypalobjects.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,stripe.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,mailchimp.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,sendgrid.net,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,hubspot.com,🇺🇸 住宅链式代理
 
   # ---- LINE ----
-   - DOMAIN-SUFFIX,line.me,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,line-apps.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,line-scdn.net,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,line.naver.jp,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,line.me,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,line-apps.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,line-scdn.net,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,line.naver.jp,🇺🇸 住宅链式代理
 
   # ---- Zalo ----
-   - DOMAIN-SUFFIX,zalo.me,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,zaloapp.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,zalo.vn,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,zdn.vn,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,zalo.me,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,zaloapp.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,zalo.vn,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,zdn.vn,🇺🇸 住宅链式代理
 
-  # ---- LinkedIn（领英） ----
-   - DOMAIN-SUFFIX,linkedin.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,licdn.com,🇺🇸 住宅链式代理
+  # ---- LinkedIn ----
+  - DOMAIN-SUFFIX,linkedin.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,licdn.com,🇺🇸 住宅链式代理
 
   # ---- 其他国外 ----
-   - DOMAIN-SUFFIX,telegram.org,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,github.com,🇺🇸 住宅链式代理
-   - DOMAIN-SUFFIX,netflix.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,telegram.org,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,github.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,netflix.com,🇺🇸 住宅链式代理
 
   # ---- 国内直连（放在所有"必须代理"规则之后） ----
-   - GEOSITE,cn,DIRECT
-   - GEOIP,CN,DIRECT
+  - GEOSITE,cn,DIRECT
+  - GEOIP,CN,DIRECT
 
   # ---- 默认兜底 ----
-   - MATCH,🇺🇸 住宅链式代理
+  - MATCH,🇺🇸 住宅链式代理
