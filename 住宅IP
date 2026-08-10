@@ -78,8 +78,8 @@ proxies:
     flow: xtls-rprx-vision
     servername: happ.cfastcdn.com
     reality-opts:
-       public-key: sZ08KYbFU4QPHVTGELr3L8F1kJBm3SCdKjILUu1wg3E
-       short-id: 1fc484da
+      public-key: sZ08KYbFU4QPHVTGELr3L8F1kJBm3SCdKjILUu1wg3E
+      short-id: 1fc484da
     client-fingerprint: chrome
 
   - name: "🇭🇰 香港B"
@@ -93,13 +93,13 @@ proxies:
     flow: xtls-rprx-vision
     servername: happ.cfastcdn.com
     reality-opts:
-       public-key: z_yIRpwMVCktDVypYwUSsJocByiq03TREQcZwdA_hkI
-       short-id: 22dd9bb0
+      public-key: z_yIRpwMVCktDVypYwUSsJocByiq03TREQcZwdA_hkI
+      short-id: 22dd9bb0
     client-fingerprint: chrome
 
   - name: "🇭🇰 香港C"
     type: vless
-    erver: laa888.sys-metric-report.com
+    server: laa888.sys-metric-report.com
     port: 44068
     uuid: 485c7cbb-f10b-4ec3-84d0-f017fd566308
     network: tcp
@@ -108,8 +108,8 @@ proxies:
     flow: xtls-rprx-vision
     servername: happ.cfastcdn.com
     reality-opts:
-       public-key: sZ08KYbFU4QPHVTGELr3L8F1kJBm3SCdKjILUu1wg3E
-       short-id: 1fc484da
+      public-key: sZ08KYbFU4QPHVTGELr3L8F1kJBm3SCdKjILUu1wg3E
+      short-id: 1fc484da
     client-fingerprint: chrome
 
 
@@ -124,8 +124,8 @@ proxies:
     flow: xtls-rprx-vision
     servername: tapp.cfastcdn.com
     reality-opts:
-       public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw
-       short-id: d481c1dc
+      public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw
+      short-id: d481c1dc
     client-fingerprint: edge
 
   - name: "🇹🇼 台湾B"
@@ -139,8 +139,8 @@ proxies:
     flow: xtls-rprx-vision
     servername: tapp.cfastcdn.com
     reality-opts:
-       public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw
-       short-id: d481c1dc
+      public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw 
+      short-id: d481c1dc
     client-fingerprint: chrome
 
   - name: "🇹🇼 台湾C"
@@ -154,8 +154,8 @@ proxies:
     flow: xtls-rprx-vision
     servername: tapp.cfastcdn.com
     reality-opts:
-       public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw
-       short-id: d481c1dc
+      public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw
+      short-id: d481c1dc
     client-fingerprint: safari
 
 
@@ -204,11 +204,10 @@ proxy-groups:
     - 🇹🇼 台湾Reality
 
 
-  # 住宅链式（最终出口）
-  - name: "🇺🇸 住宅链式代理"
-    type: select
-    proxies:
-         - "🇺🇸 住宅-洛杉矶"
+- name: "🇺🇸 住宅链式代理"
+  type: select
+  proxies:
+    - 🇺🇸 住宅-洛杉矶
 
 
 
