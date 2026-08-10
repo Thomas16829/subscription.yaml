@@ -246,13 +246,13 @@ proxies:
 
     type: socks5
 
-    server: 207.145.156.49
+    server: 206.135.152.143
 
-    port: 33929
+    port: 33943
 
-    username: XOnMOuRv2wRu
+    username: Gspg77qEpSKm
 
-    password: 5iD0lGzcgcKh
+    password: IfUN7Zuldcj1
 
     udp: true
 
