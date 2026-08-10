@@ -98,7 +98,7 @@ proxy-groups:
   - name: "🇭🇰 香港前置"
     type: url-test
     use:
-      - hk_sub
+        - hk_sub
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
@@ -107,7 +107,9 @@ proxy-groups:
   - name: "🇺🇸 住宅链式代理"
     type: select
     proxies:
-      - "🇺🇸 住宅-洛杉矶"
+         - "🇺🇸 住宅-洛杉矶"
+         - DIRECT
+
 
 
 # =====================
