@@ -114,7 +114,6 @@ proxy-groups:
     type: url-test
     use:
       - hk_sub
-      - A-WS-中转
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
