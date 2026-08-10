@@ -1,6 +1,5 @@
 # =====================
-# Clash Meta / Mihomo
-# 真链式住宅IP配置
+# Clash Meta 真链式住宅IP配置
 # =====================
 
 mixed-port: 7890
@@ -58,41 +57,27 @@ rule-providers:
     path: ./ruleset/anti-ad.yaml
     interval: 86400
 
+# =====================
+# 节点
+# =====================
 
+proxies:
 
-  # ---- VLESS 中转 ----
-  - name: "A-WS-中转"
-    type: vless
-    server: yg1.ygkkk.dpdns.org
-    port: 8443
-    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
-    network: ws
-    tls: true
-    udp: true
-    servername: thomas20265.ccwu.cc
-    client-fingerprint: chrome
-    ws-opts:
-      path: "/?ed=2560"
-      headers:
-        Host: thomas20265.ccwu.cc
-
-  # ---- 美国住宅 IP（通过香港前置节点拨号） ----
+  # 美国住宅IP（通过香港订阅前置拨号）
   - name: "🇺🇸 住宅-洛杉矶"
     type: socks5
     server: 206.135.152.143
     port: 33943
-    username: "Gspg77qEpSKm"
-    password: "IfUN7Zuldcj1"
+    username: Gspg77qEpSKm
+    password: IfUN7Zuldcj1
     udp: true
     dialer-proxy: "🇭🇰 香港前置"
 
-
 # =====================
-# 自动订阅
+# 订阅（香港节点）
 # =====================
 
 proxy-providers:
-
   hk_sub:
     type: http
     url: "https://kjuobq.yau96.com/config?token=d0cff327fe324fc540b4acaa6592c477"
@@ -103,13 +88,13 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
       interval: 300
 
-
 # =====================
 # 代理组
 # =====================
 
 proxy-groups:
 
+  # 香港前置（自动测速选最快）
   - name: "🇭🇰 香港前置"
     type: url-test
     use:
@@ -118,7 +103,7 @@ proxy-groups:
     interval: 300
     tolerance: 50
 
-
+  # 住宅链式（最终出口）
   - name: "🇺🇸 住宅链式代理"
     type: select
     proxies:
@@ -142,6 +127,7 @@ rules:
 
   # ---- 社媒（正则，优先住宅IP） ----
   - DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).*,🇺🇸 住宅链式代理
+  - DOMAIN-KEYWORD,google,🇺🇸 住宅链式代理
 
   # ---- Google 全家桶 ----
   - DOMAIN-KEYWORD,google,🇺🇸 住宅链式代理
