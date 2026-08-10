@@ -177,37 +177,37 @@ proxy-groups:
 
   # 香港前置（自动测速选最快）
   - name: "🇭🇰 香港Reality"
-  type: url-test
-  proxies:
-    - 🇭🇰 香港A
-    - 🇭🇰 香港B
-    - 🇭🇰 香港C
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+    type: url-test
+    proxies:
+      - 🇭🇰 香港A
+      - 🇭🇰 香港B
+      - 🇭🇰 香港C
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
 
 
-- name: "🇹🇼 台湾Reality"
-  type: url-test
-  proxies:
-    - 🇹🇼 台湾A
-    - 🇹🇼 台湾B
-    - 🇹🇼 台湾C
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
+  - name: "🇹🇼 台湾Reality"
+    type: url-test
+    proxies:
+      - 🇹🇼 台湾A
+      - 🇹🇼 台湾B
+      - 🇹🇼 台湾C
+    url: http://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
 
-- name: "🌏 Reality前置"
-  type: select
-  proxies:
-    - 🇭🇰 香港Reality
-    - 🇹🇼 台湾Reality
+  - name: "🌏 Reality前置"
+    type: select
+    proxies:
+      - 🇭🇰 香港Reality
+      - 🇹🇼 台湾Reality
 
 
-- name: "🇺🇸 住宅链式代理"
-  type: select
-  proxies:
-    - 🇺🇸 住宅-洛杉矶
+  - name: "🇺🇸 住宅链式代理"
+    type: select
+    proxies:
+      - 🇺🇸 住宅-洛杉矶
 
 
 
