@@ -81,6 +81,7 @@ proxies:
       public-key: sZ08KYbFU4QPHVTGELr3L8F1kJBm3SCdKjILUu1wg3E
       short-id: 1fc484da
     client-fingerprint: chrome
+    hidden: true
 
   - name: "🇭🇰 香港B"
     type: vless
@@ -96,6 +97,7 @@ proxies:
       public-key: z_yIRpwMVCktDVypYwUSsJocByiq03TREQcZwdA_hkI
       short-id: 22dd9bb0
     client-fingerprint: chrome
+    hidden: true
 
   - name: "🇭🇰 香港C"
     type: vless
@@ -111,6 +113,7 @@ proxies:
       public-key: sZ08KYbFU4QPHVTGELr3L8F1kJBm3SCdKjILUu1wg3E
       short-id: 1fc484da
     client-fingerprint: chrome
+    hidden: true
 
 
   - name: "🇹🇼 台湾A"
@@ -127,6 +130,7 @@ proxies:
       public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw
       short-id: d481c1dc
     client-fingerprint: edge
+    hidden: true
 
   - name: "🇹🇼 台湾B"
     type: vless
@@ -142,6 +146,7 @@ proxies:
       public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw 
       short-id: d481c1dc
     client-fingerprint: chrome
+    hidden: true
 
   - name: "🇹🇼 台湾C"
     type: vless
@@ -157,6 +162,7 @@ proxies:
       public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw
       short-id: d481c1dc
     client-fingerprint: safari
+    hidden: true
 
 
   # 美国住宅IP（通过香港订阅前置拨号）
@@ -193,6 +199,7 @@ proxy-groups:
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
+    lazy: true
 
 
   - name: "🇺🇸 住宅链式代理"
