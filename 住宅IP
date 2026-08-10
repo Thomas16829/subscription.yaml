@@ -127,7 +127,10 @@ rules:
 
   # ---- 社媒（正则，优先住宅IP） ----
   - DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).*,🇺🇸 住宅链式代理
+
+  # ---- Google 全家桶（含 Play/Gmail/搜索/API 等，一条 keyword 覆盖绝大部分） ----
   - DOMAIN-KEYWORD,google,🇺🇸 住宅链式代理
+
 
   # ---- Google 全家桶 ----
   - DOMAIN-KEYWORD,google,🇺🇸 住宅链式代理
