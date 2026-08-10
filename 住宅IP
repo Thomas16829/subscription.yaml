@@ -181,12 +181,11 @@ proxies:
 
 proxy-groups:
 
-  # 香港前置（自动测速选最快）
   - name: "🌏 Reality前置"
     
     type: url-test
 
-     proxies:
+    proxies:
 
       - 🇭🇰 香港A
       - 🇭🇰 香港B
