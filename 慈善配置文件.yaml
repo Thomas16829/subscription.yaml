@@ -212,27 +212,72 @@ proxies:
     type: vless
     server: yg1.ygkkk.dpdns.org
     port: 8443
-
     uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
-
     network: ws
-
     tls: true
-
     udp: true
-
     servername: thomas20265.ccwu.cc
-
     client-fingerprint: chrome
-
-
     ws-opts:
-
       path: "/?ed=2560"
-
       headers:
-
         Host: thomas20265.ccwu.cc
+
+  - name: "🇭🇰 香港09"
+    type: vless
+    server: yg8.ygkkk.dpdns.org
+    port: 443
+    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+    udp: false
+    tls: true
+    network: ws
+    servername: thomas20265.ccwu.cc
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: thomas20265.ccwu.cc
+
+  - name: "🇭🇰 香港10"
+    type: vless
+    server: yg9.ygkkk.dpdns.org
+    port: 8443
+    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+    udp: false
+    tls: true
+    network: ws
+    servername: thomas20265.ccwu.cc
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: thomas20265.ccwu.cc
+
+  - name: "🇭🇰 香港11"
+    type: vless
+    server: yg11.ygkkk.dpdns.org
+    port: 2083
+    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+    udp: false
+    tls: true
+    network: ws
+    servername: thomas20265.ccwu.cc
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: thomas20265.ccwu.cc
+
+  - name: "🇭🇰 香港12"
+    type: vless
+    server: yg12.ygkkk.dpdns.org
+    port: 2087
+    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+    udp: false
+    tls: true
+    network: ws
+    servername: thomas20265.ccwu.cc
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: thomas20265.ccwu.cc      
 
 
 
@@ -243,20 +288,15 @@ proxies:
   # ---- 美国住宅 IP（通过香港前置节点拨号） ----
 
   - name: "🇺🇸 住宅-洛杉矶"
-
     type: socks5
-
     server: 206.135.152.143
-
     port: 33943
-
     username: Gspg77qEpSKm
-
     password: IfUN7Zuldcj1
-
     udp: true
-
     dialer-proxy: "🇭🇰 香港前置"
+
+    
 # =====================
 # 代理组
 # =====================
@@ -278,6 +318,10 @@ proxy-groups:
       - "🇭🇰 香港06"
       - "🇭🇰 香港07"
       - "🇭🇰 香港08"
+      - "🇭🇰 香港09"
+      - "🇭🇰 香港10"
+      - "🇭🇰 香港11"
+      - "🇭🇰 香港12"
       
     url: http://www.gstatic.com/generate_204
 
