@@ -1,5 +1,6 @@
 # =====================
-# Clash Meta 真链式住宅IP配置
+# Clash Meta / Mihomo
+# 真链式住宅IP配置
 # =====================
 
 mixed-port: 7890
@@ -58,114 +59,30 @@ rule-providers:
     interval: 86400
 
 # =====================
-# 节点
+# 前置节点订阅（香港/台湾机场订阅，自动获取最新节点）
+# =====================
+
+proxy-providers:
+
+  front_sub:
+    type: http
+    url: "https://kjuobq.yau96.com/config?token=d0cff327fe324fc540b4acaa6592c477"
+    path: ./proxy_providers/front_sub.yaml
+    interval: 3600
+    filter: "香港|台湾|HK|TW|Reality|VLESS"
+
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+
+# =====================
+# 节点（仅保留住宅 IP，前置节点全部来自订阅）
 # =====================
 
 proxies:
 
-  # ---- 香港/台湾  VLESS（前置节点，用于住宅IP拨号） ----
-
-  # 香港
-
-  - name: "🇭🇰 香港A"
-    type: vless
-    server: laa888.sys-metric-report.com
-    port: 44068
-    uuid: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    network: tcp
-    tls: true
-    udp: true
-    flow: xtls-rprx-vision
-    servername: happ.cfastcdn.com
-    reality-opts:
-      public-key: sZ08KYbFU4QPHVTGELr3L8F1kJBm3SCdKjILUu1wg3E
-      short-id: 1fc484da
-    client-fingerprint: chrome
-    hidden: true
-
-  - name: "🇭🇰 香港B"
-    type: vless
-    server: laa888.sys-metric-report.com
-    port: 45450
-    uuid: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    network: tcp
-    udp: true
-    tls: true
-    flow: xtls-rprx-vision
-    servername: happ.cfastcdn.com
-    reality-opts:
-      public-key: z_yIRpwMVCktDVypYwUSsJocByiq03TREQcZwdA_hkI
-      short-id: 22dd9bb0
-    client-fingerprint: chrome
-    hidden: true
-
-  - name: "🇭🇰 香港C"
-    type: vless
-    server: laa888.sys-metric-report.com
-    port: 44068
-    uuid: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    network: tcp
-    udp: true
-    tls: true
-    flow: xtls-rprx-vision
-    servername: happ.cfastcdn.com
-    reality-opts:
-      public-key: sZ08KYbFU4QPHVTGELr3L8F1kJBm3SCdKjILUu1wg3E
-      short-id: 1fc484da
-    client-fingerprint: chrome
-    hidden: true
-
-
-  - name: "🇹🇼 台湾A"
-    type: vless
-    server: laa888.sys-metric-report.com
-    port: 26396
-    uuid: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    network: tcp
-    udp: true
-    tls: true
-    flow: xtls-rprx-vision
-    servername: tapp.cfastcdn.com
-    reality-opts:
-      public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw
-      short-id: d481c1dc
-    client-fingerprint: edge
-    hidden: true
-
-  - name: "🇹🇼 台湾B"
-    type: vless
-    server: laa888.sys-metric-report.com
-    port: 14507
-    uuid: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    network: tcp
-    udp: true
-    tls: true
-    flow: xtls-rprx-vision
-    servername: tapp.cfastcdn.com
-    reality-opts:
-      public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw 
-      short-id: d481c1dc
-    client-fingerprint: chrome
-    hidden: true
-
-  - name: "🇹🇼 台湾C"
-    type: vless
-    server: laa888.sys-metric-report.com
-    port: 40370
-    uuid: 485c7cbb-f10b-4ec3-84d0-f017fd566308
-    network: tcp
-    udp: true
-    tls: true
-    flow: xtls-rprx-vision
-    servername: tapp.cfastcdn.com
-    reality-opts:
-      public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw
-      short-id: d481c1dc
-    client-fingerprint: safari
-    hidden: true
-
-
-  # 美国住宅IP（通过香港订阅前置拨号）
+  # 美国住宅IP（通过前置订阅拨号）
   - name: "🇺🇸 住宅-洛杉矶"
     type: socks5
     server: 206.135.152.143
@@ -181,32 +98,23 @@ proxies:
 
 proxy-groups:
 
+  # 从订阅里自动测速，选最快的作为前置节点
   - name: "🌏 Reality前置"
-    
+
     type: url-test
 
-    proxies:
-
-      - 🇭🇰 香港A
-      - 🇭🇰 香港B
-      - 🇭🇰 香港C
-
-      - 🇹🇼 台湾A
-      - 🇹🇼 台湾B
-      - 🇹🇼 台湾C
+    use:
+      - front_sub
 
     url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
     lazy: true
 
-
   - name: "🇺🇸 住宅链式代理"
     type: select
     proxies:
-      - 🇺🇸 住宅-洛杉矶
-
-
+      - "🇺🇸 住宅-洛杉矶"
 
 # =====================
 # 分流规则
@@ -225,10 +133,6 @@ rules:
 
   # ---- 社媒（正则，优先住宅IP） ----
   - DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).*,🇺🇸 住宅链式代理
-
-  # ---- Google 全家桶（含 Play/Gmail/搜索/API 等，一条 keyword 覆盖绝大部分） ----
-  - DOMAIN-KEYWORD,google,🇺🇸 住宅链式代理
-
 
   # ---- Google 全家桶 ----
   - DOMAIN-KEYWORD,google,🇺🇸 住宅链式代理
