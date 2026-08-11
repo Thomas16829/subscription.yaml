@@ -1,13 +1,15 @@
-# =====================
-# Clash Meta / Mihomo
-# 真链式住宅IP配置
-# =====================
+# =========================================================
+# Mihomo / Clash Meta
+# 香港/台湾前置 → 美国住宅 SOCKS5
+# 诊断稳定版
+# =========================================================
 
 mixed-port: 7890
 allow-lan: true
 bind-address: "*"
 mode: rule
 log-level: info
+
 tcp-concurrent: true
 unified-delay: true
 
@@ -17,9 +19,10 @@ profile:
   store-selected: true
   store-fake-ip: true
 
-# =====================
+
+# =========================================================
 # DNS
-# =====================
+# =========================================================
 
 dns:
   enable: true
@@ -39,213 +42,261 @@ dns:
     geoip: true
     geoip-code: CN
 
-# =====================
+
+# =========================================================
 # 规则订阅
-# =====================
+# =========================================================
 
 rule-providers:
+
   reject:
     type: http
     behavior: domain
-    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
+    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
     path: ./ruleset/reject.yaml
     interval: 86400
 
   anti-ad:
     type: http
     behavior: domain
-    url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
+    url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
     path: ./ruleset/anti-ad.yaml
     interval: 86400
 
-# =====================
-# 前置节点订阅（香港/台湾机场订阅，自动获取最新节点）
-# =====================
+
+# =========================================================
+# 前置节点订阅
+# 香港 / 台湾 / 日本 HY2
+# =========================================================
 
 proxy-providers:
 
   front_sub:
     type: http
+
     url: "https://8.217.98.112:1000/config?token=d1675ed4abfea3e40a1836ecee7004ca"
-    skip-cert-verify: true
+
     path: ./proxy_providers/front_sub.yaml
+
     interval: 3600
-    filter: "(香港|日本).*HY2"
-    exclude-type: "ss|vmess|trojan|http|socks5|snell|ssr|vless|wireguard"
+
+    skip-cert-verify: true
+
+    filter: "(香港|台湾|日本).*HY2"
 
     health-check:
       enable: true
-      url: http://www.gstatic.com/generate_204
+      url: "http://www.gstatic.com/generate_204"
       interval: 300
 
-# =====================
-# 节点（仅保留住宅 IP，前置节点全部来自订阅）
-# =====================
+
+# =========================================================
+# 美国住宅 SOCKS5
+# =========================================================
 
 proxies:
 
-  # 美国住宅IP（通过前置订阅拨号）
-  - name: "🇺🇸 住宅-洛杉矶"
+  - name: "🇺🇸 美国住宅"
+
     type: socks5
+
     server: 66.80.127.188
+
     port: 39531
-    username: hgBvv4YzIEjV
-    password: 6P1LHwUi0GMZ
+
+    username: "hgBvv4YzIEjV"
+
+    password: "6P1LHwUi0GMZ"
+
     udp: true
+
     dialer-proxy: "🌏 Reality前置"
 
-# =====================
+
+# =========================================================
 # 代理组
-# =====================
+# =========================================================
 
 proxy-groups:
 
-# =====================
-# 普通国外流量：订阅节点自动选择
-# =====================
+  # -------------------------------------------------------
+  # 普通国外
+  # 直接使用订阅节点
+  # -------------------------------------------------------
 
-- name: "🌏 普通国外"
-  type: url-test
-  use:
-    - front_sub
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: false
+  - name: "🌏 普通国外"
 
-# =====================
-# 真链式前置
-# =====================
+    type: url-test
 
-- name: "🌏 Reality前置"
-  type: url-test
-  use:
-    - front_sub
-  url: http://www.gstatic.com/generate_204
-  interval: 300
-  tolerance: 50
-  lazy: false
+    use:
+      - front_sub
 
-# =====================
-# 美国住宅链
-# =====================
+    url: "http://www.gstatic.com/generate_204"
 
-- name: "🇺🇸 住宅链式代理"
-  type: select
-  proxies:
-    - "🇺🇸 住宅-洛杉矶"
+    interval: 300
 
-# =====================
+    tolerance: 50
+
+    lazy: false
+
+
+  # -------------------------------------------------------
+  # 香港/台湾前置
+  # 只负责给住宅 SOCKS5 做上游
+  # -------------------------------------------------------
+
+  - name: "🌏 Reality前置"
+
+    type: url-test
+
+    use:
+      - front_sub
+
+    url: "http://www.gstatic.com/generate_204"
+
+    interval: 300
+
+    tolerance: 50
+
+    lazy: false
+
+
+  # -------------------------------------------------------
+  # 美国住宅出口
+  # -------------------------------------------------------
+
+  - name: "🇺🇸 住宅链式代理"
+
+    type: select
+
+    proxies:
+      - "🇺🇸 美国住宅"
+
+
+# =========================================================
 # 分流规则
-# =====================
+# =========================================================
 
 rules:
-  # ---- 局域网/内网直连 ----
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
 
-  # ---- 广告拦截 ----
+  # -------------------------------------------------------
+  # 局域网
+  # -------------------------------------------------------
+
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+
+
+  # -------------------------------------------------------
+  # 广告
+  # -------------------------------------------------------
+
   - RULE-SET,reject,REJECT
   - RULE-SET,anti-ad,REJECT
 
-  # ---- 社媒（正则，优先住宅IP） ----
-  - DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).*,🇺🇸 住宅链式代理
 
-  # ---- Google 全家桶 ----
+  # =======================================================
+  # 住宅 IP 测试
+  # =======================================================
+
+  # Google
   - DOMAIN-KEYWORD,google,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,google.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,gstatic.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,gvt1.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,gvt2.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,gvt3.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,gvt1-cn.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,gvt2-cn.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,gvt1.net,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,gvt2.net,🇺🇸 住宅链式代理
 
-  # Google CDN IP 段
-  - IP-CIDR,142.250.0.0/15,🇺🇸 住宅链式代理,no-resolve
-  - IP-CIDR,172.217.0.0/16,🇺🇸 住宅链式代理,no-resolve
-  - IP-CIDR,216.58.192.0/19,🇺🇸 住宅链式代理,no-resolve
-  - IP-CIDR,74.125.0.0/16,🇺🇸 住宅链式代理,no-resolve
-  - IP-CIDR,173.194.0.0/16,🇺🇸 住宅链式代理,no-resolve
 
-  # Google Play / Android
-  - PROCESS-NAME,com.android.vending,🇺🇸 住宅链式代理
-  - PROCESS-NAME,com.google.android.gms,🇺🇸 住宅链式代理
-  - PROCESS-NAME,com.google.android.gsf,🇺🇸 住宅链式代理
-  - PROCESS-NAME,com.android.providers.downloads,🇺🇸 住宅链式代理
-
-  # ---- YouTube ----
+  # YouTube
   - DOMAIN-SUFFIX,youtube.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,youtu.be,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,ytimg.com,🇺🇸 住宅链式代理
 
-  # ---- AI ----
+
+  # OpenAI / ChatGPT
   - DOMAIN-SUFFIX,openai.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,chatgpt.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,claude.ai,🇺🇸 住宅链式代理
 
-  # ---- TikTok ----
+
+  # TikTok
   - DOMAIN-SUFFIX,tiktok.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,tiktokcdn.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,tiktokv.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,byteoversea.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,ibyteimg.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,muscdn.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,bytecdn.cn,🇺🇸 住宅链式代理
 
-  # ---- Meta ----
+
+  # Facebook / Instagram
   - DOMAIN-SUFFIX,facebook.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,fbcdn.net,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,fbsbx.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,instagram.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,cdninstagram.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,messenger.com,🇺🇸 住宅链式代理
+
+
+  # WhatsApp
   - DOMAIN-SUFFIX,whatsapp.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,whatsapp.net,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,googleadservices.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,doubleclick.net,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,googlesyndication.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,google-analytics.com,🇺🇸 住宅链式代理
 
-  # ---- 电商/支付/营销工具 ----
+
+  # Telegram
+  - DOMAIN-SUFFIX,telegram.org,🇺🇸 住宅链式代理
+
+
+  # GitHub
+  - DOMAIN-SUFFIX,github.com,🇺🇸 住宅链式代理
+
+
+  # Netflix
+  - DOMAIN-SUFFIX,netflix.com,🇺🇸 住宅链式代理
+
+
+  # Amazon
   - DOMAIN-SUFFIX,amazon.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,amazonaws.com,🇺🇸 住宅链式代理
+
+
+  # Shopify
   - DOMAIN-SUFFIX,shopify.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,myshopify.com,🇺🇸 住宅链式代理
+
+
+  # PayPal
   - DOMAIN-SUFFIX,paypal.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,paypalobjects.com,🇺🇸 住宅链式代理
+
+
+  # Stripe
   - DOMAIN-SUFFIX,stripe.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,mailchimp.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,sendgrid.net,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,hubspot.com,🇺🇸 住宅链式代理
 
-  # ---- LINE ----
-  - DOMAIN-SUFFIX,line.me,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,line-apps.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,line-scdn.net,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,line.naver.jp,🇺🇸 住宅链式代理
 
-  # ---- Zalo ----
-  - DOMAIN-SUFFIX,zalo.me,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,zaloapp.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,zalo.vn,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,zdn.vn,🇺🇸 住宅链式代理
-
-  # ---- LinkedIn ----
+  # LinkedIn
   - DOMAIN-SUFFIX,linkedin.com,🇺🇸 住宅链式代理
   - DOMAIN-SUFFIX,licdn.com,🇺🇸 住宅链式代理
 
-  # ---- 其他国外 ----
-  - DOMAIN-SUFFIX,telegram.org,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,github.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,netflix.com,🇺🇸 住宅链式代理
 
-  # ---- 国内直连（放在所有"必须代理"规则之后） ----
+  # LINE
+  - DOMAIN-SUFFIX,line.me,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,line-apps.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,line-scdn.net,🇺🇸 住宅链式代理
+
+
+  # Zalo
+  - DOMAIN-SUFFIX,zalo.me,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,zaloapp.com,🇺🇸 住宅链式代理
+  - DOMAIN-SUFFIX,zalo.vn,🇺🇸 住宅链式代理
+
+
+  # -------------------------------------------------------
+  # 中国大陆
+  # -------------------------------------------------------
+
   - GEOSITE,cn,DIRECT
   - GEOIP,CN,DIRECT
 
-  # ---- 默认兜底 ----
+
+  # -------------------------------------------------------
+  # 默认国外
+  # -------------------------------------------------------
+
   - MATCH,🌏 普通国外
