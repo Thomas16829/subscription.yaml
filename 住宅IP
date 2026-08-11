@@ -59,22 +59,60 @@ rule-providers:
     interval: 86400
 
 # =====================
-# 前置节点订阅（香港/台湾机场订阅，自动获取最新节点）
+# 前置节点订阅（香港/日本机场订阅，自动获取最新节点）
 # =====================
 
 proxy-providers:
 
-  front_sub:
-    type: http
-    url: "https://8.217.98.112:1000/config?token=d1675ed4abfea3e40a1836ecee7004ca"
-    path: ./proxy_providers/front_sub.yaml
-    interval: 3600
-    
+  proxies:
+  # 🇭🇰 香港中转
+  - name: "🇭🇰 香港01[HY2]"
+    type: hysteria2
+    server: hk01ngnmsl.sys-metric-report.com
+    port: 21181
+    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    sni: hkngnqjsl.cfastcdn.com
+    skip-cert-verify: false
+    up: 1000
+    down: 1000
+    obfs: salamander
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
-    health-check:
-      enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 300
+  - name: "🇭🇰 香港02[HY2]"
+    type: hysteria2
+    server: hk02ngnmsl.sys-metric-report.com
+    port: 25750
+    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    sni: hkngnqjsl.cfastcdn.com
+    skip-cert-verify: false
+    up: 1000
+    down: 1000
+    obfs: salamander
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+
+  - name: "🇯🇵 日本01[HY2]"
+    type: hysteria2
+    server: jp01ngnmsl.sys-metric-report.com
+    port: 25794
+    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    sni: jpngnqjsl.cfastcdn.com
+    skip-cert-verify: false
+    up: 1000
+    down: 1000
+    obfs: salamander
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+
+  - name: "🇯🇵 日本02[HY2]"
+    type: hysteria2
+    server: jp02ngnmsl.sys-metric-report.com
+    port: 20739
+    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    sni: jpngnqjsl.cfastcdn.com
+    skip-cert-verify: false
+    up: 1000
+    down: 1000
+    obfs: salamander
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
 # =====================
 # 节点（仅保留住宅 IP，前置节点全部来自订阅）
@@ -103,8 +141,10 @@ proxy-groups:
 
     type: url-test
 
-    use:
-      - front_sub
+      - 🇭🇰 香港01[HY2]
+      - 🇭🇰 香港02[HY2]
+      - 🇯🇵 日本01[HY2]
+      - 🇯🇵 日本02[HY2]
 
     url: http://www.gstatic.com/generate_204
     interval: 300
