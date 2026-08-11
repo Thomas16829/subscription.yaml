@@ -62,10 +62,9 @@ rule-providers:
 # 前置节点订阅（香港/日本机场订阅，自动获取最新节点）
 # =====================
 
-proxy-providers:
 
   proxies:
-  # 🇭🇰 香港中转
+
   - name: "🇭🇰 香港01[HY2]"
     type: hysteria2
     server: hk01ngnmsl.sys-metric-report.com
