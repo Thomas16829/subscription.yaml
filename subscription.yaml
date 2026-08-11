@@ -65,10 +65,10 @@ proxy-providers:
 
   front_sub:
     type: http
-    url: "https://kjuobq.yau96.com/config?token=d0cff327fe324fc540b4acaa6592c477"
+    url: "https://8.217.98.112:1000/config?token=d1675ed4abfea3e40a1836ecee7004ca"
     path: ./proxy_providers/front_sub.yaml
     interval: 3600
-    filter: "香港|台湾|HK|TW|Reality|VLESS"
+    filter: "香港|日本|HK|JP|Reality"
 
     health-check:
       enable: true
