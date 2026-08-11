@@ -118,7 +118,7 @@ proxy-providers:
 # 节点（仅保留住宅 IP，前置节点全部来自订阅）
 # =====================
 
-proxies:
+
 
   # 美国住宅IP（通过前置订阅拨号）
   - name: "🇺🇸 住宅-洛杉矶"
@@ -269,4 +269,4 @@ rules:
   - GEOIP,CN,DIRECT
 
   # ---- 默认兜底 ----
-  - MATCH,🇺🇸 住宅链式代理
+  - MATCH,🌏 Reality前置
