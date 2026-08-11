@@ -69,7 +69,7 @@ proxy-providers:
     url: "https://8.217.98.112:1000/config?token=d1675ed4abfea3e40a1836ecee7004ca"
     path: ./proxy_providers/front_sub.yaml
     interval: 3600
-    filter: "香港|日本|HK|JP|HY2|Hysteria2"
+    filter: "(香港|日本).*HY2"
     exclude-type: "ss|vmess|trojan|http|socks5|snell|ssr|vless|wireguard"
 
     health-check:
