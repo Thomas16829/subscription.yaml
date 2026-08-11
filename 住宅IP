@@ -99,23 +99,40 @@ proxies:
 
 proxy-groups:
 
-  # 从订阅里自动测速，选最快的作为前置节点
-  - name: "🌏 Reality前置"
+# =====================
+# 普通国外流量：订阅节点自动选择
+# =====================
 
-    type: url-test
+- name: "🌏 普通国外"
+  type: url-test
+  use:
+    - front_sub
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  lazy: false
 
-    use:
-      - front_sub
+# =====================
+# 真链式前置
+# =====================
 
-    url: http://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
-    lazy: true
+- name: "🌏 Reality前置"
+  type: url-test
+  use:
+    - front_sub
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  lazy: false
 
-  - name: "🇺🇸 住宅链式代理"
-    type: select
-    proxies:
-      - "🇺🇸 住宅-洛杉矶"
+# =====================
+# 美国住宅链
+# =====================
+
+- name: "🇺🇸 住宅链式代理"
+  type: select
+  proxies:
+    - "🇺🇸 住宅-洛杉矶"
 
 # =====================
 # 分流规则
@@ -230,4 +247,4 @@ rules:
   - GEOIP,CN,DIRECT
 
   # ---- 默认兜底 ----
-  - MATCH,🇺🇸 住宅链式代理
+  - MATCH,🌏 普通国外
