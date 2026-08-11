@@ -82,7 +82,7 @@ proxy-providers:
 
     skip-cert-verify: true
 
-    filter: "(香港|台湾|日本).*HY2"
+    filter: "(香港|日本).*HY2*SS"
 
     health-check:
       enable: true
