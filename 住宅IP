@@ -4,43 +4,63 @@
 # =====================
 
 mixed-port: 7890
+
 allow-lan: true
+
 bind-address: "*"
+
 mode: rule
+
 log-level: info
+
 tcp-concurrent: true
+
 unified-delay: true
 
+
 external-controller: 127.0.0.1:9090
+
 
 profile:
   store-selected: true
   store-fake-ip: true
+
+
 
 # =====================
 # DNS
 # =====================
 
 dns:
+
   enable: true
+
   ipv6: false
+
   enhanced-mode: fake-ip
-  fake-ip-range: 198.18.0.1/16
+
 
   nameserver:
+
     - 223.5.5.5
     - 119.29.29.29
 
+
   fallback:
-     - https://dns.google/dns-query
-     - https://cloudflare-dns.com/dns-query
+
+    - 8.8.8.8
+    - 1.1.1.1
+
 
   fallback-filter:
+
     geoip: true
+
     geoip-code: CN
 
+
 # =====================
-# 规则订阅
+# 广告规则集
 # =====================
 
 rule-providers:
@@ -48,186 +68,391 @@ rule-providers:
   reject:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt"
+    url: https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/reject.txt
     path: ./ruleset/reject.yaml
     interval: 86400
+
 
   anti-ad:
     type: http
     behavior: domain
-    url: "https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml"
+    url: https://raw.githubusercontent.com/privacy-protection-tools/anti-AD/master/anti-ad-clash.yaml
     path: ./ruleset/anti-ad.yaml
     interval: 86400
 
+
+
 # =====================
-# 前置节点订阅（香港/台湾机场订阅，自动获取最新节点）
+# 订阅自动更新
 # =====================
 
 proxy-providers:
 
-  front_sub:
+  节点订阅:
+
     type: http
-    url: "https://8.217.98.112:1000/config?token=d1675ed4abfea3e40a1836ecee7004ca"
-    path: ./proxy_providers/front_sub.yaml
-    interval: 3600
-    skip-cert-verify: true
+
+    # 修改成你的订阅地址
+    url: "https://dy-2.xn--30rs3bu7r87f.com/csjc/api/v1/client/subscribe?token=131ca10e00a060cd99d6138d78c81ca1"
+
+    path: ./proxy_providers/node.yaml
+
+    interval: 900
+
 
     health-check:
+
       enable: true
-      url: "http://www.gstatic.com/generate_204"
+
+      url: http://www.gstatic.com/generate_204
+
       interval: 300
 
+
 # =====================
-# 节点（仅保留住宅 IP，前置节点全部来自订阅）
+# 节点
 # =====================
 
 proxies:
 
-  # 美国住宅IP（通过前置订阅拨号）
+  # ---- 香港/日本 hysteria2（前置节点，用于住宅IP拨号） ----
+  
+# =====================
+# 香港 HKT
+# =====================
+
+  - name: "🇭🇰 香港01[HY2]"
+    type: hysteria2
+    server: hk01ngnmsl.sys-metric-report.com
+    port: 23508
+    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    obfs: salamander
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+    sni: hkngnqjsl.cfastcdn.com
+    skip-cert-verify: false
+
+
+  - name: "🇭🇰 香港02[HY2]"
+    type: hysteria2
+    server: hk02ngnmsl.sys-metric-report.com
+    port: 23685
+    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    obfs: salamander
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+    sni: hkngnqjsl.cfastcdn.com
+    skip-cert-verify: false
+
+
+  - name: "🇯🇵 日本01[HY2]"
+    type: hysteria2
+    server: jp01ngnmsl.sys-metric-report.com
+    port: 29514
+    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    obfs: salamander
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+    sni: jpngnqjsl.cfastcdn.com
+    skip-cert-verify: false
+
+
+  - name: "🇯🇵 日本02[HY2]"
+    type: hysteria2
+    server: jp02ngnmsl.sys-metric-report.com
+    port: 27263
+    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    obfs: salamander
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+    sni: jpngnqjsl.cfastcdn.com
+    skip-cert-verify: false
+
+  - name: "🇰🇷 韩国01[HY2]"
+    type: hysteria2
+    server: kr01ngnmsl.sys-metric-report.com
+    port: 29608
+    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    obfs: salamander
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    up: "1000 Mbps"
+    down: "1000 Mbps"
+    sni: krngnqjsl.cfastcdn.com
+    skip-cert-verify: false
+
+  - name: "🔒 节点[SS]"
+    type: ss
+    server: c.pro.main.sys-metric-report.com
+    port: 27003
+    cipher: chacha20-ietf-poly1305
+    password: 1ca8d621-8ddd-4f31-b244-7158384db348
+    udp: true
+
+# =====================
+# VLESS 中转
+# =====================
+
+  - name: "🇭🇰 香港08"
+    type: vless
+    server: yg1.ygkkk.dpdns.org
+    port: 8443
+    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+    network: ws
+    tls: true
+    udp: true
+    servername: thomas20265.ccwu.cc
+    client-fingerprint: chrome
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: thomas20265.ccwu.cc
+
+  - name: "🇭🇰 香港09"
+    type: vless
+    server: yg8.ygkkk.dpdns.org
+    port: 443
+    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+    udp: false
+    tls: true
+    network: ws
+    servername: thomas20265.ccwu.cc
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: thomas20265.ccwu.cc
+
+  - name: "🇭🇰 香港10"
+    type: vless
+    server: yg9.ygkkk.dpdns.org
+    port: 8443
+    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+    udp: false
+    tls: true
+    network: ws
+    servername: thomas20265.ccwu.cc
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: thomas20265.ccwu.cc
+
+  - name: "🇭🇰 香港11"
+    type: vless
+    server: yg11.ygkkk.dpdns.org
+    port: 2083
+    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+    udp: false
+    tls: true
+    network: ws
+    servername: thomas20265.ccwu.cc
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: thomas20265.ccwu.cc
+
+  - name: "🇭🇰 香港12"
+    type: vless
+    server: yg12.ygkkk.dpdns.org
+    port: 2087
+    uuid: e8e3ce66-9a9e-45bf-acf0-3f3d9f5e8ba8
+    udp: false
+    tls: true
+    network: ws
+    servername: thomas20265.ccwu.cc
+    ws-opts:
+      path: "/?ed=2560"
+      headers:
+        Host: thomas20265.ccwu.cc 
+
+  - name: "🇺🇸 洛杉矶"
+    type: vmess
+    server: 35.212.132.62
+    port: 56021
+    uuid: f9570768-93f0-40fa-bed6-14b3836dc7e0
+    alterId: 0
+    cipher: auto
+    udp: true
+
+    network: ws
+    ws-opts:
+      path: /f9570768-93f0-40fa-bed6-14b3836dc7e0-vm
+      headers:
+        Host: www.bing.com
+
+    tls: false      
+
+
+
+# =====================
+# 美国住宅IP
+# =====================
+
+  # ---- 美国住宅 IP（通过香港前置节点拨号） ----
+
   - name: "🇺🇸 住宅-洛杉矶"
     type: socks5
     server: 206.135.152.143
     port: 33943
-    username: "Gspg77qEpSKm"
-    password: "IfUN7Zuldcj1"
+    username: Gspg77qEpSKm
+    password: IfUN7Zuldcj1
     udp: true
-    dialer-proxy: "🌏 Reality前置"
+    dialer-proxy: "🇭🇰 香港前置"
 
+    
 # =====================
 # 代理组
 # =====================
 
 proxy-groups:
 
-  # 从订阅里自动测速，选最快的作为前置节点
-  - name: "🌏 Reality前置"
+
+  - name: "🇭🇰 香港前置"
 
     type: url-test
 
-    use:
-      - front_sub
+    proxies:
 
-    url: "http://www.gstatic.com/generate_204"
+      - "🇭🇰 香港01[HY2]"
+      - "🇭🇰 香港02[HY2]"
+      - "🇯🇵 日本01[HY2]"
+      - "🇯🇵 日本02[HY2]"
+      - "🇰🇷 韩国01[HY2]"
+      - "🔒 节点[SS]"
+      
+    url: http://www.gstatic.com/generate_204
+
     interval: 300
+
     tolerance: 50
-    lazy: true
+
+
 
   - name: "🇺🇸 住宅链式代理"
+
     type: select
+
     proxies:
+
       - "🇺🇸 住宅-洛杉矶"
+
 
 # =====================
 # 分流规则
 # =====================
 
 rules:
+
   # ---- 局域网/内网直连 ----
-  - IP-CIDR,127.0.0.0/8,DIRECT
-  - IP-CIDR,192.168.0.0/16,DIRECT
-  - IP-CIDR,10.0.0.0/8,DIRECT
-  - IP-CIDR,172.16.0.0/12,DIRECT
+   - IP-CIDR,127.0.0.0/8,DIRECT
+   - IP-CIDR,192.168.0.0/16,DIRECT
+   - IP-CIDR,10.0.0.0/8,DIRECT
+   - IP-CIDR,172.16.0.0/12,DIRECT
 
   # ---- 广告拦截 ----
-  - RULE-SET,reject,REJECT
-  - RULE-SET,anti-ad,REJECT
+   - RULE-SET,reject,REJECT
+   - RULE-SET,anti-ad,REJECT
 
   # ---- 社媒（正则，优先住宅IP） ----
-  - DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).*,🇺🇸 住宅链式代理
+   - DOMAIN-REGEX,(.*\.)?(tiktok|facebook|instagram|linkedin).*,🇺🇸 住宅链式代理
 
-  # ---- Google 全家桶 ----
-  - DOMAIN-KEYWORD,google,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,gstatic.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,gvt1.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,gvt2.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,gvt3.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,gvt1-cn.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,gvt2-cn.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,gvt1.net,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,gvt2.net,🇺🇸 住宅链式代理
+  # ---- Google 全家桶（含 Play/Gmail/搜索/API 等，一条 keyword 覆盖绝大部分） ----
+   - DOMAIN-KEYWORD,google,🇺🇸 住宅链式代理
 
-  # Google CDN IP 段
-  - IP-CIDR,142.250.0.0/15,🇺🇸 住宅链式代理,no-resolve
-  - IP-CIDR,172.217.0.0/16,🇺🇸 住宅链式代理,no-resolve
-  - IP-CIDR,216.58.192.0/19,🇺🇸 住宅链式代理,no-resolve
-  - IP-CIDR,74.125.0.0/16,🇺🇸 住宅链式代理,no-resolve
-  - IP-CIDR,173.194.0.0/16,🇺🇸 住宅链式代理,no-resolve
+  # 不含 "google" 字样、需要单独列出的 Google 相关域名/CDN
+   - DOMAIN-SUFFIX,gstatic.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,gvt1.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,gvt2.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,gvt3.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,gvt1-cn.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,gvt2-cn.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,gvt1.net,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,gvt2.net,🇺🇸 住宅链式代理
 
-  # Google Play / Android
-  - PROCESS-NAME,com.android.vending,🇺🇸 住宅链式代理
-  - PROCESS-NAME,com.google.android.gms,🇺🇸 住宅链式代理
-  - PROCESS-NAME,com.google.android.gsf,🇺🇸 住宅链式代理
-  - PROCESS-NAME,com.android.providers.downloads,🇺🇸 住宅链式代理
+  # Google CDN IP 段（域名规则命中不了 IP，需单独保留）
+   - IP-CIDR,142.250.0.0/15,🇺🇸 住宅链式代理,no-resolve
+   - IP-CIDR,172.217.0.0/16,🇺🇸 住宅链式代理,no-resolve
+   - IP-CIDR,216.58.192.0/19,🇺🇸 住宅链式代理,no-resolve
+   - IP-CIDR,74.125.0.0/16,🇺🇸 住宅链式代理,no-resolve
+   - IP-CIDR,173.194.0.0/16,🇺🇸 住宅链式代理,no-resolve
+
+  # Google Play / Android 更新（本机运行 Clash 时才生效，路由器/多设备场景下无效，靠上面的域名规则兜底）
+   - PROCESS-NAME,com.android.vending,🇺🇸 住宅链式代理
+   - PROCESS-NAME,com.google.android.gms,🇺🇸 住宅链式代理
+   - PROCESS-NAME,com.google.android.gsf,🇺🇸 住宅链式代理
+   - PROCESS-NAME,com.android.providers.downloads,🇺🇸 住宅链式代理
 
   # ---- YouTube ----
-  - DOMAIN-SUFFIX,youtube.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,youtu.be,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,ytimg.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,youtube.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,youtu.be,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,ytimg.com,🇺🇸 住宅链式代理
 
   # ---- AI ----
-  - DOMAIN-SUFFIX,openai.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,chatgpt.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,claude.ai,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,openai.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,chatgpt.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,claude.ai,🇺🇸 住宅链式代理
 
   # ---- TikTok ----
-  - DOMAIN-SUFFIX,tiktok.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,tiktokcdn.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,tiktokv.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,byteoversea.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,ibyteimg.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,muscdn.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,bytecdn.cn,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,tiktok.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,tiktokcdn.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,tiktokv.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,byteoversea.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,ibyteimg.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,muscdn.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,bytecdn.cn,🇺🇸 住宅链式代理
 
   # ---- Meta ----
-  - DOMAIN-SUFFIX,facebook.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,fbcdn.net,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,fbsbx.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,instagram.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,cdninstagram.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,messenger.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,whatsapp.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,whatsapp.net,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,googleadservices.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,doubleclick.net,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,googlesyndication.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,google-analytics.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,facebook.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,fbcdn.net,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,fbsbx.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,instagram.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,cdninstagram.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,messenger.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,whatsapp.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,whatsapp.net,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,googleadservices.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,doubleclick.net,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,googlesyndication.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,google-analytics.com,🇺🇸 住宅链式代理
 
   # ---- 电商/支付/营销工具 ----
-  - DOMAIN-SUFFIX,amazon.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,amazonaws.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,shopify.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,myshopify.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,paypal.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,paypalobjects.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,stripe.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,mailchimp.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,sendgrid.net,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,hubspot.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,amazon.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,amazonaws.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,shopify.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,myshopify.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,paypal.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,paypalobjects.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,stripe.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,mailchimp.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,sendgrid.net,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,hubspot.com,🇺🇸 住宅链式代理
 
   # ---- LINE ----
-  - DOMAIN-SUFFIX,line.me,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,line-apps.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,line-scdn.net,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,line.naver.jp,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,line.me,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,line-apps.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,line-scdn.net,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,line.naver.jp,🇺🇸 住宅链式代理
 
   # ---- Zalo ----
-  - DOMAIN-SUFFIX,zalo.me,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,zaloapp.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,zalo.vn,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,zdn.vn,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,zalo.me,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,zaloapp.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,zalo.vn,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,zdn.vn,🇺🇸 住宅链式代理
 
-  # ---- LinkedIn ----
-  - DOMAIN-SUFFIX,linkedin.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,licdn.com,🇺🇸 住宅链式代理
+  # ---- LinkedIn（领英） ----
+   - DOMAIN-SUFFIX,linkedin.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,licdn.com,🇺🇸 住宅链式代理
 
   # ---- 其他国外 ----
-  - DOMAIN-SUFFIX,telegram.org,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,github.com,🇺🇸 住宅链式代理
-  - DOMAIN-SUFFIX,netflix.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,telegram.org,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,github.com,🇺🇸 住宅链式代理
+   - DOMAIN-SUFFIX,netflix.com,🇺🇸 住宅链式代理
 
   # ---- 国内直连（放在所有"必须代理"规则之后） ----
-  - GEOSITE,cn,DIRECT
-  - GEOIP,CN,DIRECT
+   - GEOSITE,cn,DIRECT
+   - GEOIP,CN,DIRECT
 
   # ---- 默认兜底 ----
-  - MATCH,🌏 Reality前置
+   - MATCH,🇺🇸 住宅链式代理
