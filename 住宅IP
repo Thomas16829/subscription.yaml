@@ -107,7 +107,7 @@ proxy-groups:
   type: url-test
   use:
     - front_sub
-  url: https://www.gstatic.com/generate_204
+  url: http://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
   lazy: false
@@ -120,7 +120,7 @@ proxy-groups:
   type: url-test
   use:
     - front_sub
-  url: https://www.gstatic.com/generate_204
+  url: http://www.gstatic.com/generate_204
   interval: 300
   tolerance: 50
   lazy: false
