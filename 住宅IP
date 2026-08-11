@@ -138,15 +138,15 @@ proxy-groups:
 
   # 从订阅里自动测速，选最快的作为前置节点
   - name: "🌏 Reality前置"
-
     type: url-test
 
-      - 🇭🇰 香港01[HY2]
-      - 🇭🇰 香港02[HY2]
-      - 🇯🇵 日本01[HY2]
-      - 🇯🇵 日本02[HY2]
+    proxies:
+      - "🇭🇰 香港01[HY2]"
+      - "🇭🇰 香港02[HY2]"
+      - "🇯🇵 日本01[HY2]"
+      - "🇯🇵 日本02[HY2]"
 
-    url: http://www.gstatic.com/generate_204
+    url: "http://www.gstatic.com/generate_204"
     interval: 300
     tolerance: 50
     lazy: true
