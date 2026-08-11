@@ -118,7 +118,7 @@ proxies:
   # ---- 香港/日本 hysteria2（前置节点，用于住宅IP拨号） ----
   
 # =====================
-# 香港 HKT
+# 香港 HK
 # =====================
 
   - name: "🇭🇰 香港01[HY2]"
@@ -184,7 +184,7 @@ proxies:
     sni: krngnqjsl.cfastcdn.com
     skip-cert-verify: false
 
-  - name: "🔒 节点[SS]"
+  - name: "套餐到期：2026-09-11"
     type: ss
     server: c.pro.main.sys-metric-report.com
     port: 27003
