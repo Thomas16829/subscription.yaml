@@ -123,15 +123,15 @@ proxies:
 
   - name: "🇭🇰 香港01[HY2]"
     type: hysteria2
-    server: hk01ngnmsl.sys-metric-report.com
-    port: 23508
+    server: ://sys-metric-report.com
+    port: 28606
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    obfs: salamander
-    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
     up: "1000 Mbps"
     down: "1000 Mbps"
-    sni: hkngnqjsl.cfastcdn.com
     skip-cert-verify: false
+    sni: ://cfastcdn.com
+    obfs: salamander
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
 
   - name: "🇭🇰 香港02[HY2]"
@@ -184,9 +184,9 @@ proxies:
     sni: krngnqjsl.cfastcdn.com
     skip-cert-verify: false
 
-  - name: "套餐到期：2026-09-11"
+  - name: "路線到期：2026-09-11"
     type: ss
-    server: c.pro.main.sys-metric-report.com
+    server: ://sys-metric-report.com
     port: 27003
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
