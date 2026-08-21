@@ -121,15 +121,15 @@ proxies:
 # 香港 HK
 # =====================
 
-  - name: "🇭🇰 香港01[HY2]"
+    - name: "🇭🇰 香港01[HY2]"
     type: hysteria2
     server: hk01ngnmsl.sys-metric-report.com
-    port: 29750
+    port: 25681
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
     up: "1000 Mbps"
     down: "1000 Mbps"
     skip-cert-verify: false
-    sni: wwwhkx.cfastcdn.com
+    sni: hkngsmsb.cfastcdn.com
     obfs: salamander
     obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
@@ -137,35 +137,35 @@ proxies:
   - name: "🇭🇰 香港02[HY2]"
     type: hysteria2
     server: hk02ngnmsl.sys-metric-report.com
-    port: 23685
+    port: 22421
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
     obfs: salamander
     obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
     up: "1000 Mbps"
     down: "1000 Mbps"
-    sni: hkngnqjsl.cfastcdn.com
+    sni: hkngsmsb.cfastcdn.com
     skip-cert-verify: false
 
 
   - name: "🇯🇵 日本01[HY2]"
     type: hysteria2
     server: jp01ngnmsl.sys-metric-report.com
-    port: 29514
+    port: 28142
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
     obfs: salamander
     obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
     up: "1000 Mbps"
     down: "1000 Mbps"
-    sni: jpngnqjsl.cfastcdn.com
+    sni: jpngsmsb.cfastcdn.com
     skip-cert-verify: false
 
 
   - name: "🇯🇵 日本02[HY2]"
     type: hysteria2
-    server: sgp01ngnmsl.sys-metric-report.com
-    port: 27987
+    server: jp02ngnmsl.sys-metric-report.com
+    port: 27048
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    sni: sgngnqjsl.cfastcdn.com
+    sni: jpngsmsb.cfastcdn.com
     skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
@@ -175,19 +175,19 @@ proxies:
   - name: "🇰🇷 韩国01[HY2]"
     type: hysteria2
     server: kr01ngnmsl.sys-metric-report.com
-    port: 29608
+    port: 28622
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    obfs: salamander
-    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    sni: krngsmsb.cfastcdn.com
+    skip-cert-verify: false
     up: "1000 Mbps"
     down: "1000 Mbps"
-    sni: krngnqjsl.cfastcdn.com
-    skip-cert-verify: false
+    obfs: salamander
+    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
 
-  - name: "套餐到期：2026-09-11"
+  - name: "路線到期：2026-09-11"
     type: ss
     server: c.pro.main.sys-metric-report.com
-    port: 27003
+    port: 28014
     cipher: chacha20-ietf-poly1305
     password: 1ca8d621-8ddd-4f31-b244-7158384db348
     udp: true
