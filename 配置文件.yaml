@@ -121,7 +121,7 @@ proxies:
 # 香港 HK
 # =====================
 
-    - name: "🇭🇰 香港01[HY2]"
+  - name: "🇭🇰 香港01[HY2]"
     type: hysteria2
     server: hk01ngnmsl.sys-metric-report.com
     port: 25681
