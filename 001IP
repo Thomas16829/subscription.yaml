@@ -295,10 +295,10 @@ proxies:
 
   - name: "🇺🇸 住宅-洛杉矶"
     type: socks5
-    server: 207.145.156.49
-    port: 33929
-    username: XOnMOuRv2wRu
-    password: 5iD0lGzcgcKh
+    server: 69.3.140.26
+    port: 7298
+    username: ntX7mnzCATL7
+    password: hZ8F7mnGhVPd
     udp: true
     dialer-proxy: "🇭🇰 香港前置"
 
