@@ -122,75 +122,95 @@ proxies:
 # =====================
 
   - name: "🇭🇰 香港01[HY2]"
-    type: hysteria2
-    server: jp03ngnmsl.sys-metric-report.com
-    port: 25946
-    sni: jpngsmsb.cfastcdn.com
-    password: "1ca8d621-8ddd-4f31-b244-7158384db348"
-    up: 1000 Mbps
-    down: 1000 Mbps
-    skip-cert-verify: false
-    obfs: salamander
-    obfs-password: "OGQ0N2E4NzQ2YmE4MTBjMw=="
-
+    type: vless
+    server: us01ngnmsl.sys-metric-report.com
+    port: 8443
+    uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
+    network: tcp
+    udp: true
+    tls: true
+    servername: usngsmsb.cfastcdn.com
+    flow: xtls-rprx-vision
+    client-fingerprint: qq
+    reality-opts:
+      public-key: PzyJcvgFu_4ueH9Kn98ON3QNyq-_k5XLu3idksyu7BY
+      short-id: "60319abe"
 
   - name: "🇭🇰 香港02[HY2]"
-    type: hysteria2
-    server: hk02ngnmsl.sys-metric-report.com
-    port: 22421
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    obfs: salamander
-    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-    sni: hkngsmsb.cfastcdn.com
-    skip-cert-verify: false
-
+    type: vless
+    server: us02ngnmsl.sys-metric-report.com
+    port: 8443
+    uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
+    network: tcp
+    udp: true
+    tls: true
+    servername: usngsmsb.cfastcdn.com
+    flow: xtls-rprx-vision
+    client-fingerprint: edge
+    reality-opts:
+      public-key: 13XzX1y9zEAUvxw4pAT5LboPnL7JfW1UUicBqtsUCWs
+      short-id: "036998c8"
 
   - name: "🇯🇵 日本01[HY2]"
-    type: hysteria2
-    server: jp01ngnmsl.sys-metric-report.com
-    port: 28142
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    obfs: salamander
-    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-    sni: jpngsmsb.cfastcdn.com
-    skip-cert-verify: false
+    type: vless
+    server: sgp01ngnmsl.sys-metric-report.com
+    port: 8443
+    uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
+    network: tcp
+    udp: true
+    tls: true
+    servername: sgngsmsb.cfastcdn.com
+    flow: xtls-rprx-vision
+    client-fingerprint: ios
+    reality-opts:
+      public-key: lcDUHz1V3Y3uzgHWtan21BlfUjF07M9RhXe7HNnSm1I
+      short-id: "9368dd99"
 
 
   - name: "🇯🇵 日本02[HY2]"
-    type: hysteria2
-    server: jp02ngnmsl.sys-metric-report.com
-    port: 27048
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    sni: jpngsmsb.cfastcdn.com
-    skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-    obfs: salamander
-    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    type: vless
+    server: pyygg0769.sys-metric-report.com
+    port: 44068
+    uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
+    network: tcp
+    udp: true
+    tls: true
+    servername: happ.cfastcdn.com
+    flow: xtls-rprx-vision
+    client-fingerprint: qq
+    reality-opts:
+      public-key: sZ08KYbFU4QPHVTGELr3L8F1kJBm3SCdKjILUu1wg3E
+      short-id: "1fc484da"
 
   - name: "🇰🇷 韩国01[HY2]"
-    type: hysteria2
+    type: vless
     server: kr01ngnmsl.sys-metric-report.com
-    port: 28622
-    password: 1ca8d621-8ddd-4f31-b244-7158384db348
-    sni: krngsmsb.cfastcdn.com
-    skip-cert-verify: false
-    up: "1000 Mbps"
-    down: "1000 Mbps"
-    obfs: salamander
-    obfs-password: OGQ0N2E4NzQ2YmE4MTBjMw==
+    port: 8443
+    uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
+    network: tcp
+    udp: true
+    tls: true
+    servername: krngsmsb.cfastcdn.com
+    flow: xtls-rprx-vision
+    client-fingerprint: chrome
+    reality-opts:
+      public-key: "-Ah1R_yf6g__5sVtXVpnodlTfJIAJaTO6HzogJ6BDHM"
+      short-id: "7078013e"
 
   - name: "路線到期：2026-11-11"
-    type: ss
-    server: c.pro.main.sys-metric-report.com
-    port: 27012
-    cipher: chacha20-ietf-poly1305
-    password: "1ca8d621-8ddd-4f31-b244-7158384db348"
+    type: vless
+    server: pyygg0769.sys-metric-report.com
+    port: 26396
+    uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
+    network: tcp
     udp: true
+    tls: true
+    servername: tapp.cfastcdn.com
+    flow: xtls-rprx-vision
+    client-fingerprint: ios
+    reality-opts:
+      public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw
+      short-id: "d481c1dc"
 
 
 # =====================
