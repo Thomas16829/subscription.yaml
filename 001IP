@@ -168,12 +168,19 @@ proxies:
 
 
   - name: "🇯🇵 日本02[HY2]"
-    type: ss
-    server: c.pro.main.sys-metric-report.com
-    port: 27011
-    cipher: chacha20-ietf-poly1305
-    password: "1ca8d621-8ddd-4f31-b244-7158384db348"
+    type: vless
+    server: pyygg0769.sys-metric-report.com
+    port: 44068
+    uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
+    network: tcp
     udp: true
+    tls: true
+    servername: happ.cfastcdn.com
+    flow: xtls-rprx-vision
+    client-fingerprint: qq
+    reality-opts:
+      public-key: sZ08KYbFU4QPHVTGELr3L8F1kJBm3SCdKjILUu1wg3E
+      short-id: "1fc484da"
 
   - name: "🇰🇷 韩国01[HY2]"
     type: vless
@@ -191,12 +198,19 @@ proxies:
       short-id: "7078013e"
 
   - name: "路線到期：2026-10-31"
-    type: ss
-    server: c.pro.main.sys-metric-report.com
-    port: 27005
-    cipher: chacha20-ietf-poly1305
-    password: "1ca8d621-8ddd-4f31-b244-7158384db348"
+    type: vless
+    server: pyygg0769.sys-metric-report.com
+    port: 26396
+    uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
+    network: tcp
     udp: true
+    tls: true
+    servername: tapp.cfastcdn.com
+    flow: xtls-rprx-vision
+    client-fingerprint: ios
+    reality-opts:
+      public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw
+      short-id: "d481c1dc"
 
 
 # =====================
