@@ -121,68 +121,68 @@ proxies:
 # 香港 HK
 # =====================
 
-  - name: "🇭🇰 香港01[HY2]"
+  - name: "🇭🇰 香港01[直连]"
     type: vless
-    server: us01ngnmsl.sys-metric-report.com
+    server: hk02ngnmsl.sys-metric-report.com
     port: 8443
     uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
     network: tcp
     udp: true
     tls: true
-    servername: usngsmsb.cfastcdn.com
     flow: xtls-rprx-vision
-    client-fingerprint: qq
+    servername: hkngsmsb.cfastcdn.com
+    client-fingerprint: firefox
     reality-opts:
-      public-key: PzyJcvgFu_4ueH9Kn98ON3QNyq-_k5XLu3idksyu7BY
-      short-id: "60319abe"
+      public-key: wTj25clRfdC8-MKIEHuo-OF2uIVDzl1xgah9WXgUtAg
+      short-id: 339c6ef1
 
-  - name: "🇭🇰 香港02[HY2]"
+  - name: "🇭🇰 香港02[直连]"
     type: vless
-    server: us02ngnmsl.sys-metric-report.com
+    server: sk1.sys-metric-report.com
     port: 8443
     uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
     network: tcp
     udp: true
     tls: true
-    servername: usngsmsb.cfastcdn.com
     flow: xtls-rprx-vision
-    client-fingerprint: edge
-    reality-opts:
-      public-key: 13XzX1y9zEAUvxw4pAT5LboPnL7JfW1UUicBqtsUCWs
-      short-id: "036998c8"
-
-  - name: "🇯🇵 日本01[HY2]"
-    type: vless
-    server: sgp01ngnmsl.sys-metric-report.com
-    port: 8443
-    uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
-    network: tcp
-    udp: true
-    tls: true
-    servername: sgngsmsb.cfastcdn.com
-    flow: xtls-rprx-vision
+    servername: happ.cfastcdn.com
     client-fingerprint: ios
     reality-opts:
-      public-key: lcDUHz1V3Y3uzgHWtan21BlfUjF07M9RhXe7HNnSm1I
-      short-id: "9368dd99"
+      public-key: wTj25clRfdC8-MKIEHuo-OF2uIVDzl1xgah9WXgUtAg
+      short-id: 339c6ef1
 
-
-  - name: "🇯🇵 日本02[HY2]"
+  - name: "🇭🇰 香港03[直连]"
     type: vless
-    server: pyygg0769.sys-metric-report.com
-    port: 44068
+    server: sk2.sys-metric-report.com
+    port: 8443
     uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
     network: tcp
     udp: true
     tls: true
-    servername: happ.cfastcdn.com
     flow: xtls-rprx-vision
-    client-fingerprint: qq
+    servername: happ.cfastcdn.com
+    client-fingerprint: firefox
     reality-opts:
-      public-key: sZ08KYbFU4QPHVTGELr3L8F1kJBm3SCdKjILUu1wg3E
-      short-id: "1fc484da"
+      public-key: wTj25clRfdC8-MKIEHuo-OF2uIVDzl1xgah9WXgUtAg
+      short-id: 339c6ef1
 
-  - name: "🇰🇷 韩国01[HY2]"
+
+  - name: "🇯🇵 日本01[直连]"
+    type: vless
+    server: jp01ngnmsl.sys-metric-report.com
+    port: 8443
+    uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
+    network: tcp
+    udp: true
+    tls: true
+    flow: xtls-rprx-vision
+    servername: jpngsmsb.cfastcdn.com
+    client-fingerprint: ios
+    reality-opts:
+      public-key: rKcoTZcg7dTRwB4pLPMluoLXs4S3uF4IjB96d_xnfQ4
+      short-id: a86d7a1c
+
+  - name: "🇰🇷 韩国01[直连]"
     type: vless
     server: kr01ngnmsl.sys-metric-report.com
     port: 8443
@@ -190,27 +190,27 @@ proxies:
     network: tcp
     udp: true
     tls: true
-    servername: krngsmsb.cfastcdn.com
     flow: xtls-rprx-vision
-    client-fingerprint: chrome
+    servername: krngsmsb.cfastcdn.com
+    client-fingerprint: safari
     reality-opts:
       public-key: "-Ah1R_yf6g__5sVtXVpnodlTfJIAJaTO6HzogJ6BDHM"
-      short-id: "7078013e"
+      short-id: 7078013e
 
   - name: "路線到期：2026-10-31"
     type: vless
-    server: pyygg0769.sys-metric-report.com
-    port: 26396
+    server: jp02ngnmsl.sys-metric-report.com
+    port: 8443
     uuid: 1ca8d621-8ddd-4f31-b244-7158384db348
     network: tcp
     udp: true
     tls: true
-    servername: tapp.cfastcdn.com
     flow: xtls-rprx-vision
-    client-fingerprint: ios
+    servername: jpngsmsb.cfastcdn.com
+    client-fingerprint: qq
     reality-opts:
-      public-key: eob9-UdF6SeEtwcnPjECI1HE4iI6Aqef09AMAh3wJTw
-      short-id: "d481c1dc"
+      public-key: XiUD90ocvXnBVVORhpjr0A9EHX76LpSrL3jz3v-nrGw
+      short-id: aa266a59
 
 
 # =====================
@@ -336,11 +336,11 @@ proxy-groups:
 
     proxies:
 
-      - "🇭🇰 香港01[HY2]"
-      - "🇭🇰 香港02[HY2]"
-      - "🇯🇵 日本01[HY2]"
-      - "🇯🇵 日本02[HY2]"
-      - "🇰🇷 韩国01[HY2]"
+      - "🇭🇰 香港01[直连]"
+      - "🇭🇰 香港02[直连]"
+      - "🇭🇰 香港03[直连]"
+      - "🇯🇵 日本01[直连]"
+      - "🇰🇷 韩国01[直连]"
       - "路線到期：2026-10-31"
       
       
