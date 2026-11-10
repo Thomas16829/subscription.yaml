@@ -197,7 +197,7 @@ proxies:
       public-key: "-Ah1R_yf6g__5sVtXVpnodlTfJIAJaTO6HzogJ6BDHM"
       short-id: 7078013e
 
-  - name: "路線到期：2026-11-11"
+  - name: "路線到期：2026-12-11"
     type: vless
     server: jp02ngnmsl.sys-metric-report.com
     port: 8443
@@ -341,7 +341,7 @@ proxy-groups:
       - "🇭🇰 香港03[直连]"
       - "🇯🇵 日本01[直连]"
       - "🇰🇷 韩国01[直连]"
-      - "路線到期：2026-11-11"
+      - "路線到期：2026-12-11"
       
       
     url: http://www.gstatic.com/generate_204
